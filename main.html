@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACA Church PKT — 50+ Years of God's Grace | Pattukkottai, Thanjavur</title>
     
+    <!-- Preload Hero Initial Frame -->
+    <link rel="preload" as="image" href="hero image/frame_001.jpg">
+    
     <!-- Primary Meta Tags -->
     <meta name="title" content="ACA Church PKT — 50+ Years of God's Grace | Pattukkottai, Thanjavur">
     <meta name="description"
@@ -406,7 +409,7 @@
     <!-- 2. SCROLL-CONTROLLED CINEMATIC HERO SECTION -->
     <header id="hero-scroll-track" class="relative w-full h-[380vh] bg-[#070b14]">
         <!-- Sticky Canvas Viewport (100vh) -->
-        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#070b14]">
+        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#070b14] bg-cover bg-center" style="background-image: url('hero image/frame_001.jpg');">
 
             <!-- Canvas Rendering 192 High-Res Frames -->
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
@@ -1473,9 +1476,9 @@
                 if (scrollPrompt) scrollPrompt.style.opacity = '0';
             }
 
-            // 2. Scripture Text Reveal (70% to 100% scroll progress)
-            if (prog >= 0.70) {
-                const scriptureProgress = Math.min(1, Math.max(0, (prog - 0.70) / 0.30));
+            // 2. Scripture Text Reveal (35% to 70% scroll progress)
+            if (prog >= 0.35) {
+                const scriptureProgress = Math.min(1, Math.max(0, (prog - 0.35) / 0.35));
                 const opacity = scriptureProgress;
                 const translateY = 35 * (1 - scriptureProgress);
                 const blur = 8 * (1 - scriptureProgress);
