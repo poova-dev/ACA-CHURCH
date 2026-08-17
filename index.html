@@ -450,7 +450,7 @@
             <!-- REAL HTML SCRIPTURE TEXT OVERLAY (Tamil) - Modern Floating Typography -->
             <div id="hero-scripture-container"
                 class="relative z-20 text-center px-4 sm:px-6 max-w-5xl w-full flex flex-col items-center justify-center transition-all duration-500 pointer-events-none"
-                style="opacity: 0; transform: translateY(30px); filter: blur(6px);">
+                style="opacity: 0; transform: translate3d(0, 35px, 0); will-change: transform, opacity;">
 
                 <!-- Floating Tamil Scripture Lines -->
                 <div class="space-y-1 sm:space-y-3 mb-6 sm:mb-8">
@@ -1319,9 +1319,10 @@
             return `hero image/frame_${numStr}.jpg`;
         }
 
-        // High-DPI Canvas Resizing with Aspect Cover Ratio
+        // High-DPI Canvas Resizing with Aspect Cover Ratio & Mobile DPR Optimization
         function resizeCanvas() {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const isMobile = window.innerWidth < 768;
+            const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
             canvas.width = window.innerWidth * dpr;
             canvas.height = window.innerHeight * dpr;
             ctx.scale(dpr, dpr);
@@ -1363,10 +1364,13 @@
             }
         }
 
-        // Preload Strategy: First 15 frames immediately, then chunk remaining in background
+        // Preload Strategy: Optimized frame stepping & memory budget for mobile devices
         async function initFrameLoader() {
+            const isMobile = window.innerWidth < 768;
+            const frameStep = isMobile ? 2 : 1; // Preload 96 frames on mobile to save GPU memory & CPU
+
             const initialPromises = [];
-            for (let i = 0; i < INITIAL_PRELOAD_COUNT; i++) {
+            for (let i = 0; i < INITIAL_PRELOAD_COUNT; i += frameStep) {
                 initialPromises.push(preloadFrame(i));
             }
             await Promise.all(initialPromises);
@@ -1375,14 +1379,14 @@
             renderFrameAtProgress(currentProgress);
 
             // Asynchronously load remaining frames in chunks
-            const chunkSize = 15;
-            for (let i = INITIAL_PRELOAD_COUNT; i < TOTAL_FRAMES; i += chunkSize) {
+            const chunkSize = isMobile ? 10 : 15;
+            for (let i = INITIAL_PRELOAD_COUNT; i < TOTAL_FRAMES; i += chunkSize * frameStep) {
                 const chunkPromises = [];
-                for (let j = i; j < Math.min(i + chunkSize, TOTAL_FRAMES); j++) {
+                for (let j = i; j < Math.min(i + chunkSize * frameStep, TOTAL_FRAMES); j += frameStep) {
                     chunkPromises.push(preloadFrame(j));
                 }
                 await Promise.all(chunkPromises);
-                await new Promise(r => setTimeout(r, 10));
+                await new Promise(r => setTimeout(r, 15));
             }
         }
 
@@ -1476,21 +1480,26 @@
                 if (scrollPrompt) scrollPrompt.style.opacity = '0';
             }
 
-            // 2. Scripture Text Reveal (35% to 70% scroll progress)
+            // 2. Scripture Text Reveal (35% to 70% scroll progress with mobile GPU blur bypass)
             if (prog >= 0.35) {
                 const scriptureProgress = Math.min(1, Math.max(0, (prog - 0.35) / 0.35));
                 const opacity = scriptureProgress;
                 const translateY = 35 * (1 - scriptureProgress);
-                const blur = 8 * (1 - scriptureProgress);
+                const isMobile = window.innerWidth < 768;
 
                 scriptureContainer.style.opacity = opacity.toFixed(3);
-                scriptureContainer.style.transform = `translateY(${translateY.toFixed(1)}px)`;
-                scriptureContainer.style.filter = `blur(${blur.toFixed(1)}px)`;
+                scriptureContainer.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
+                if (!isMobile) {
+                    const blur = 8 * (1 - scriptureProgress);
+                    scriptureContainer.style.filter = `blur(${blur.toFixed(1)}px)`;
+                } else {
+                    scriptureContainer.style.filter = 'none';
+                }
                 scriptureContainer.style.pointerEvents = scriptureProgress > 0.5 ? 'auto' : 'none';
             } else {
                 scriptureContainer.style.opacity = '0';
-                scriptureContainer.style.transform = 'translateY(35px)';
-                scriptureContainer.style.filter = 'blur(8px)';
+                scriptureContainer.style.transform = 'translate3d(0, 35px, 0)';
+                scriptureContainer.style.filter = 'none';
                 scriptureContainer.style.pointerEvents = 'none';
             }
         }
