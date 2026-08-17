@@ -1322,7 +1322,8 @@
             canvas.width = window.innerWidth * dpr;
             canvas.height = window.innerHeight * dpr;
             ctx.scale(dpr, dpr);
-            renderCurrentFrame();
+            lastRenderedFrame = -1;
+            renderFrameAtProgress(currentProgress);
         }
 
         // Preload individual image with promise
@@ -1338,6 +1339,9 @@
                     frameImages[index] = img;
                     loadedFramesCount++;
                     updateLoadingProgress();
+                    if (index === 0) {
+                        renderFrameAtProgress(currentProgress);
+                    }
                     resolve(img);
                 };
                 img.onerror = () => {
@@ -1365,7 +1369,7 @@
             await Promise.all(initialPromises);
 
             // Draw initial frame as soon as preloaded
-            renderCurrentFrame();
+            renderFrameAtProgress(currentProgress);
 
             // Asynchronously load remaining frames in chunks
             const chunkSize = 15;
