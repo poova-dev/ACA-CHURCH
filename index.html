@@ -1419,55 +1419,62 @@
             ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
         }
 
-        function renderCurrentFrame() {
-            const progress = getScrollProgress();
+        let targetProgress = 0;
+        let currentProgress = 0;
+        let isAnimating = false;
+        let lastRenderedFrame = -1;
 
+        function renderFrameAtProgress(prog) {
             // Determine frame index (0 to 191)
-            let frameIndex = Math.floor(progress * (TOTAL_FRAMES - 1));
+            let frameIndex = Math.round(prog * (TOTAL_FRAMES - 1));
             frameIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, frameIndex));
 
-            // Find closest available preloaded frame if target not loaded yet
-            let imgToDraw = frameImages[frameIndex];
-            if (!imgToDraw) {
-                for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
-                    if (frameIndex - offset >= 0 && frameImages[frameIndex - offset]) {
-                        imgToDraw = frameImages[frameIndex - offset];
-                        break;
+            // Only redraw canvas if frame index changed
+            if (frameIndex !== lastRenderedFrame) {
+                lastRenderedFrame = frameIndex;
+
+                let imgToDraw = frameImages[frameIndex];
+                if (!imgToDraw) {
+                    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+                        if (frameIndex - offset >= 0 && frameImages[frameIndex - offset]) {
+                            imgToDraw = frameImages[frameIndex - offset];
+                            break;
+                        }
+                        if (frameIndex + offset < TOTAL_FRAMES && frameImages[frameIndex + offset]) {
+                            imgToDraw = frameImages[frameIndex + offset];
+                            break;
+                        }
                     }
-                    if (frameIndex + offset < TOTAL_FRAMES && frameImages[frameIndex + offset]) {
-                        imgToDraw = frameImages[frameIndex + offset];
-                        break;
-                    }
+                }
+
+                if (imgToDraw) {
+                    drawCoverImage(imgToDraw);
                 }
             }
 
-            if (imgToDraw) {
-                drawCoverImage(imgToDraw);
-            }
-
-            // Update UI Overlays based on scroll progress
+            // Update UI Overlays with smooth lerped progress
 
             // 1. Welcome badge & Scroll prompt (0% - 18% scroll fade out)
-            if (progress < 0.18) {
-                const fadeOpacity = 1 - (progress / 0.18);
+            if (prog < 0.18) {
+                const fadeOpacity = 1 - (prog / 0.18);
                 if (welcomeBadge) {
-                    welcomeBadge.style.opacity = fadeOpacity;
+                    welcomeBadge.style.opacity = fadeOpacity.toFixed(3);
                     welcomeBadge.style.transform = `translateY(${-25 * (1 - fadeOpacity)}px)`;
                 }
                 if (scrollPrompt) {
-                    scrollPrompt.style.opacity = fadeOpacity;
+                    scrollPrompt.style.opacity = fadeOpacity.toFixed(3);
                 }
             } else {
                 if (welcomeBadge) welcomeBadge.style.opacity = '0';
                 if (scrollPrompt) scrollPrompt.style.opacity = '0';
             }
 
-            // 2. Scripture Text Reveal (75% to 100% scroll progress)
-            if (progress >= 0.75) {
-                const scriptureProgress = Math.min(1, (progress - 0.75) / 0.25);
+            // 2. Scripture Text Reveal (70% to 100% scroll progress)
+            if (prog >= 0.70) {
+                const scriptureProgress = Math.min(1, Math.max(0, (prog - 0.70) / 0.30));
                 const opacity = scriptureProgress;
-                const translateY = 30 * (1 - scriptureProgress);
-                const blur = 6 * (1 - scriptureProgress);
+                const translateY = 35 * (1 - scriptureProgress);
+                const blur = 8 * (1 - scriptureProgress);
 
                 scriptureContainer.style.opacity = opacity.toFixed(3);
                 scriptureContainer.style.transform = `translateY(${translateY.toFixed(1)}px)`;
@@ -1475,25 +1482,41 @@
                 scriptureContainer.style.pointerEvents = scriptureProgress > 0.5 ? 'auto' : 'none';
             } else {
                 scriptureContainer.style.opacity = '0';
-                scriptureContainer.style.transform = 'translateY(30px)';
-                scriptureContainer.style.filter = 'blur(6px)';
+                scriptureContainer.style.transform = 'translateY(35px)';
+                scriptureContainer.style.filter = 'blur(8px)';
                 scriptureContainer.style.pointerEvents = 'none';
             }
         }
 
-        // RAF Scroll Listener for Smooth 60fps Animation
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    renderCurrentFrame();
-                    ticking = false;
-                });
-                ticking = true;
+        function smoothAnimationLoop() {
+            targetProgress = getScrollProgress();
+            
+            // Linear Interpolation (LERP) for liquid smooth momentum
+            const diff = targetProgress - currentProgress;
+            if (Math.abs(diff) > 0.0001) {
+                currentProgress += diff * 0.14; // 0.14 gives responsive yet silky smooth momentum
+                renderFrameAtProgress(currentProgress);
+                requestAnimationFrame(smoothAnimationLoop);
+            } else {
+                currentProgress = targetProgress;
+                renderFrameAtProgress(currentProgress);
+                isAnimating = false;
             }
-        });
+        }
 
-        window.addEventListener('resize', resizeCanvas);
+        function onScrollUpdate() {
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(smoothAnimationLoop);
+            }
+        }
+
+        window.addEventListener('scroll', onScrollUpdate, { passive: true });
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            lastRenderedFrame = -1; // Force re-render on resize
+            renderFrameAtProgress(currentProgress);
+        });
 
         // Initialize Canvas & Start Preloader
         window.addEventListener('DOMContentLoaded', () => {
