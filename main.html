@@ -335,6 +335,18 @@
                 transition: none !important;
             }
         }
+
+        /* Google Translate Custom Styling & Top Bar Reset */
+        .goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 
@@ -367,12 +379,29 @@
             <a href="#contact" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Contact</a>
         </div>
 
-        <!-- Right CTA Button & Theme Toggle -->
+        <!-- Right CTA Button, Language Dropdown & Theme Toggle -->
         <div class="flex items-center gap-2.5 sm:gap-3">
             <a href="#join"
                 class="bg-brand-gold text-brand-base px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[9.5px] sm:text-[10px] font-black uppercase tracking-[0.2em] hover:bg-brand-ink hover:text-brand-gold transition-all duration-300 shadow-lg shadow-brand-gold/10 hover:shadow-brand-gold/20">
                 Join Us
             </a>
+
+            <!-- Desktop Language Selector Dropdown -->
+            <div class="relative group" id="langSelectorWrapper">
+                <button id="langSelectBtn" aria-label="Select Language"
+                    class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-300 cursor-pointer">
+                    <i class="fa-solid fa-globe text-xs"></i>
+                </button>
+                <div id="langDropdown"
+                    class="absolute right-0 top-full mt-2 w-36 bg-brand-surface border border-brand-line rounded-2xl shadow-xl py-2 hidden group-hover:block transition-all z-50">
+                    <button onclick="changeLanguage('ta')" class="w-full text-left px-4 py-2 text-xs hover:bg-brand-gold/15 hover:text-brand-gold flex items-center gap-2 font-medium">🇮🇳 தமிழ்</button>
+                    <button onclick="changeLanguage('hi')" class="w-full text-left px-4 py-2 text-xs hover:bg-brand-gold/15 hover:text-brand-gold flex items-center gap-2 font-medium">🇮🇳 हिंदी</button>
+                    <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-xs hover:bg-brand-gold/15 hover:text-brand-gold flex items-center gap-2 font-medium">🇬🇧 English</button>
+                    <button onclick="changeLanguage('ml')" class="w-full text-left px-4 py-2 text-xs hover:bg-brand-gold/15 hover:text-brand-gold flex items-center gap-2 font-medium">🇮🇳 മലയാളം</button>
+                    <button onclick="changeLanguage('te')" class="w-full text-left px-4 py-2 text-xs hover:bg-brand-gold/15 hover:text-brand-gold flex items-center gap-2 font-medium">🇮🇳 తెలుగు</button>
+                </div>
+            </div>
+
             <button id="themeToggleBtn" aria-label="Toggle Theme"
                 class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-300 cursor-pointer">
                 <i id="themeToggleIcon" class="fa-solid fa-moon text-xs"></i>
@@ -399,6 +428,18 @@
         <a href="#request" class="mobile-link text-brand-beige hover:text-brand-ink py-1">Prayer Request</a>
         <a href="#contact" class="mobile-link text-brand-beige hover:text-brand-ink py-1">Contact</a>
         <a href="#join" class="mt-4 px-10 py-3 bg-brand-gold text-brand-base rounded-full text-xs font-black">Join Us</a>
+        <!-- Mobile Language Selector -->
+        <div class="mt-2 flex items-center gap-2 border border-brand-gold/40 rounded-full px-4 py-1.5 bg-brand-surface/50">
+            <i class="fa-solid fa-globe text-brand-gold text-xs"></i>
+            <select id="mobileLangSelect" onchange="changeLanguage(this.value)" class="bg-transparent text-xs font-bold text-brand-gold focus:outline-none cursor-pointer">
+                <option value="ta" class="bg-brand-surface text-brand-beige">🇮🇳 தமிழ் (Tamil)</option>
+                <option value="hi" class="bg-brand-surface text-brand-beige">🇮🇳 हिंदी (Hindi)</option>
+                <option value="en" class="bg-brand-surface text-brand-beige">🇬🇧 English</option>
+                <option value="ml" class="bg-brand-surface text-brand-beige">🇮🇳 മലയാളം (Malayalam)</option>
+                <option value="te" class="bg-brand-surface text-brand-beige">🇮🇳 తెలుగు (Telugu)</option>
+            </select>
+        </div>
+
         <button id="mobileThemeToggleBtn"
             class="mt-2 px-6 py-2.5 border border-brand-gold/40 text-brand-gold rounded-full text-xs font-bold flex items-center gap-2.5 cursor-pointer">
             <i id="mobileThemeToggleIcon" class="fa-solid fa-moon text-xs"></i>
@@ -441,7 +482,7 @@
 
             <!-- Frame Loading Progress Bar (Visible while background frames load) -->
             <div id="loading-bar-container"
-                class="absolute bottom-0 left-0 w-full h-1 z-30 bg-black/50 transition-opacity duration-700">
+                class="absolute bottom-0 left-0 w-full h-1 z-30 bg-black/50 transition-opacity duration-700 pointer-events-none">
                 <div id="loading-bar"
                     class="h-full bg-gradient-to-r from-amber-500 via-amber-200 to-amber-400 w-0 transition-all duration-300">
                 </div>
@@ -560,8 +601,8 @@
             <div class="lg:col-span-5 reveal-left">
                 <div
                     class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-brand-line shadow-2xl group">
-                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                        src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6c9db79403_f43ca765a70ccf52.png"
+                    <img class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        src="images/poster.png"
                         alt="Pastor Sathiya Satchi - Senior Pastor of ACA Church PKT Pattukkottai" />
                     <div
                         class="absolute bottom-6 left-6 right-6 p-5 sm:p-6 bg-brand-frame/90 backdrop-blur-md border border-brand-line rounded-xl">
@@ -1355,12 +1396,17 @@
         }
 
         function updateLoadingProgress() {
-            const pct = Math.min(100, Math.round((loadedFramesCount / TOTAL_FRAMES) * 100));
+            const isMobile = window.innerWidth < 768;
+            const targetFramesCount = isMobile ? Math.ceil(TOTAL_FRAMES / 2) : TOTAL_FRAMES;
+            const pct = Math.min(100, Math.round((loadedFramesCount / targetFramesCount) * 100));
             if (loadingBar) loadingBar.style.width = pct + '%';
-            if (loadedFramesCount >= TOTAL_FRAMES && loadingContainer) {
+            if (loadedFramesCount >= targetFramesCount && loadingContainer) {
                 setTimeout(() => {
                     loadingContainer.style.opacity = '0';
-                }, 500);
+                    setTimeout(() => {
+                        loadingContainer.style.display = 'none';
+                    }, 700);
+                }, 300);
             }
         }
 
@@ -1387,6 +1433,17 @@
                 }
                 await Promise.all(chunkPromises);
                 await new Promise(r => setTimeout(r, 15));
+            }
+
+            // Guarantee loading bar is hidden when complete
+            if (loadingContainer) {
+                if (loadingBar) loadingBar.style.width = '100%';
+                setTimeout(() => {
+                    loadingContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingContainer.style.display = 'none';
+                    }, 700);
+                }, 300);
             }
         }
 
@@ -1706,7 +1763,63 @@
 
         if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // ==========================================
+        // 3. AUTO-LANGUAGE DETECTION & TRANSLATION ENGINE
+        // ==========================================
+        function getAutoDetectedLanguage() {
+            const savedLang = localStorage.getItem('aca_user_lang');
+            if (savedLang) return savedLang;
+
+            const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || 'ta'];
+            for (let lang of browserLangs) {
+                const l = lang.toLowerCase();
+                if (l.startsWith('hi')) return 'hi';
+                if (l.startsWith('ta')) return 'ta';
+                if (l.startsWith('en')) return 'en';
+                if (l.startsWith('ml')) return 'ml';
+                if (l.startsWith('te')) return 'te';
+            }
+            return 'ta';
+        }
+
+        function setGoogleTranslateCookie(lang) {
+            const domain = window.location.hostname;
+            document.cookie = `googtrans=/ta/${lang}; path=/;`;
+            if (domain && domain !== 'localhost') {
+                document.cookie = `googtrans=/ta/${lang}; path=/; domain=${domain};`;
+            }
+        }
+
+        function changeLanguage(langCode) {
+            localStorage.setItem('aca_user_lang', langCode);
+            setGoogleTranslateCookie(langCode);
+            window.location.reload();
+        }
+
+        (function initAutoTranslate() {
+            const targetLang = getAutoDetectedLanguage();
+            const currentCookie = (document.cookie.match(/googtrans=([^;]+)/) || [])[1];
+            const expectedCookie = `/ta/${targetLang}`;
+            if (targetLang !== 'ta' && currentCookie !== expectedCookie) {
+                setGoogleTranslateCookie(targetLang);
+            }
+        })();
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ta',
+                includedLanguages: 'ta,hi,en,ml,te',
+                autoDisplay: false
+            }, 'google_translate_element');
+
+            const currentLang = getAutoDetectedLanguage();
+            const mobileSelect = document.getElementById('mobileLangSelect');
+            if (mobileSelect) mobileSelect.value = currentLang;
+        }
     </script>
+    <div id="google_translate_element" class="hidden"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
