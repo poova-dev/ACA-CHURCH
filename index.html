@@ -354,7 +354,7 @@
 
     <!-- 1. FLOATING NAVBAR SECTION -->
     <nav id="navbar"
-        class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-7xl bg-brand-surface/70 dark:bg-brand-surface/40 backdrop-blur-xl border border-brand-line/80 dark:border-brand-line/60 rounded-full px-4 sm:px-6 md:px-8 py-3.5 md:py-4 flex justify-between items-center shadow-2xl transition-all duration-500">
+        class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 -translate-y-10 opacity-0 pointer-events-none z-50 w-[94%] max-w-7xl bg-brand-surface/70 dark:bg-brand-surface/40 backdrop-blur-xl border border-brand-line/80 dark:border-brand-line/60 rounded-full px-4 sm:px-6 md:px-8 py-3.5 md:py-4 flex justify-between items-center shadow-2xl transition-all duration-500">
         <a href="#" class="flex items-center gap-3 group">
             <div
                 class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-300 shadow-md">
@@ -1619,17 +1619,24 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Navbar Glassmorphic Translucency on Scroll
+        // Navbar Visibility Control (Hidden in Hero section, Fades in at About section)
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('py-3', 'shadow-2xl');
-                navbar.classList.remove('py-4');
+        const aboutSection = document.getElementById('about');
+
+        function updateNavbarVisibility() {
+            if (!navbar) return;
+            const aboutTop = aboutSection ? aboutSection.getBoundingClientRect().top : 1000;
+            if (aboutTop <= window.innerHeight * 0.75 || window.scrollY > 600) {
+                navbar.classList.remove('opacity-0', '-translate-y-10', 'pointer-events-none');
+                navbar.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
             } else {
-                navbar.classList.remove('py-3', 'shadow-2xl');
-                navbar.classList.add('py-4');
+                navbar.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                navbar.classList.add('opacity-0', '-translate-y-10', 'pointer-events-none');
             }
-        });
+        }
+
+        window.addEventListener('scroll', updateNavbarVisibility, { passive: true });
+        updateNavbarVisibility();
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
