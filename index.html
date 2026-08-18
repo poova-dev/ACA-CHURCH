@@ -1773,28 +1773,18 @@
 
         // ==========================================
         // 3. AUTO-LANGUAGE DETECTION & TRANSLATION ENGINE
+        // Default language is strictly Tamil ('ta')
         // ==========================================
         function getAutoDetectedLanguage() {
-            const savedLang = localStorage.getItem('aca_user_lang');
-            if (savedLang) return savedLang;
-
-            const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || 'ta'];
-            for (let lang of browserLangs) {
-                const l = lang.toLowerCase();
-                if (l.startsWith('hi')) return 'hi';
-                if (l.startsWith('ta')) return 'ta';
-                if (l.startsWith('en')) return 'en';
-                if (l.startsWith('ml')) return 'ml';
-                if (l.startsWith('te')) return 'te';
-            }
-            return 'ta';
+            return localStorage.getItem('aca_user_lang') || 'ta';
         }
 
         function setGoogleTranslateCookie(lang) {
             const domain = window.location.hostname;
-            document.cookie = `googtrans=/ta/${lang}; path=/;`;
+            const cookieValue = (lang === 'ta') ? '/ta/ta' : `/ta/${lang}`;
+            document.cookie = `googtrans=${cookieValue}; path=/;`;
             if (domain && domain !== 'localhost') {
-                document.cookie = `googtrans=/ta/${lang}; path=/; domain=${domain};`;
+                document.cookie = `googtrans=${cookieValue}; path=/; domain=${domain};`;
             }
         }
 
@@ -1806,10 +1796,17 @@
 
         (function initAutoTranslate() {
             const targetLang = getAutoDetectedLanguage();
-            const currentCookie = (document.cookie.match(/googtrans=([^;]+)/) || [])[1];
-            const expectedCookie = `/ta/${targetLang}`;
-            if (targetLang !== 'ta' && currentCookie !== expectedCookie) {
-                setGoogleTranslateCookie(targetLang);
+            if (targetLang === 'ta') {
+                const currentCookie = (document.cookie.match(/googtrans=([^;]+)/) || [])[1];
+                if (currentCookie && currentCookie !== '/ta/ta') {
+                    setGoogleTranslateCookie('ta');
+                }
+            } else {
+                const currentCookie = (document.cookie.match(/googtrans=([^;]+)/) || [])[1];
+                const expectedCookie = `/ta/${targetLang}`;
+                if (currentCookie !== expectedCookie) {
+                    setGoogleTranslateCookie(targetLang);
+                }
             }
         })();
 
