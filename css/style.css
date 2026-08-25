@@ -1,0 +1,243 @@
+/* =========================================================================
+   ACA CHURCH PKT — MAIN DESIGN SYSTEM & STYLESHEET
+   Pattukkottai, Thanjavur District | 50+ Years in God's Grace
+   ========================================================================= */
+
+/* CSS Variables for Light & Dark Mode */
+:root {
+    --brand-ink: #1c1815;       /* Warm dark charcoal for headings */
+    --brand-base: #fcfaf6;      /* Luminous off-white page background */
+    --brand-surface: #ffffff;   /* Pure white cards background */
+    --brand-frame: #f4efe7;     /* Soft warm beige card background */
+    --brand-line: #e6dfd3;      /* Soft structural line border */
+    --brand-gold: #b08953;      /* Elegant warm gold accent */
+    --brand-gold-bright: #d4af37;
+    --brand-gold-dark: #8c6936;
+    --brand-beige: #4a443d;     /* Deep readable charcoal body text */
+    --brand-ivory: #faf6ee;
+    --brand-parchment: #f3ebd9;
+}
+
+html.dark {
+    --brand-ink: #fcfbf9;       /* Warm off-white ink */
+    --brand-base: #070b14;      /* Deep midnight navy page bg */
+    --brand-surface: #0e1424;   /* Raised midnight surface */
+    --brand-frame: #151c30;     /* Elevated card frame */
+    --brand-line: #222d47;      /* Thin structural line */
+    --brand-gold: #c5a880;      /* Subtle warm gold accent */
+    --brand-gold-bright: #e5c07b;
+    --brand-gold-dark: #9e7f55;
+    --brand-beige: #e9e5db;     /* Soft warm beige body text */
+    --brand-ivory: #fcf8ef;
+    --brand-parchment: #f2e9d8;
+}
+
+body {
+    background-color: var(--brand-base);
+    color: var(--brand-beige);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tamil Font Utility */
+.font-tamil {
+    font-family: 'Noto Serif Tamil', 'Mukta Malar', serif;
+}
+
+/* Heavenly Text Glow with High Contrast Shadow */
+.scripture-glow {
+    text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.95),
+        0 6px 30px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(255, 255, 255, 0.85),
+        0 0 70px rgba(217, 180, 114, 0.6);
+}
+
+.verse-glow {
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(251, 191, 36, 0.9),
+        0 0 40px rgba(217, 180, 114, 0.6);
+}
+
+/* Sacred Printed Typography on Open Bible Pages */
+.bible-printed-title {
+    color: #2c2013;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 12px rgba(212, 175, 55, 0.25);
+    font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+.bible-printed-body {
+    color: #3b2f21;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.bible-gold-emboss {
+    color: #8c6832;
+    background: linear-gradient(135deg, #7c5825 0%, #b38b4c 50%, #6e4c1e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.bible-filigree {
+    background-image: radial-gradient(circle at center, rgba(176, 137, 83, 0.35) 0%, transparent 70%);
+}
+
+/* Center Gutter Heavenly Glow */
+.bible-gutter-glow {
+    background: radial-gradient(ellipse at center, rgba(255, 245, 210, 0.45) 0%, rgba(197, 168, 128, 0.2) 40%, transparent 75%);
+}
+
+/* Navbar Underline */
+.nav-link-underline {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.nav-link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: #c5a880;
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left;
+}
+
+.nav-link-underline:hover::after {
+    transform: scaleX(1);
+}
+
+/* General Viewport Scroll Reveal */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.94);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.active,
+.reveal-right.active,
+.reveal-up.active,
+.reveal-scale.active {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Vision Canvas Viewport & Parchment Page Overlay */
+#vision-scroll-track {
+    position: relative;
+    background-color: #070b14;
+}
+
+.vision-canvas-viewport {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #070b14;
+}
+
+.bible-page-sheet {
+    background: linear-gradient(135deg, rgba(253, 250, 243, 0.94) 0%, rgba(244, 237, 224, 0.96) 50%, rgba(235, 226, 209, 0.93) 100%);
+    box-shadow: 
+        inset 0 0 35px rgba(120, 80, 30, 0.12),
+        inset 0 0 10px rgba(0, 0, 0, 0.05),
+        0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Luxury Prayer Card Marquee Item */
+.prayer-card-lux {
+    position: relative;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prayer-card-lux:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 35px -8px rgba(176, 137, 83, 0.18), 0 0 20px rgba(212, 175, 55, 0.12);
+}
+
+/* Prayer Category Chip Styling */
+.prayer-chip {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+.prayer-chip.active {
+    background: linear-gradient(135deg, rgba(176, 137, 83, 0.22) 0%, rgba(212, 175, 55, 0.14) 100%) !important;
+    border-color: var(--brand-gold) !important;
+    color: var(--brand-ink) !important;
+    box-shadow: 0 4px 16px rgba(176, 137, 83, 0.22), inset 0 0 0 1px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+.dark .prayer-chip.active {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(176, 137, 83, 0.15) 100%) !important;
+    border-color: var(--brand-gold-bright) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), inset 0 0 0 1px rgba(212, 175, 55, 0.5);
+}
+
+/* =========================================================================
+   END-TO-END NAVBAR & MOBILE DRAWER STYLING
+   ========================================================================= */
+
+/* Mobile Drawer Overlay Transitions */
+#mobileMenu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobileMenu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#mobileDrawerPanel {
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#mobileMenu.active #mobileDrawerPanel {
+    transform: translateX(0);
+}
+
+/* Mobile Nav Item Hover */
+.mobile-nav-item {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+    background-color: var(--brand-frame);
+    transform: translateX(4px);
+}
+

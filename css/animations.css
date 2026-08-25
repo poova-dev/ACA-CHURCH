@@ -1,0 +1,146 @@
+/* =========================================================================
+   ACA CHURCH PKT — ANIMATIONS & KEYFRAMES
+   ========================================================================= */
+
+/* Floating Animation */
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+    animation: floatSlow 5s ease-in-out infinite;
+}
+
+/* Pulse Subtle Glow */
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Golden Shimmer Light Beam */
+@keyframes shimmerBeam {
+    0% { transform: translateX(-150%) skewX(-20deg); }
+    100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-shimmer-beam {
+    animation: shimmerBeam 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Beacon Pulse */
+@keyframes beaconPulse {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.prayer-beacon {
+    animation: beaconPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Golden Flowing Shimmer on Buttons */
+@keyframes goldBtnShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.btn-gold-shimmer {
+    background: linear-gradient(90deg, #b08953 0%, #d4af37 30%, #fff0b8 50%, #d4af37 70%, #b08953 100%);
+    background-size: 250% 100%;
+    animation: goldBtnShimmer 4.5s ease-in-out infinite;
+}
+
+.btn-gold-shimmer:hover {
+    animation-duration: 2s;
+}
+
+/* Highlight Pulse for Prayer Form */
+@keyframes formHighlight {
+    0% { transform: scale(1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+    50% { transform: scale(1.02); box-shadow: 0 0 45px rgba(212, 175, 55, 0.5); }
+    100% { transform: scale(1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+}
+
+.highlight-form-pulse {
+    animation: formHighlight 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Marquee Continuous Seamless Infinite Animation */
+.marquee-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 24px;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marquee-track {
+    flex-shrink: 0;
+    display: flex;
+    gap: 24px;
+    min-width: max-content;
+    align-items: stretch;
+    will-change: transform;
+}
+
+.marquee-left {
+    animation: marquee-scroll-left 40s linear infinite;
+}
+
+.marquee-right {
+    animation: marquee-scroll-right 40s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% - 24px));
+    }
+}
+
+@keyframes marquee-scroll-right {
+    0% {
+        transform: translateX(calc(-100% - 24px));
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-left,
+    .marquee-right,
+    .animate-float,
+    .animate-pulse-glow,
+    .animate-shimmer-beam,
+    .prayer-beacon,
+    .btn-gold-shimmer {
+        animation: none !important;
+    }
+
+    .reveal-left,
+    .reveal-right,
+    .reveal-up,
+    .reveal-scale,
+    .prayer-card-lux,
+    .highlight-form-pulse {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
+}

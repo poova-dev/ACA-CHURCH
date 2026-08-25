@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Gallery | Moments of Grace — ACA Church PKT Pattukkottai</title>
+    <meta name="description"
+        content="Explore photos of worship services, prayer gatherings, youth fellowship, and community ministry at Apostolic Christian Assembly (ACA Church), Pattukkottai, Tamil Nadu.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: 'var(--brand-gold)',
+                            'gold-bright': 'var(--brand-gold-bright)',
+                            'gold-dark': 'var(--brand-gold-dark)',
+                            ink: 'var(--brand-ink)',
+                            base: 'var(--brand-base)',
+                            surface: 'var(--brand-surface)',
+                            frame: 'var(--brand-frame)',
+                            line: 'var(--brand-line)',
+                            beige: 'var(--brand-beige)',
+                            ivory: 'var(--brand-ivory)',
+                            parchment: 'var(--brand-parchment)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Project Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="bg-brand-base text-brand-beige selection:bg-brand-gold selection:text-brand-base min-h-screen flex flex-col justify-between">
+
+    <!-- 1. STICKY TOP NAVIGATION BAR (END-TO-END) -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-brand-surface/90 dark:bg-brand-surface/90 backdrop-blur-2xl border-b border-brand-line shadow-sm">
+        <div class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+                <div
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                    <i class="fa-solid fa-cross text-sm"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-brand-ink font-serif text-base sm:text-lg md:text-xl tracking-[0.1em] uppercase font-bold leading-tight">ACA Church PKT</span>
+                    <span class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.22em] uppercase font-semibold">Pattukkottai • 50+ Years</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden xl:flex items-center gap-6 2xl:gap-8 text-[11px] 2xl:text-xs uppercase tracking-[0.16em] 2xl:tracking-[0.2em] font-semibold text-brand-beige">
+                <a href="index.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
+                <a href="index.html#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About Us</a>
+                <a href="index.html#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+                    <span>Our Vision</span>
+                </a>
+                <a href="index.html#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Our Prayers</a>
+                <a href="gallery.html" class="relative nav-link-underline py-1 text-brand-gold font-bold transition-colors">Gallery</a>
+                <a href="index.html#request" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Contact</a>
+            </div>
+
+            <!-- Right Controls: Theme Toggle + Join CTA + Mobile Hamburger -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" aria-label="Toggle Dark/Light Mode"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-all duration-300 shadow-sm cursor-pointer">
+                    <i id="themeToggleIcon" class="fa-solid fa-moon text-xs"></i>
+                </button>
+
+                <!-- Join Us CTA -->
+                <a href="index.html#join"
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-300 shadow-md shadow-brand-gold/15 cursor-pointer">
+                    <span>Join Us</span>
+                    <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                </a>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <button id="mobileMenuBtn" aria-label="Open Mobile Navigation Menu"
+                    class="xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-ink text-sm hover:border-brand-gold transition-colors cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end">
+        <div id="mobileMenuBackdrop" class="absolute inset-0"></div>
+        <div id="mobileDrawerPanel"
+            class="relative z-10 w-full sm:max-w-md h-full bg-brand-surface dark:bg-brand-surface border-l border-brand-line shadow-2xl flex flex-col justify-between overflow-hidden">
+            
+            <!-- Drawer Header -->
+            <div class="px-5 sm:px-6 py-4 border-b border-brand-line flex items-center justify-between shrink-0 bg-brand-base/40">
+                <a href="index.html" class="mobile-link flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold shadow-sm">
+                        <i class="fa-solid fa-cross text-xs"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-brand-ink font-serif text-base tracking-[0.1em] uppercase font-bold leading-tight">ACA Church PKT</span>
+                        <span class="text-brand-gold text-[8px] tracking-[0.2em] uppercase font-semibold">Pattukkottai</span>
+                    </div>
+                </a>
+                <button id="closeMobileMenu" aria-label="Close Navigation Menu"
+                    class="w-9 h-9 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-ink hover:text-brand-gold hover:border-brand-gold transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+                <a href="index.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Home</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#about" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-church"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">About Us</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#vision" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl bg-brand-gold/10 border border-brand-gold/30 text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs shadow-sm">
+                            <i class="fa-solid fa-book-bible"></i>
+                        </div>
+                        <div class="text-xs font-black uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
+                            <span>Our Vision</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
+                        </div>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-brand-gold text-brand-base text-[9px] font-bold uppercase">541 Frames</span>
+                </a>
+
+                <a href="index.html#prayers" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-hands-praying"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Our Prayers</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="gallery.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl bg-brand-gold/15 border border-brand-gold/40 text-brand-ink font-bold">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Church Gallery</div>
+                    </div>
+                    <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                </a>
+
+                <a href="index.html#request" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Prayer Request</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#request" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Contact &amp; Location</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+            </div>
+
+            <!-- Drawer Bottom -->
+            <div class="p-4 sm:p-5 border-t border-brand-line bg-brand-base/50 space-y-3 shrink-0">
+                <a href="index.html#join" class="mobile-link btn-gold-shimmer w-full py-3.5 text-brand-base text-xs font-black uppercase tracking-[0.25em] rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/20">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <span>JOIN US SUNDAY</span>
+                </a>
+
+                <div class="flex items-center justify-between gap-3 pt-1">
+                    <button id="mobileThemeToggleBtn" type="button"
+                        class="flex-1 py-2.5 px-3 rounded-xl border border-brand-line bg-brand-surface flex items-center justify-center gap-2 text-xs font-bold text-brand-ink hover:border-brand-gold transition-colors cursor-pointer">
+                        <i id="mobileThemeToggleIcon" class="fa-solid fa-moon text-xs text-brand-gold"></i>
+                        <span id="mobileThemeText">Dark Mode</span>
+                    </button>
+                    <a href="tel:+919443100000"
+                        class="py-2.5 px-4 rounded-xl border border-brand-line bg-brand-surface flex items-center justify-center text-xs font-bold text-brand-gold hover:border-brand-gold transition-colors">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto w-full">
+        <!-- Header Title -->
+        <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-bold tracking-[0.3em] mb-3">
+                <i class="fa-solid fa-images text-[10px]"></i>
+                <span>CHURCH GALLERY</span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink font-bold mb-3 sm:mb-4 leading-tight">
+                Moments of Grace
+            </h1>
+            <p class="text-sm sm:text-base text-brand-beige/80 font-light leading-relaxed">
+                A visual journey through worship, fellowship, prayer, and 50+ years of God's abundant faithfulness at ACA Church PKT, Pattukkottai.
+            </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 sm:mb-10">
+            <button type="button" data-filter="all" class="gallery-filter-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-gold bg-brand-gold text-brand-base shadow-md cursor-pointer">
+                All Moments (<span id="countAll">8</span>)
+            </button>
+            <button type="button" data-filter="worship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+                Worship (<span id="countWorship">3</span>)
+            </button>
+            <button type="button" data-filter="prayer" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+                Prayer (<span id="countPrayer">2</span>)
+            </button>
+            <button type="button" data-filter="fellowship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+                Fellowship (<span id="countFellowship">2</span>)
+            </button>
+            <button type="button" data-filter="service" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+                Outreach &amp; Service (<span id="countService">1</span>)
+            </button>
+        </div>
+
+        <!-- Gallery Photo Grid -->
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            
+            <!-- Photo 1: Worship -->
+            <div class="gallery-card group" data-category="worship">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5fc4d807fa_2c00a40e0bf262ef.png"
+                    data-title="Sunday Morning Praise & Worship"
+                    data-category="Worship">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5fc4d807fa_2c00a40e0bf262ef.png"
+                        alt="Sunday Morning Praise & Worship Service"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">Worship</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Sunday Morning Worship</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Praise &amp; Glorification Service</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 2: Prayer Sanctuary -->
+            <div class="gallery-card group" data-category="prayer">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png"
+                    data-title="Congregation Kneeling in Silent Prayer"
+                    data-category="Prayer">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png"
+                        alt="Congregation in Silent Prayer"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-[9.5px] font-black uppercase tracking-wider">Prayer</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Silent Prayer Sanctuary</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Personal &amp; Congregational Intercession</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 3: Outreach -->
+            <div class="gallery-card group" data-category="service">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png"
+                    data-title="Compassionate Community Outreach"
+                    data-category="Service">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png"
+                        alt="Community Outreach and Charity in Pattukkottai"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-blue-600 text-white text-[9.5px] font-black uppercase tracking-wider">Service</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Community Outreach</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Rural Ministry &amp; Benevolence</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 4: Youth Gathering -->
+            <div class="gallery-card group" data-category="fellowship">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
+                    data-title="Youth Worship, Music & Fellowship"
+                    data-category="Fellowship">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
+                        alt="Youth Fellowship in ACA Church PKT"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-[9.5px] font-black uppercase tracking-wider">Fellowship</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Youth Fellowship</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Young Generation Gatherings &amp; Praise</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 5: Sacred Sanctuary Light -->
+            <div class="gallery-card group" data-category="worship">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5b875330f6_c4d5a98914c1ae64.png"
+                    data-title="Main Sanctuary Altar of Grace"
+                    data-category="Worship">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5b875330f6_c4d5a98914c1ae64.png"
+                        alt="Main Sanctuary Altar at ACA Church PKT"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">Worship</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Sanctuary Altar</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Main Chapel of Worship &amp; Light</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 6: Holy Communion & Fellowship -->
+            <div class="gallery-card group" data-category="fellowship">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_41fc11d889_e3d368d1844b2075.png"
+                    data-title="Holy Communion Table & Fellowship"
+                    data-category="Fellowship">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_41fc11d889_e3d368d1844b2075.png"
+                        alt="Holy Communion Table and Fellowship"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-[9.5px] font-black uppercase tracking-wider">Fellowship</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Holy Communion Service</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">The Lord's Table &amp; Sacred Remembrance</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 7: Deep Intercession -->
+            <div class="gallery-card group" data-category="prayer">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6463b22381_6a462d6ec136e88b.png"
+                    data-title="Intercessory Prayer & Revival"
+                    data-category="Prayer">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6463b22381_6a462d6ec136e88b.png"
+                        alt="Intercessory Prayer at ACA Church PKT"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-[9.5px] font-black uppercase tracking-wider">Prayer</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Intercessory Gathering</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Fasting &amp; Dedicated Night Intercession</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo 8: Golden Jubilee 50 Years Celebration -->
+            <div class="gallery-card group" data-category="worship">
+                <div class="gallery-item relative overflow-hidden rounded-2xl border border-brand-line bg-brand-surface h-[320px] sm:h-[380px] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                    data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_11e0cf65c3_d0bfa8c71597816e.png"
+                    data-title="50+ Years Jubilee Thanksgiving"
+                    data-category="Worship">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_11e0cf65c3_d0bfa8c71597816e.png"
+                        alt="50 Years Jubilee Celebration in Pattukkottai"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">50+ Years</span>
+                    </div>
+                    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl text-white font-bold mb-0.5 drop-shadow">Jubilee Thanksgiving</h3>
+                            <p class="text-xs text-brand-gold-bright/90 drop-shadow-sm font-medium tracking-wide">Celebrating 50+ Years of Divine Grace</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-base transition-colors shrink-0 shadow-lg">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Back to Home & Connect Banner -->
+        <div class="mt-10 sm:mt-14 p-6 sm:p-10 rounded-3xl bg-brand-frame dark:bg-brand-frame/40 border border-brand-line text-center relative overflow-hidden">
+            <div class="max-w-2xl mx-auto space-y-3">
+                <span class="text-brand-gold text-xs tracking-[0.35em] uppercase font-bold block">EXPERIENCE IT IN PERSON</span>
+                <h2 class="font-serif text-2xl sm:text-4xl text-brand-ink font-semibold">Join Us This Sunday in Pattukkottai</h2>
+                <p class="text-sm text-brand-beige/80 font-light leading-relaxed">
+                    Come worship with our growing church family. Sunday Services at 9:00 AM &amp; 11:00 AM.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-3">
+                    <a href="index.html#request"
+                        class="btn-gold-shimmer px-8 py-3.5 text-brand-base text-xs font-black uppercase tracking-[0.22em] rounded-full shadow-lg shadow-brand-gold/25">
+                        Submit Prayer Request
+                    </a>
+                    <a href="index.html"
+                        class="px-8 py-3.5 border border-brand-gold/50 text-brand-ink hover:bg-brand-gold/10 text-xs font-black uppercase tracking-[0.22em] rounded-full transition-colors">
+                        Back to Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal"
+        class="fixed inset-0 z-50 bg-brand-base/95 dark:bg-black/95 backdrop-blur-2xl hidden items-center justify-center p-4 md:p-8">
+        <button id="closeLightbox" aria-label="Close Lightbox"
+            class="absolute top-6 right-6 text-brand-beige hover:text-brand-gold text-3xl p-2 z-10 cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button id="prevLightbox" aria-label="Previous Image"
+            class="absolute left-6 text-brand-beige hover:text-brand-gold text-3xl p-3 z-10 hidden md:block cursor-pointer">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="nextLightbox" aria-label="Next Image"
+            class="absolute right-6 text-brand-beige hover:text-brand-gold text-3xl p-3 z-10 hidden md:block cursor-pointer">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="max-w-5xl w-full flex flex-col items-center">
+            <img id="lightboxImage"
+                class="max-h-[75vh] w-auto object-contain rounded-xl border border-brand-line/60 shadow-2xl mb-4" src=""
+                alt="Gallery Preview" />
+            <div class="text-center px-4">
+                <span id="lightboxCategory"
+                    class="text-brand-gold text-[11px] uppercase tracking-[0.3em] font-bold block mb-1"></span>
+                <h3 id="lightboxTitle" class="font-serif text-xl sm:text-2xl md:text-3xl text-brand-ink font-semibold"></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-base border-t border-brand-line py-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xs">
+                    <i class="fa-solid fa-cross"></i>
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-sm tracking-wider uppercase text-brand-ink">ACA Church PKT</span>
+                    <p class="text-[10px] text-brand-beige/60">Pattukkottai, Thanjavur District, Tamil Nadu</p>
+                </div>
+            </div>
+            <p class="text-brand-beige/50 text-[10px] font-bold uppercase tracking-[0.2em]">
+                &copy; 2026 ACA Church PKT • 50+ Years in God's Grace
+            </p>
+            <div class="flex gap-6 text-[11px] font-semibold text-brand-beige/70">
+                <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
+                <a href="index.html#vision" class="hover:text-brand-gold transition-colors">Our Vision</a>
+                <a href="index.html#request" class="hover:text-brand-gold transition-colors">Prayer Request</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Specific Logic & Controller -->
+    <script>
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleIcon = document.getElementById('themeToggleIcon');
+        const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+        const mobileThemeToggleIcon = document.getElementById('mobileThemeToggleIcon');
+        const mobileThemeText = document.getElementById('mobileThemeText');
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                if (themeToggleIcon) themeToggleIcon.className = 'fa-solid fa-sun text-xs';
+                if (mobileThemeToggleIcon) mobileThemeToggleIcon.className = 'fa-solid fa-sun text-xs';
+                if (mobileThemeText) mobileThemeText.textContent = 'Light Mode';
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (themeToggleIcon) themeToggleIcon.className = 'fa-solid fa-moon text-xs';
+                if (mobileThemeToggleIcon) mobileThemeToggleIcon.className = 'fa-solid fa-moon text-xs';
+                if (mobileThemeText) mobileThemeText.textContent = 'Dark Mode';
+            }
+        }
+
+        const storedTheme = localStorage.getItem('aca_theme');
+        if (storedTheme === 'dark') updateThemeUI(true);
+        else updateThemeUI(false);
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aca_theme', isDark ? 'dark' : 'light');
+            updateThemeUI(isDark);
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Mobile Drawer
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMobileDrawer() {
+            if (mobileMenu) {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileDrawer() {
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileDrawer);
+        if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMobileDrawer);
+        if (mobileMenuBackdrop) mobileMenuBackdrop.addEventListener('click', closeMobileDrawer);
+        mobileLinks.forEach(l => l.addEventListener('click', closeMobileDrawer));
+
+        // Category Filter Logic
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const cards = document.querySelectorAll('.gallery-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brand-gold', 'text-brand-base', 'border-brand-gold');
+                    b.classList.add('bg-brand-surface', 'text-brand-ink', 'border-brand-line');
+                });
+                btn.classList.add('active', 'bg-brand-gold', 'text-brand-base', 'border-brand-gold');
+                btn.classList.remove('bg-brand-surface', 'text-brand-ink', 'border-brand-line');
+
+                cards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Logic
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxCategory = document.getElementById('lightboxCategory');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const prevLightbox = document.getElementById('prevLightbox');
+        const nextLightbox = document.getElementById('nextLightbox');
+
+        let currentIndex = 0;
+
+        function getVisibleGalleryData() {
+            return Array.from(document.querySelectorAll('.gallery-card:not([style*="display: none"]) .gallery-item')).map(item => ({
+                src: item.getAttribute('data-src'),
+                title: item.getAttribute('data-title'),
+                category: item.getAttribute('data-category')
+            }));
+        }
+
+        const openLightbox = (index) => {
+            const dataList = getVisibleGalleryData();
+            if (!dataList.length) return;
+            currentIndex = (index + dataList.length) % dataList.length;
+            const data = dataList[currentIndex];
+            if (lightboxImage) lightboxImage.src = data.src;
+            if (lightboxTitle) lightboxTitle.textContent = data.title;
+            if (lightboxCategory) lightboxCategory.textContent = data.category;
+            if (lightboxModal) {
+                lightboxModal.classList.remove('hidden');
+                lightboxModal.classList.add('flex');
+            }
+        };
+
+        galleryItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                const currentDataList = getVisibleGalleryData();
+                const src = item.getAttribute('data-src');
+                const idx = currentDataList.findIndex(d => d.src === src);
+                openLightbox(idx >= 0 ? idx : 0);
+            });
+        });
+
+        function closeLightboxModal() {
+            if (lightboxModal) {
+                lightboxModal.classList.add('hidden');
+                lightboxModal.classList.remove('flex');
+            }
+        }
+
+        if (closeLightbox) closeLightbox.addEventListener('click', closeLightboxModal);
+        if (prevLightbox) {
+            prevLightbox.addEventListener('click', () => {
+                openLightbox(currentIndex - 1);
+            });
+        }
+        if (nextLightbox) {
+            nextLightbox.addEventListener('click', () => {
+                openLightbox(currentIndex + 1);
+            });
+        }
+        if (lightboxModal) {
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) closeLightboxModal();
+            });
+        }
+
+        // Keyboard listener for Lightbox & Drawer
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightboxModal();
+                closeMobileDrawer();
+            } else if (e.key === 'ArrowLeft') {
+                if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+                    openLightbox(currentIndex - 1);
+                }
+            } else if (e.key === 'ArrowRight') {
+                if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+                    openLightbox(currentIndex + 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
