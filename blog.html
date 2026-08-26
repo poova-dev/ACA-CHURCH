@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Meetings & News | ACA Church PKT — Pattukkottai</title>
+    <meta name="description"
+        content="Stay updated with worship meetings, fasting prayers, youth gatherings, revival conventions, and pastoral announcements at Apostolic Christian Assembly (ACA Church), Pattukkottai, Tamil Nadu.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Professional Typography Stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif+Tamil:wght@400;500;600;700;800;900&family=Mukta+Malar:wght@400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: 'var(--brand-gold)',
+                            'gold-bright': 'var(--brand-gold-bright)',
+                            'gold-dark': 'var(--brand-gold-dark)',
+                            ink: 'var(--brand-ink)',
+                            base: 'var(--brand-base)',
+                            surface: 'var(--brand-surface)',
+                            frame: 'var(--brand-frame)',
+                            line: 'var(--brand-line)',
+                            beige: 'var(--brand-beige)',
+                            ivory: 'var(--brand-ivory)',
+                            parchment: 'var(--brand-parchment)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        tamil: ['"Noto Serif Tamil"', '"Mukta Malar"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Project Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="bg-brand-base text-brand-beige selection:bg-brand-gold selection:text-brand-base min-h-screen flex flex-col justify-between">
+
+    <!-- 1. STICKY TOP NAVIGATION BAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-brand-surface/90 dark:bg-brand-surface/90 backdrop-blur-2xl border-b border-brand-line shadow-sm">
+        <div class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+                <div
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                    <i class="fa-solid fa-cross text-sm"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-brand-ink font-serif text-base sm:text-lg md:text-xl tracking-[0.1em] uppercase font-bold leading-tight">ACA Church PKT</span>
+                    <span class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.22em] uppercase font-semibold">Pattukkottai • 50+ Years</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden xl:flex items-center gap-6 2xl:gap-8 text-[11px] 2xl:text-xs uppercase tracking-[0.16em] 2xl:tracking-[0.2em] font-semibold text-brand-beige">
+                <a href="index.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
+                <a href="index.html#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About Us</a>
+                <a href="index.html#pastor" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Pastor</a>
+                <a href="index.html#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+                    <span>Our Vision</span>
+                </a>
+                <a href="index.html#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Services</a>
+                <a href="gallery.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Gallery</a>
+                <a href="blog.html" class="relative nav-link-underline py-1 text-brand-gold font-bold transition-colors">Meetings &amp; News</a>
+                <a href="index.html#request" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Prayer Request</a>
+            </div>
+
+            <!-- Right Controls: Theme Toggle + Join CTA + Mobile Hamburger -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" aria-label="Toggle Dark/Light Mode"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-all duration-300 shadow-sm cursor-pointer">
+                    <i id="themeToggleIcon" class="fa-solid fa-moon text-xs"></i>
+                </button>
+
+                <!-- Submit Prayer CTA -->
+                <a href="index.html#request"
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-300 shadow-md shadow-brand-gold/15 cursor-pointer">
+                    <span>Prayer Request</span>
+                    <i class="fa-solid fa-hands-praying text-[10px]"></i>
+                </a>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <button id="mobileMenuBtn" aria-label="Open Mobile Navigation Menu"
+                    class="xl:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-ink text-sm hover:border-brand-gold transition-colors cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end">
+        <div id="mobileMenuBackdrop" class="absolute inset-0"></div>
+        <div id="mobileDrawerPanel"
+            class="relative z-10 w-full sm:max-w-md h-full bg-brand-surface dark:bg-brand-surface border-l border-brand-line shadow-2xl flex flex-col justify-between overflow-hidden">
+            
+            <!-- Drawer Header -->
+            <div class="px-5 sm:px-6 py-4 border-b border-brand-line flex items-center justify-between shrink-0 bg-brand-base/40">
+                <a href="index.html" class="mobile-link flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold shadow-sm">
+                        <i class="fa-solid fa-cross text-xs"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-brand-ink font-serif text-base tracking-[0.1em] uppercase font-bold leading-tight">ACA Church PKT</span>
+                        <span class="text-brand-gold text-[8px] tracking-[0.2em] uppercase font-semibold">Pattukkottai</span>
+                    </div>
+                </a>
+                <button id="closeMobileMenu" aria-label="Close Navigation Menu"
+                    class="w-9 h-9 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-ink hover:text-brand-gold hover:border-brand-gold transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+                <a href="index.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Home</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#about" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-church"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">About Us</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#pastor" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Pastor Sathiya Satchi</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="index.html#vision" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-brand-gold/30 bg-brand-gold/5 text-brand-ink font-bold">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-book-bible"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Our Vision 01</div>
+                    </div>
+                    <span class="text-[9px] px-2 py-0.5 rounded-full bg-brand-gold text-brand-base font-black uppercase tracking-wider">300 Frames</span>
+                </a>
+
+                <a href="index.html#prayers" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-hands-praying"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Services &amp; Prayers</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="gallery.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Church Gallery</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+
+                <a href="blog.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-brand-gold/30 bg-brand-gold/10 text-brand-gold font-bold">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Meetings &amp; News</div>
+                    </div>
+                    <span class="text-[9px] px-2 py-0.5 rounded-full bg-brand-gold text-brand-base font-black uppercase tracking-wider">Updates</span>
+                </a>
+
+                <a href="index.html#request" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Prayer Request</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
+                </a>
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-4 border-t border-brand-line bg-brand-base/40 space-y-3">
+                <button id="mobileThemeToggleBtn"
+                    class="w-full py-2.5 px-4 rounded-xl border border-brand-line bg-brand-surface flex items-center justify-between text-xs font-bold text-brand-ink hover:border-brand-gold transition-colors">
+                    <span class="flex items-center gap-2">
+                        <i id="mobileThemeToggleIcon" class="fa-solid fa-moon text-brand-gold"></i>
+                        <span id="mobileThemeText">Dark Mode</span>
+                    </span>
+                    <span class="text-[10px] text-brand-beige/50 font-normal uppercase tracking-wider">Toggle</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-24 sm:pt-28 md:pt-32 pb-16">
+        
+        <!-- 2. HERO HEADER SECTION -->
+        <header class="relative px-6 md:px-12 max-w-7xl mx-auto mb-10 sm:mb-14 text-center">
+            <div class="space-y-3 sm:space-y-4 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10.5px] uppercase tracking-[0.3em] font-bold">
+                    <i class="fa-solid fa-calendar-check text-xs"></i>
+                    <span>CHURCH MEETINGS &amp; ANNOUNCEMENTS</span>
+                </div>
+                
+                <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink font-bold tracking-tight leading-tight">
+                    Meetings &amp; Holy Gatherings
+                </h1>
+                
+                <p class="font-tamil text-brand-gold text-sm sm:text-base md:text-lg font-medium leading-relaxed">
+                    திருச்சபை நிகழ்வுகள், சிறப்பு எழுப்புதல் கூட்டங்கள் மற்றும் ஆராதனை அறிவிப்புகள்
+                </p>
+
+                <p class="text-xs sm:text-sm md:text-base text-brand-beige/75 font-light leading-relaxed max-w-2xl mx-auto">
+                    Stay connected with spirit-filled worship services, monthly fasting prayers, youth revival meetings, and community outreaches in Pattukkottai.
+                </p>
+            </div>
+
+            <!-- Search & Category Filters -->
+            <div class="mt-8 sm:mt-10 max-w-4xl mx-auto">
+                <!-- Search Box -->
+                <div class="relative max-w-md mx-auto mb-6">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold text-xs"></i>
+                    <input type="text" id="meetingSearchInput" placeholder="Search meetings, speakers, topics..."
+                        class="w-full pl-10 pr-4 py-3 rounded-full bg-brand-surface border border-brand-line text-xs sm:text-sm text-brand-ink placeholder:text-brand-beige/40 focus:outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all shadow-sm">
+                </div>
+
+                <!-- Filter Category Chips -->
+                <div class="flex items-center justify-center flex-wrap gap-2 sm:gap-2.5" id="categoryFilterContainer">
+                    <button class="filter-chip active px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-gold bg-brand-gold text-brand-base shadow-md transition-all cursor-pointer" data-category="all">
+                        All Updates
+                    </button>
+                    <button class="filter-chip px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-line bg-brand-surface hover:border-brand-gold/60 text-brand-beige hover:text-brand-ink transition-all cursor-pointer" data-category="sunday">
+                        Sunday Worship
+                    </button>
+                    <button class="filter-chip px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-line bg-brand-surface hover:border-brand-gold/60 text-brand-beige hover:text-brand-ink transition-all cursor-pointer" data-category="fasting">
+                        Fasting Prayer
+                    </button>
+                    <button class="filter-chip px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-line bg-brand-surface hover:border-brand-gold/60 text-brand-beige hover:text-brand-ink transition-all cursor-pointer" data-category="youth">
+                        Youth Revival
+                    </button>
+                    <button class="filter-chip px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-line bg-brand-surface hover:border-brand-gold/60 text-brand-beige hover:text-brand-ink transition-all cursor-pointer" data-category="special">
+                        Conventions
+                    </button>
+                    <button class="filter-chip px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border border-brand-line bg-brand-surface hover:border-brand-gold/60 text-brand-beige hover:text-brand-ink transition-all cursor-pointer" data-category="fellowship">
+                        Fellowships
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. FEATURED MAJOR UPCOMING MEETING (HERO CARD) -->
+        <section class="px-6 md:px-12 max-w-7xl mx-auto mb-12 sm:mb-16">
+            <div class="relative rounded-3xl overflow-hidden border border-brand-gold/40 bg-gradient-to-br from-brand-surface via-brand-frame to-brand-surface shadow-2xl p-6 sm:p-8 md:p-12 group">
+                <!-- Golden Ambient Backlight -->
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-gold/15 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-brand-gold/10 blur-3xl pointer-events-none rounded-full"></div>
+
+                <div class="relative z-10 grid lg:grid-cols-12 gap-8 items-center">
+                    <!-- Left: Meeting Highlight Content -->
+                    <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+                        <div class="flex items-center gap-3">
+                            <span class="px-3.5 py-1 rounded-full bg-brand-gold text-brand-base text-[10px] font-black uppercase tracking-[0.2em] shadow-md">
+                                FEATURED CONVENTION
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-brand-gold font-bold uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                <span>Upcoming Special Gathering</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-brand-ink font-bold leading-tight mb-2">
+                                3-Day Miracle &amp; Revival Convention 2026
+                            </h2>
+                            <p class="font-tamil text-brand-gold font-semibold text-base sm:text-lg">
+                                3 நாட்கள் சிறப்பு ஆவிக்குரிய எழுப்புதல் பெருவிழா
+                            </p>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-brand-beige/80 font-light leading-relaxed">
+                            Join us for three anointed days of worship, prophetic revelation, divine healing, and breakthrough. Senior Pastor Sathiya Satchi and guest ministers will lead the congregation in powerful intercession and life-changing ministry of the Word.
+                        </p>
+
+                        <!-- Key Event Details Matrix -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="p-3 rounded-2xl bg-brand-base/80 border border-brand-line">
+                                <span class="text-[9.5px] uppercase font-bold text-brand-gold tracking-wider block mb-0.5">Date</span>
+                                <span class="text-xs sm:text-sm font-bold text-brand-ink block">Oct 16 – 18, 2026</span>
+                                <span class="text-[10px] text-brand-beige/60 font-tamil">வெள்ளி – ஞாயிறு</span>
+                            </div>
+
+                            <div class="p-3 rounded-2xl bg-brand-base/80 border border-brand-line">
+                                <span class="text-[9.5px] uppercase font-bold text-brand-gold tracking-wider block mb-0.5">Timings</span>
+                                <span class="text-xs sm:text-sm font-bold text-brand-ink block">10:00 AM &amp; 6:30 PM</span>
+                                <span class="text-[10px] text-brand-beige/60">IST Daily</span>
+                            </div>
+
+                            <div class="p-3 rounded-2xl bg-brand-base/80 border border-brand-line col-span-2 sm:col-span-1">
+                                <span class="text-[9.5px] uppercase font-bold text-brand-gold tracking-wider block mb-0.5">Venue</span>
+                                <span class="text-xs sm:text-sm font-bold text-brand-ink block">Main Sanctuary</span>
+                                <span class="text-[10px] text-brand-beige/60">Pattukkottai, Thanjavur</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <button onclick="openMeetingModal(1)" class="btn-gold-shimmer px-6 sm:px-8 py-3.5 rounded-full text-brand-base text-xs font-black uppercase tracking-[0.2em] shadow-lg shadow-brand-gold/25 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-circle-info text-xs"></i>
+                                <span>VIEW FULL AGENDA</span>
+                            </button>
+
+                            <a href="index.html#request" class="px-6 py-3.5 rounded-full border border-brand-gold/50 text-brand-ink hover:bg-brand-gold/10 text-xs font-bold uppercase tracking-[0.18em] transition-all flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-hands-praying text-brand-gold"></i>
+                                <span>PRAYER INTENTION</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Poster Frame -->
+                    <div class="lg:col-span-5">
+                        <div class="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-brand-gold/30 shadow-xl group">
+                            <img src="images/poster.png" alt="3-Day Revival Convention Poster ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            
+                            <!-- Badges on Image -->
+                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
+                                <div class="flex items-center gap-2 font-medium drop-shadow-md">
+                                    <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                                    <span>ACA Church PKT Sanctuary</span>
+                                </div>
+                                <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-gold text-brand-base font-bold uppercase tracking-wider shadow">
+                                    All Welcome
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MEETINGS & ANNOUNCEMENTS GRID -->
+        <section class="px-6 md:px-12 max-w-7xl mx-auto mb-16">
+            <div class="flex items-center justify-between mb-8 pb-4 border-b border-brand-line">
+                <div>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-brand-ink font-bold">Upcoming Services &amp; Meetings</h3>
+                    <p class="text-xs sm:text-sm text-brand-beige/70 font-light">Regular weekly schedules, monthly conferences, and upcoming church ministries.</p>
+                </div>
+                <span id="meetingCountDisplay" class="text-xs text-brand-gold font-bold uppercase tracking-wider hidden sm:block">8 Updates Listed</span>
+            </div>
+
+            <!-- Grid Cards -->
+            <div id="meetingsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- CARD 1: Sunday Worship -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="sunday" data-title="Sunday Spirit-Filled Worship & Miracle Service">
+                    <div>
+                        <!-- Card Banner Image -->
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png" alt="Sunday Worship ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    WEEKLY WORSHIP
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> 10:00 AM IST
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-calendar-day text-[9px]"></i>
+                                <span>EVERY SUNDAY</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                Sunday Worship &amp; Miracle Service
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                ஞாயிறு ஆராதனை மற்றும் அற்புத பெருவிழா
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                Experience joyous praise, deep spiritual worship, and the anointed preaching of God's Word by Pastor Sathiya Satchi. Special intercession for families and healing petitions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Main Sanctuary</span>
+                        </span>
+                        <button onclick="openMeetingModal(1)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 2: Monthly Fasting Prayer -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="fasting" data-title="Monthly 3-Day Fasting & Prayer Conference">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6463b22381_6a462d6ec136e88b.png" alt="Fasting Prayer at ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-amber-600 text-white text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    FASTING PRAYER
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> 10:00 AM – 1:00 PM
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-calendar-days text-[9px]"></i>
+                                <span>1ST TO 3RD OF EVERY MONTH</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                3-Day Monthly Fasting Prayer
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                மாதாந்திர 3 நாட்கள் உபவாச ஜெபக் கூடுகை
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                Dedicated days of consecrated fasting and intercession for individual spiritual growth, family breakthroughs, church growth, and national revival.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Sanctuary Hall</span>
+                        </span>
+                        <button onclick="openMeetingModal(2)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 3: Youth Revival Meeting -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="youth" data-title="Youth Fire Revival & Fellowship">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png" alt="Youth Fellowship ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-indigo-600 text-white text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    YOUTH MINISTRY
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> 5:30 PM IST
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-fire text-[9px]"></i>
+                                <span>2ND &amp; 4TH SATURDAY</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                Youth Fire Revival &amp; Fellowship
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                வாலிபர் அக்கினி எழுப்புதல் கூடுகை
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                Empowering the young generation with God's Word, passionate contemporary worship, mentoring, career guidance, and gospel leadership workshops.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Youth Auditorium</span>
+                        </span>
+                        <button onclick="openMeetingModal(3)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 4: Sisters Fellowship -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="fellowship" data-title="Sisters Intercessory Fellowship">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_decd1b4976_10f4c107eee2beda.png" alt="Sisters Fellowship ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-rose-600 text-white text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    WOMEN'S MINISTRY
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> 10:30 AM IST
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-heart text-[9px]"></i>
+                                <span>EVERY TUESDAY</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                Sisters Intercessory Fellowship
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                சகோதரிகள் ஐக்கிய ஜெபக் கூடுகை
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                A heartfelt gathering for women to stand in prayer for their children, homes, health, and church community, with Bible study and mutual encouragement.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Prayer Chapel</span>
+                        </span>
+                        <button onclick="openMeetingModal(4)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 5: All Night Prayer -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="fasting" data-title="All-Night City Transformation Prayer">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png" alt="All Night Prayer at ACA Church PKT"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-purple-700 text-white text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    NIGHT WATCH
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> 10:00 PM – 5:00 AM
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-moon text-[9px]"></i>
+                                <span>LAST FRIDAY OF THE MONTH</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                All-Night City Intercession
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                இரவு முழு ஜெபம் மற்றும் பட்டண எழுப்புதல்
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                Powerful 7-hour continuous prayer chain seeking God's divine hand over Pattukkottai town, Thanjavur District, and Tamil Nadu's revival.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Main Sanctuary</span>
+                        </span>
+                        <button onclick="openMeetingModal(5)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 6: Branch Churches Vision Rally -->
+                <article class="meeting-card group rounded-3xl border border-brand-line bg-brand-surface overflow-hidden shadow-lg hover:shadow-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between" data-category="special" data-title="100 Branch Churches Vision Meeting">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden bg-brand-frame">
+                            <img src="images/closed-bible.jpg" alt="100 Branch Churches Vision Gathering"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-[9.5px] font-black uppercase tracking-wider shadow">
+                                    VISION 01 EXPANSION
+                                </span>
+                            </div>
+                            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-brand-gold text-[10px] font-bold">
+                                <i class="fa-solid fa-clock text-[9px] mr-1"></i> Quarterly
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="text-[10px] uppercase font-bold tracking-[0.25em] text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-cross text-[9px]"></i>
+                                <span>MISSION RALLY</span>
+                            </div>
+                            <h4 class="font-serif text-xl sm:text-2xl text-brand-ink font-bold group-hover:text-brand-gold transition-colors mb-1">
+                                100 Kilai Sabai Mission Meeting
+                            </h4>
+                            <p class="font-tamil text-xs text-brand-gold font-medium mb-3">
+                                100 கிளை சபைகள் மிஷன் கலந்தாய்வு
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed line-clamp-3 mb-4">
+                                Fulfilling our divine mandate given to Pastor Sathiya Satchi: planting 100 village branch churches and reaching 7,000 souls across Thanjavur region.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2 border-t border-brand-line/50 flex items-center justify-between">
+                        <span class="text-[11px] text-brand-beige/60 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold"></i>
+                            <span>Mission Center</span>
+                        </span>
+                        <button onclick="openMeetingModal(6)" class="text-xs font-bold text-brand-gold group-hover:text-brand-ink uppercase tracking-wider flex items-center gap-1.5 cursor-pointer">
+                            <span>Details</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 5. PASTORAL ANNOUNCEMENT & WHATSAPP ALERT BANNER -->
+        <section class="px-6 md:px-12 max-w-7xl mx-auto">
+            <div class="rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-brand-surface via-brand-frame to-brand-surface border border-brand-gold/30 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left relative overflow-hidden">
+                <div class="absolute -left-12 -top-12 w-48 h-48 bg-brand-gold/10 blur-3xl pointer-events-none rounded-full"></div>
+
+                <div class="space-y-2 max-w-2xl relative z-10">
+                    <div class="inline-flex items-center gap-2 text-brand-gold text-[10px] font-bold tracking-[0.25em] uppercase">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>DIRECT PASTORAL UPDATES</span>
+                    </div>
+                    <h3 class="font-serif text-2xl sm:text-4xl text-brand-ink font-bold">Never Miss a Holy Meeting</h3>
+                    <p class="text-xs sm:text-sm text-brand-beige/75 font-light leading-relaxed">
+                        Join our official ACA Church PKT WhatsApp Announcement Group to receive live service links, daily verses, prayer schedule changes, and special meeting alerts directly on your phone.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 relative z-10 w-full sm:w-auto">
+                    <a href="https://wa.me/919443100000?text=Praise%20the%20Lord%20Pastor,%20please%20add%20me%20to%20the%20ACA%20Church%20PKT%20Meeting%20Updates%20group." target="_blank"
+                        class="w-full sm:w-auto px-7 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-[0.2em] shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>JOIN WHATSAPP GROUP</span>
+                    </a>
+                    <a href="index.html#request"
+                        class="w-full sm:w-auto px-7 py-4 rounded-full border border-brand-gold/50 text-brand-ink hover:bg-brand-gold/10 text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <span>PRAYER DESK</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 6. MEETING DETAILS MODAL (READ MORE DIALOG) -->
+    <div id="meetingModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4 md:p-8">
+        <div class="relative w-full max-w-2xl bg-brand-surface dark:bg-brand-surface border border-brand-gold/40 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <!-- Close Button -->
+            <button onclick="closeMeetingModal()" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-beige hover:text-brand-gold hover:border-brand-gold transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+
+            <!-- Modal Content Loaded Dynamically -->
+            <div id="modalMeetingContent" class="space-y-6">
+                <!-- Header -->
+                <div>
+                    <span id="modalCategory" class="inline-block px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider mb-2"></span>
+                    <h3 id="modalTitle" class="font-serif text-2xl sm:text-3xl text-brand-ink font-bold mb-1"></h3>
+                    <p id="modalTamilTitle" class="font-tamil text-sm text-brand-gold font-medium"></p>
+                </div>
+
+                <!-- Info Badges -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-brand-frame/60 border border-brand-line text-xs">
+                    <div>
+                        <span class="text-[9.5px] uppercase font-bold text-brand-gold block mb-0.5">When</span>
+                        <span id="modalTime" class="font-bold text-brand-ink block"></span>
+                    </div>
+                    <div>
+                        <span class="text-[9.5px] uppercase font-bold text-brand-gold block mb-0.5">Where</span>
+                        <span id="modalVenue" class="font-bold text-brand-ink block"></span>
+                    </div>
+                    <div>
+                        <span class="text-[9.5px] uppercase font-bold text-brand-gold block mb-0.5">Leader / Speaker</span>
+                        <span id="modalSpeaker" class="font-bold text-brand-ink block">Pastor Sathiya Satchi</span>
+                    </div>
+                </div>
+
+                <!-- Detailed Description -->
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-brand-gold mb-2">About This Gathering</h4>
+                    <p id="modalDescription" class="text-xs sm:text-sm text-brand-beige/85 font-light leading-relaxed"></p>
+                </div>
+
+                <!-- Scripture / Theme -->
+                <div class="p-4 rounded-2xl bg-brand-gold/10 border border-brand-gold/25">
+                    <p id="modalVerse" class="font-serif italic text-xs sm:text-sm text-brand-ink mb-1"></p>
+                    <span id="modalRef" class="text-brand-gold text-[10px] font-bold uppercase tracking-wider"></span>
+                </div>
+
+                <!-- Action Footer -->
+                <div class="pt-4 border-t border-brand-line flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <span class="text-[11px] text-brand-beige/60">Main Sanctuary, Pattukkottai • 614601</span>
+                    <a href="index.html#request" class="w-full sm:w-auto px-6 py-3 rounded-full bg-brand-gold text-brand-base text-xs font-black uppercase tracking-[0.18em] shadow-md hover:bg-brand-ink hover:text-brand-gold transition-all text-center">
+                        SEND PRAYER PETITION
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. FOOTER SECTION -->
+    <footer id="contact" class="bg-brand-base pt-12 sm:pt-16 pb-10 px-6 md:px-12 border-t border-brand-line">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-10 reveal-up">
+                <!-- Column 1: Church Branding -->
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-8 h-8 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+                            <i class="fa-solid fa-cross text-xs"></i>
+                        </div>
+                        <span class="text-brand-ink font-serif text-xl tracking-[0.15em] uppercase font-bold">ACA Church PKT</span>
+                    </a>
+                    <p class="text-brand-beige/60 font-light text-sm leading-relaxed mb-4">
+                        Apostolic Christian Assembly Pattukkottai. Serving over <strong>50+ years in God's grace</strong> in Pattukkottai, Thanjavur District.
+                    </p>
+                    <span class="inline-block px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-bold rounded-full tracking-wider">
+                        50+ Years Heritage
+                    </span>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6">Quick Links</h4>
+                    <ul class="space-y-3.5 text-brand-beige/60 font-medium text-[11px] uppercase tracking-widest">
+                        <li><a href="index.html" class="hover:text-brand-gold transition-colors">Home</a></li>
+                        <li><a href="index.html#about" class="hover:text-brand-gold transition-colors">About Us</a></li>
+                        <li><a href="index.html#pastor" class="hover:text-brand-gold transition-colors">Pastor Sathiya Satchi</a></li>
+                        <li><a href="index.html#vision" class="hover:text-brand-gold transition-colors">Our Vision 01</a></li>
+                        <li><a href="blog.html" class="text-brand-gold transition-colors">Meetings &amp; News</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Services -->
+                <div>
+                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6">Services</h4>
+                    <ul class="space-y-3.5 text-brand-beige/60 font-medium text-[11px] uppercase tracking-widest">
+                        <li><a href="index.html#prayers" class="hover:text-brand-gold transition-colors">Sunday Worship (10:00 AM)</a></li>
+                        <li><a href="blog.html" class="hover:text-brand-gold transition-colors">Fasting Prayer</a></li>
+                        <li><a href="blog.html" class="hover:text-brand-gold transition-colors">Youth Ministry</a></li>
+                        <li><a href="gallery.html" class="hover:text-brand-gold transition-colors">Church Gallery</a></li>
+                        <li><a href="index.html#request" class="hover:text-brand-gold transition-colors">Prayer Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div>
+                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6">Location &amp; Contact</h4>
+                    <ul class="space-y-3 text-brand-beige/60 font-light text-xs">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-gold mt-1"></i>
+                            <span>ACA Church PKT, Main Sanctuary, Pattukkottai, Thanjavur District - 614601</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-gold"></i>
+                            <span>+91 94431 00000</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-clock text-brand-gold"></i>
+                            <span>Sunday: 10:00 AM IST</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Follow Us -->
+                <div>
+                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <p class="text-brand-beige/60 text-xs font-light mb-4">Connect with ACA Church PKT for live prayer broadcasts and weekly announcements.</p>
+                    <div class="flex gap-3">
+                        <a href="#" aria-label="Facebook"
+                            class="w-10 h-10 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-all">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube"
+                            class="w-10 h-10 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-all">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/919443100000" aria-label="WhatsApp"
+                            class="w-10 h-10 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-emerald-500 hover:text-emerald-500 hover:bg-emerald-500/10 transition-all">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 border-t border-brand-line flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+                <p class="text-brand-beige/50 text-[10px] font-bold uppercase tracking-[0.25em]">
+                    &copy; <script>document.write(new Date().getFullYear())</script> ACA Church PKT, Pattukkottai. All Rights Reserved. • 50+ Years in God's Grace
+                </p>
+                <div class="flex gap-6 text-brand-beige/40 text-[10px] uppercase font-semibold tracking-wider">
+                    <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
+                    <a href="gallery.html" class="hover:text-brand-gold transition-colors">Gallery</a>
+                    <a href="blog.html" class="hover:text-brand-gold transition-colors">Meetings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC FOR BLOG & MEETINGS -->
+    <script>
+        // Modal Data for Meetings
+        const meetingDetails = {
+            1: {
+                category: "Sunday Service",
+                title: "Sunday Worship & Miracle Service",
+                tamilTitle: "ஞாயிறு ஆராதனை மற்றும் அற்புத பெருவிழா",
+                time: "Every Sunday • 10:00 AM IST",
+                venue: "Main Sanctuary, Pattukkottai",
+                speaker: "Pastor Sathiya Satchi",
+                description: "Join us every Sunday morning for an extraordinary time in God's presence. Our service includes spirit-filled Tamil & English praise and worship, anointed Bible teaching by Senior Pastor Sathiya Satchi, special prayers for sickness and family peace, and communion. There is a dedicated children's Sunday School during service.",
+                verse: '"Enter into His gates with thanksgiving, and into His courts with praise."',
+                ref: "Psalm 100:4 • சங்கீதம் 100:4"
+            },
+            2: {
+                category: "Fasting Prayer",
+                title: "3-Day Monthly Fasting Prayer Conference",
+                tamilTitle: "மாதாந்திர 3 நாட்கள் உபவாச ஜெபக் கூடுகை",
+                time: "1st to 3rd of Every Month • 10:00 AM to 1:00 PM IST",
+                venue: "Main Sanctuary, Pattukkottai",
+                speaker: "Pastor Sathiya Satchi & Pastoral Elders",
+                description: "The first three days of every month are dedicated to seeking the face of the Lord through fasting and prayer. We bring petitions for the church's 100 branch churches vision, the salvation of 7,000 souls, personal spiritual deliverance, and national revival. Soup and fellowship are provided following prayer.",
+                verse: '"This kind cannot come out by anything but prayer and fasting."',
+                ref: "Mark 9:29 • மாற்கு 9:29"
+            },
+            3: {
+                category: "Youth Ministry",
+                title: "Youth Fire Revival & Fellowship",
+                tamilTitle: "வாலிபர் அக்கினி எழுப்புதல் கூடுகை",
+                time: "2nd & 4th Saturday • 5:30 PM IST",
+                venue: "Youth Auditorium, ACA Church PKT",
+                speaker: "Pastor Sathiya Satchi & Youth Leaders",
+                description: "A vibrant gathering for students, professionals, and youth across Pattukkottai. Includes contemporary praise, interactive biblical discussions on living a holy life in modern times, talent nurturing, career counseling, and passionate prayer for personal calling.",
+                verse: '"Let no one despise your youth, but be an example to the believers in word, in conduct, in love, in spirit, in faith, in purity."',
+                ref: "1 Timothy 4:12 • 1 தீமோத்தேயு 4:12"
+            },
+            4: {
+                category: "Women's Ministry",
+                title: "Sisters Intercessory Fellowship",
+                tamilTitle: "சகோதரிகள் ஐக்கிய ஜெபக் கூடுகை",
+                time: "Every Tuesday • 10:30 AM IST",
+                venue: "Prayer Chapel, ACA Church PKT",
+                speaker: "Pastoral Sisters & Leaders",
+                description: "A dedicated intercessory prayer time for women to pray for their husbands, children's future, domestic harmony, and neighborhood salvation. Mothers and sisters share testimonies of God's miraculous answers.",
+                verse: '"She opens her mouth with wisdom, and on her tongue is the law of kindness."',
+                ref: "Proverbs 31:26 • நீதிமொழிகள் 31:26"
+            },
+            5: {
+                category: "Night Watch",
+                title: "All-Night City Intercession",
+                tamilTitle: "இரவு முழு ஜெபம் மற்றும் பட்டண எழுப்புதல்",
+                time: "Last Friday of Every Month • 10:00 PM – 5:00 AM IST",
+                venue: "Main Sanctuary, Pattukkottai",
+                speaker: "Pastor Sathiya Satchi",
+                description: "Consecrated night vigil where the entire church family gathers to wage spiritual warfare, plead for the salvation of Pattukkottai town, break spiritual strongholds, and welcome the early morning with praise and communion.",
+                verse: '"Arise, cry out in the night, at the beginning of the watches; Pour out your heart like water before the face of the Lord."',
+                ref: "Lamentations 2:19 • புலம்பல் 2:19"
+            },
+            6: {
+                category: "Vision Expansion",
+                title: "100 Branch Churches Mission Rally",
+                tamilTitle: "100 கிளை சபைகள் மிஷன் கலந்தாய்வு",
+                time: "Quarterly Mission Sunday • 10:00 AM IST",
+                venue: "Main Sanctuary, Pattukkottai",
+                speaker: "Pastor Sathiya Satchi",
+                description: "Reviewing our Vision 01 covenant: establishing 100 branch churches in unreached rural villages and obtaining 1,000 Koli land for church infrastructure. Field reports from branch pastors and dedication of new outreach pioneers.",
+                verse: '"Write the vision and make it plain on tablets, that he may run who reads it."',
+                ref: "Habakkuk 2:2 • ஆபகூக் 2:2"
+            }
+        };
+
+        function openMeetingModal(id) {
+            const data = meetingDetails[id];
+            if (!data) return;
+
+            document.getElementById('modalCategory').textContent = data.category;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalTamilTitle').textContent = data.tamilTitle;
+            document.getElementById('modalTime').textContent = data.time;
+            document.getElementById('modalVenue').textContent = data.venue;
+            document.getElementById('modalSpeaker').textContent = data.speaker;
+            document.getElementById('modalDescription').textContent = data.description;
+            document.getElementById('modalVerse').textContent = data.verse;
+            document.getElementById('modalRef').textContent = data.ref;
+
+            const modal = document.getElementById('meetingModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMeetingModal() {
+            const modal = document.getElementById('meetingModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // Close on background click
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('meetingModal');
+            if (e.target === modal) closeMeetingModal();
+        });
+
+        // Close on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMeetingModal();
+        });
+
+        // Category Filter Logic
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const meetingCards = document.querySelectorAll('.meeting-card');
+        const searchInput = document.getElementById('meetingSearchInput');
+        const meetingCountDisplay = document.getElementById('meetingCountDisplay');
+
+        function filterMeetings() {
+            const activeChip = document.querySelector('.filter-chip.active');
+            const selectedCategory = activeChip ? activeChip.getAttribute('data-category') : 'all';
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            let visibleCount = 0;
+
+            meetingCards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                const cardTitle = card.getAttribute('data-title').toLowerCase();
+                const cardText = card.innerText.toLowerCase();
+
+                const matchesCategory = selectedCategory === 'all' || cardCat === selectedCategory;
+                const matchesSearch = searchTerm === '' || cardTitle.includes(searchTerm) || cardText.includes(searchTerm);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (meetingCountDisplay) {
+                meetingCountDisplay.textContent = `${visibleCount} Updates Listed`;
+            }
+        }
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => {
+                    c.classList.remove('active', 'bg-brand-gold', 'text-brand-base', 'border-brand-gold', 'shadow-md');
+                    c.classList.add('bg-brand-surface', 'text-brand-beige', 'border-brand-line');
+                });
+                chip.classList.add('active', 'bg-brand-gold', 'text-brand-base', 'border-brand-gold', 'shadow-md');
+                chip.classList.remove('bg-brand-surface', 'text-brand-beige', 'border-brand-line');
+                filterMeetings();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterMeetings);
+        }
+
+        // Theme Toggle Controller
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleIcon = document.getElementById('themeToggleIcon');
+        const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+        const mobileThemeToggleIcon = document.getElementById('mobileThemeToggleIcon');
+        const mobileThemeText = document.getElementById('mobileThemeText');
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                if (themeToggleIcon) themeToggleIcon.className = 'fa-solid fa-sun text-xs';
+                if (mobileThemeToggleIcon) mobileThemeToggleIcon.className = 'fa-solid fa-sun text-xs';
+                if (mobileThemeText) mobileThemeText.textContent = 'Light Mode';
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (themeToggleIcon) themeToggleIcon.className = 'fa-solid fa-moon text-xs';
+                if (mobileThemeToggleIcon) mobileThemeToggleIcon.className = 'fa-solid fa-moon text-xs';
+                if (mobileThemeText) mobileThemeText.textContent = 'Dark Mode';
+            }
+        }
+
+        const storedTheme = localStorage.getItem('aca_theme');
+        if (storedTheme === 'dark') updateThemeUI(true);
+        else updateThemeUI(false);
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aca_theme', isDark ? 'dark' : 'light');
+            updateThemeUI(isDark);
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Mobile Drawer Controller
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMobileDrawer() {
+            if (mobileMenu) {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileDrawer() {
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileDrawer);
+        if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMobileDrawer);
+        if (mobileMenuBackdrop) mobileMenuBackdrop.addEventListener('click', closeMobileDrawer);
+
+        mobileLinks.forEach(l => l.addEventListener('click', closeMobileDrawer));
+    </script>
+</body>
+
+</html>

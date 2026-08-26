@@ -1,9 +1,12 @@
 /**
- * ACA Church PKT — Cinematic "Our Vision" Canvas Engine
- * Preloads and controls the 541-frame sequence of the Sacred Bible opening & Vision 01 reveal
+ * ACA Church PKT — Vision Canvas Engine v2.0
+ * Premium scroll-driven Bible animation (300 frames)
+ * Phase 1: Intro text fades in over closed Bible
+ * Phase 2: Bible opens with smooth transition
+ * Phase 3: Vision content reveals on open Bible with professional typography
  */
 
-const VISION_TOTAL_FRAMES = 541;
+const VISION_TOTAL_FRAMES = 300;
 const visionFrameImages = new Array(VISION_TOTAL_FRAMES);
 let visionLoadedCount = 0;
 
@@ -12,12 +15,11 @@ const visionCtx = visionCanvas ? visionCanvas.getContext('2d') : null;
 const visionScrollTrack = document.getElementById('vision-scroll-track');
 const visionLoadingBar = document.getElementById('vision-loading-bar');
 const visionLoadingContainer = document.getElementById('vision-loading-container');
-const visionScene1Prompt = document.getElementById('visionScene1Prompt');
-const visionPageOverlay = document.getElementById('visionPageOverlay');
-const visionStatusText = document.getElementById('visionStatusText');
-const visionScrubber = document.getElementById('visionFrameScrubber');
-const visionPlayIcon = document.getElementById('visionPlayIcon');
-const visionPlayText = document.getElementById('visionPlayText');
+
+// Text overlay elements
+const visionIntroOverlay = document.getElementById('visionIntroOverlay');
+const visionContentOverlay = document.getElementById('visionContentOverlay');
+const visionContentItems = document.querySelectorAll('.vision-reveal-item');
 
 function getVisionFramePath(index) {
     const numStr = String(index + 1).padStart(3, '0');
@@ -27,14 +29,18 @@ function getVisionFramePath(index) {
 function resizeVisionCanvas() {
     if (!visionCanvas || !visionCtx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    visionCanvas.width = window.innerWidth * dpr;
-    visionCanvas.height = window.innerHeight * dpr;
+    const w = visionCanvas.clientWidth || window.innerWidth;
+    const h = visionCanvas.clientHeight || window.innerHeight;
+    visionCanvas.width = w * dpr;
+    visionCanvas.height = h * dpr;
     visionCtx.scale(dpr, dpr);
+    visionLastFrame = -1;
     renderVisionFrame(visionCurrentProgress);
 }
 
 function preloadVisionFrame(index) {
     return new Promise((resolve) => {
+        if (index >= VISION_TOTAL_FRAMES) { resolve(null); return; }
         if (visionFrameImages[index]) {
             resolve(visionFrameImages[index]);
             return;
@@ -62,30 +68,19 @@ function preloadVisionFrame(index) {
 }
 
 async function initVisionLoader() {
-    // Priority 1: Key milestone frames first for immediate interaction
-    const milestones = [0, 60, 120, 180, 240, 280, 300, 350, 420, 500, 540];
-    const initP = milestones.map(m => preloadVisionFrame(m));
-    await Promise.all(initP);
+    // Priority 1: Key milestone frames
+    const milestones = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 299];
+    await Promise.all(milestones.map(m => preloadVisionFrame(m)));
     renderVisionFrame(0);
 
-    // Priority 2: Preload initial 1-300 frames (Scenes 1-4)
-    for (let i = 0; i <= 310; i += 10) {
+    // Priority 2: Load all frames in small batches
+    for (let i = 0; i < VISION_TOTAL_FRAMES; i += 10) {
         const batch = [];
-        for (let j = i; j < Math.min(i + 10, 310); j++) {
+        for (let j = i; j < Math.min(i + 10, VISION_TOTAL_FRAMES); j++) {
             batch.push(preloadVisionFrame(j));
         }
         await Promise.all(batch);
-        await new Promise(r => setTimeout(r, 15));
-    }
-
-    // Priority 3: Preload remaining frames (311-540)
-    for (let i = 311; i < VISION_TOTAL_FRAMES; i += 15) {
-        const batch = [];
-        for (let j = i; j < Math.min(i + 15, VISION_TOTAL_FRAMES); j++) {
-            batch.push(preloadVisionFrame(j));
-        }
-        await Promise.all(batch);
-        await new Promise(r => setTimeout(r, 20));
+        await new Promise(r => setTimeout(r, 10));
     }
 }
 
@@ -93,109 +88,104 @@ let visionTargetProgress = 0;
 let visionCurrentProgress = 0;
 let visionIsAnimating = false;
 let visionLastFrame = -1;
-let isAutoPlaying = false;
+
+// Easing: smooth cubic interpolation
+function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+}
 
 function renderVisionFrame(prog) {
     if (!visionCtx) return;
     let frameIdx = Math.round(prog * (VISION_TOTAL_FRAMES - 1));
     frameIdx = Math.max(0, Math.min(VISION_TOTAL_FRAMES - 1, frameIdx));
 
-    if (visionScrubber && document.activeElement !== visionScrubber) {
-        visionScrubber.value = frameIdx;
-    }
-
     if (frameIdx !== visionLastFrame) {
         visionLastFrame = frameIdx;
         let img = visionFrameImages[frameIdx];
         if (!img) {
+            // Fallback: find nearest loaded frame
             for (let d = 1; d < VISION_TOTAL_FRAMES; d++) {
                 if (frameIdx - d >= 0 && visionFrameImages[frameIdx - d]) { img = visionFrameImages[frameIdx - d]; break; }
                 if (frameIdx + d < VISION_TOTAL_FRAMES && visionFrameImages[frameIdx + d]) { img = visionFrameImages[frameIdx + d]; break; }
             }
         }
-        if (img) drawCover(visionCtx, img, window.innerWidth, window.innerHeight);
+        const w = visionCanvas.clientWidth || window.innerWidth;
+        const h = visionCanvas.clientHeight || window.innerHeight;
+        if (img) drawCover(visionCtx, img, w, h);
     }
 
-    let activeScene = 1;
-    if (frameIdx < 60) {
-        activeScene = 1;
-        if (visionStatusText) visionStatusText.textContent = "Scene 1: Closed Holy Bible";
-        if (visionScene1Prompt) {
-            visionScene1Prompt.style.opacity = '1';
-            visionScene1Prompt.style.transform = 'translateY(0)';
-            visionScene1Prompt.style.pointerEvents = 'auto';
-        }
-        if (visionPageOverlay) {
-            visionPageOverlay.style.opacity = '0';
-            visionPageOverlay.style.transform = 'translateY(24px)';
-            visionPageOverlay.style.filter = 'blur(4px)';
-            visionPageOverlay.style.pointerEvents = 'none';
-        }
-    } else if (frameIdx < 220) {
-        activeScene = 2;
-        const openPct = Math.round(((frameIdx - 60) / 160) * 100);
-        if (visionStatusText) visionStatusText.textContent = `Scene 2: Bible Opening (${openPct}%)`;
-        if (visionScene1Prompt) {
-            const fade = Math.max(0, 1 - (frameIdx - 60) / 40);
-            visionScene1Prompt.style.opacity = fade.toFixed(2);
-            visionScene1Prompt.style.transform = `translateY(${-20 * (1 - fade)}px)`;
-            visionScene1Prompt.style.pointerEvents = 'none';
-        }
-        if (visionPageOverlay) {
-            visionPageOverlay.style.opacity = '0';
-            visionPageOverlay.style.transform = 'translateY(24px)';
-            visionPageOverlay.style.filter = 'blur(4px)';
-            visionPageOverlay.style.pointerEvents = 'none';
-        }
-    } else if (frameIdx < 275) {
-        activeScene = 3;
-        if (visionStatusText) visionStatusText.textContent = "Scene 3: Heavenly Light on Open Pages";
-        if (visionScene1Prompt) visionScene1Prompt.style.opacity = '0';
-        
-        // Gradual subtle reveal of printed page
-        const revealProg = Math.min(1, Math.max(0, (frameIdx - 220) / 55));
-        if (visionPageOverlay) {
-            visionPageOverlay.style.opacity = (revealProg * 0.7).toFixed(2);
-            visionPageOverlay.style.transform = `translateY(${(24 * (1 - revealProg)).toFixed(1)}px)`;
-            visionPageOverlay.style.filter = `blur(${(4 * (1 - revealProg)).toFixed(1)}px)`;
-            visionPageOverlay.style.pointerEvents = revealProg > 0.6 ? 'auto' : 'none';
-        }
-    } else {
-        activeScene = frameIdx >= 330 ? 5 : 4;
-        if (visionStatusText) visionStatusText.textContent = activeScene === 5 ? "Scene 5: Vision 01 & 4 Pillars Covenant" : "Scene 4: Vision 01 Printed Page Reveal";
-        if (visionScene1Prompt) visionScene1Prompt.style.opacity = '0';
-        
-        if (visionPageOverlay) {
-            visionPageOverlay.style.opacity = '1';
-            visionPageOverlay.style.transform = 'translateY(0)';
-            visionPageOverlay.style.filter = 'blur(0)';
-            visionPageOverlay.style.pointerEvents = 'auto';
-        }
-    }
-
-    // Update Scene Navigation Pills
-    const pills = document.querySelectorAll('.vision-scene-pill');
-    pills.forEach(pill => {
-        const sc = parseInt(pill.getAttribute('data-scene'), 10);
-        if (sc === activeScene) {
-            pill.classList.add('bg-amber-400', 'text-black', 'shadow-md');
-            pill.classList.remove('text-amber-100/70');
+    // === PHASE 1: INTRO TEXT (frames 0–80) ===
+    // Text fades in at 10%, peaks at 40%, fades out by frame 80
+    if (visionIntroOverlay) {
+        if (frameIdx <= 80) {
+            const fadeIn = Math.min(1, frameIdx / 25);       // 0→1 over first 25 frames
+            const fadeOut = Math.max(0, 1 - (frameIdx - 55) / 25); // 1→0 from frame 55–80
+            const opacity = Math.min(fadeIn, fadeOut);
+            const translateY = (1 - easeOutCubic(fadeIn)) * 40;  // Slide up on enter
+            
+            visionIntroOverlay.style.opacity = opacity.toFixed(3);
+            visionIntroOverlay.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+            visionIntroOverlay.style.pointerEvents = opacity > 0.3 ? 'auto' : 'none';
+            visionIntroOverlay.style.display = '';
         } else {
-            pill.classList.remove('bg-amber-400', 'text-black', 'shadow-md');
-            pill.classList.add('text-amber-100/70');
+            visionIntroOverlay.style.opacity = '0';
+            visionIntroOverlay.style.display = 'none';
         }
-    });
+    }
+
+    // === PHASE 2: BIBLE OPENING (frames 60–200) ===
+    // No overlays — just the Bible frame animation plays
+
+    // === PHASE 3: VISION CONTENT (frames 200–300) ===
+    if (visionContentOverlay) {
+        if (frameIdx >= 180) {
+            const revealStart = 180;
+            const revealEnd = 240;
+            const rawProgress = Math.min(1, Math.max(0, (frameIdx - revealStart) / (revealEnd - revealStart)));
+            const easedProgress = easeOutCubic(rawProgress);
+            
+            visionContentOverlay.style.opacity = easedProgress.toFixed(3);
+            visionContentOverlay.style.transform = `translateY(${((1 - easedProgress) * 30).toFixed(1)}px)`;
+            visionContentOverlay.style.filter = `blur(${((1 - easedProgress) * 6).toFixed(1)}px)`;
+            visionContentOverlay.style.pointerEvents = easedProgress > 0.5 ? 'auto' : 'none';
+
+            // Staggered reveal of individual vision items
+            if (visionContentItems.length > 0) {
+                visionContentItems.forEach((item, idx) => {
+                    const itemDelay = idx * 12;  // 12-frame stagger
+                    const itemStart = revealStart + 20 + itemDelay;
+                    const itemProg = Math.min(1, Math.max(0, (frameIdx - itemStart) / 30));
+                    const itemEased = easeOutCubic(itemProg);
+                    
+                    item.style.opacity = itemEased.toFixed(3);
+                    item.style.transform = `translateY(${((1 - itemEased) * 24).toFixed(1)}px)`;
+                });
+            }
+        } else {
+            visionContentOverlay.style.opacity = '0';
+            visionContentOverlay.style.transform = 'translateY(30px)';
+            visionContentOverlay.style.filter = 'blur(6px)';
+            visionContentOverlay.style.pointerEvents = 'none';
+            
+            if (visionContentItems.length > 0) {
+                visionContentItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(24px)';
+                });
+            }
+        }
+    }
 }
 
 function visionAnimationLoop() {
-    if (!visionScrollTrack || isAutoPlaying) return;
+    if (!visionScrollTrack) return;
     const rect = visionScrollTrack.getBoundingClientRect();
     const maxScroll = rect.height - window.innerHeight;
     visionTargetProgress = maxScroll > 0 ? Math.max(0, Math.min(1, -rect.top / maxScroll)) : 0;
 
     const diff = visionTargetProgress - visionCurrentProgress;
     if (Math.abs(diff) > 0.0001) {
-        visionCurrentProgress += diff * 0.16;
+        visionCurrentProgress += diff * 0.14; // Smooth interpolation
         renderVisionFrame(visionCurrentProgress);
         requestAnimationFrame(visionAnimationLoop);
     } else {
@@ -206,118 +196,8 @@ function visionAnimationLoop() {
 }
 
 function onVisionScroll() {
-    if (!visionIsAnimating && !isAutoPlaying) {
+    if (!visionIsAnimating) {
         visionIsAnimating = true;
         requestAnimationFrame(visionAnimationLoop);
     }
 }
-
-// Global Vision Engine Controller API
-window.visionEngine = {
-    jumpToScene(sceneNumber) {
-        this.pause();
-        let targetFrame = 0;
-        if (sceneNumber === 1) targetFrame = 0;
-        else if (sceneNumber === 2) targetFrame = 140;
-        else if (sceneNumber === 3) targetFrame = 250;
-        else if (sceneNumber === 4) targetFrame = 285;
-        else if (sceneNumber === 5) targetFrame = 340;
-
-        visionTargetProgress = targetFrame / (VISION_TOTAL_FRAMES - 1);
-        visionCurrentProgress = visionTargetProgress;
-        renderVisionFrame(visionCurrentProgress);
-
-        if (visionScrollTrack) {
-            const rect = visionScrollTrack.getBoundingClientRect();
-            if (rect.top > 100 || rect.bottom < window.innerHeight - 100) {
-                visionScrollTrack.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    },
-
-    onScrub(frameVal) {
-        this.pause();
-        const frame = parseInt(frameVal, 10);
-        visionTargetProgress = frame / (VISION_TOTAL_FRAMES - 1);
-        visionCurrentProgress = visionTargetProgress;
-        renderVisionFrame(visionCurrentProgress);
-    },
-
-    togglePlay() {
-        if (isAutoPlaying) {
-            this.pause();
-        } else {
-            this.play();
-        }
-    },
-
-    play() {
-        isAutoPlaying = true;
-        if (visionPlayIcon) visionPlayIcon.className = "fa-solid fa-pause text-[10px]";
-        if (visionPlayText) visionPlayText.textContent = "Pause";
-
-        if (visionCurrentProgress >= 0.98) {
-            visionCurrentProgress = 0;
-        }
-
-        const startTime = performance.now();
-        const startProg = visionCurrentProgress;
-        const totalDuration = 12000; // 12 seconds for full cinematic majesty
-
-        function step(timestamp) {
-            if (!isAutoPlaying) return;
-            const elapsed = timestamp - startTime;
-            const p = Math.min(1, startProg + (elapsed / totalDuration));
-            visionCurrentProgress = p;
-            renderVisionFrame(visionCurrentProgress);
-
-            if (p < 1) {
-                requestAnimationFrame(step);
-            } else {
-                visionEngine.pause();
-            }
-        }
-        requestAnimationFrame(step);
-    },
-
-    pause() {
-        isAutoPlaying = false;
-        if (visionPlayIcon) visionPlayIcon.className = "fa-solid fa-play text-[10px]";
-        if (visionPlayText) visionPlayText.textContent = "Cinematic Play";
-    },
-
-    replay() {
-        this.pause();
-        visionCurrentProgress = 0;
-        renderVisionFrame(0);
-        setTimeout(() => this.play(), 200);
-    },
-
-    pledgePrayer() {
-        const btn = document.getElementById('visionPledgeBtn');
-        const btnText = document.getElementById('visionPledgeBtnText');
-        const countElem = document.getElementById('visionPledgeCount');
-        const isPledged = localStorage.getItem('aca_vision_pledged') === 'true';
-
-        let current = parseInt(localStorage.getItem('aca_vision_pledge_count') || '152', 10);
-
-        if (!isPledged) {
-            current += 1;
-            localStorage.setItem('aca_vision_pledge_count', current.toString());
-            localStorage.setItem('aca_vision_pledged', 'true');
-            
-            if (btn && btnText) {
-                btnText.textContent = "Amen! Covenant Confirmed";
-                btn.className = "inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 text-white text-xs font-black uppercase tracking-[0.18em] shadow-xl shadow-emerald-500/25";
-            }
-        } else {
-            if (btn && btnText) {
-                btnText.textContent = "Amen! Already Standing in Faith";
-            }
-        }
-
-        if (countElem) {
-            countElem.textContent = `${current}+`;
-        }
-    }
-};

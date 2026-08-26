@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind Configuration -->
@@ -43,8 +43,8 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
                         cinzel: ['Cinzel', 'serif'],
                     }
                 }
@@ -76,7 +76,7 @@
             </a>
 
             <!-- Desktop Nav Links -->
-            <div class="hidden xl:flex items-center gap-6 2xl:gap-8 text-[11px] 2xl:text-xs uppercase tracking-[0.16em] 2xl:tracking-[0.2em] font-semibold text-brand-beige">
+            <div class="hidden xl:flex items-center gap-5 2xl:gap-7 text-[11px] 2xl:text-xs uppercase tracking-[0.15em] 2xl:tracking-[0.18em] font-semibold text-brand-beige">
                 <a href="index.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
                 <a href="index.html#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About Us</a>
                 <a href="index.html#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
@@ -85,6 +85,10 @@
                 </a>
                 <a href="index.html#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Our Prayers</a>
                 <a href="gallery.html" class="relative nav-link-underline py-1 text-brand-gold font-bold transition-colors">Gallery</a>
+                <a href="blog.html" class="relative nav-link-underline py-1 text-brand-gold font-bold hover:text-brand-ink transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-calendar-days text-[10px]"></i>
+                    <span>Meetings &amp; News</span>
+                </a>
                 <a href="index.html#request" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Contact</a>
             </div>
 
@@ -188,6 +192,18 @@
                         <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Church Gallery</div>
                     </div>
                     <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                </a>
+
+                <a href="blog.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-brand-gold/30 bg-brand-gold/10 text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs shadow-sm">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Meetings &amp; News</div>
+                        </div>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-brand-gold text-brand-base text-[9px] font-bold uppercase">Updates</span>
                 </a>
 
                 <a href="index.html#request" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
@@ -479,7 +495,7 @@
                 <span class="text-brand-gold text-xs tracking-[0.35em] uppercase font-bold block">EXPERIENCE IT IN PERSON</span>
                 <h2 class="font-serif text-2xl sm:text-4xl text-brand-ink font-semibold">Join Us This Sunday in Pattukkottai</h2>
                 <p class="text-sm text-brand-beige/80 font-light leading-relaxed">
-                    Come worship with our growing church family. Sunday Services at 9:00 AM &amp; 11:00 AM.
+                    Come worship with our growing church family. Sunday Worship at 10:00 AM IST.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-3">
                     <a href="index.html#request"
@@ -541,6 +557,7 @@
             <div class="flex gap-6 text-[11px] font-semibold text-brand-beige/70">
                 <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
                 <a href="index.html#vision" class="hover:text-brand-gold transition-colors">Our Vision</a>
+                <a href="blog.html" class="hover:text-brand-gold transition-colors text-brand-gold">Meetings &amp; News</a>
                 <a href="index.html#request" class="hover:text-brand-gold transition-colors">Prayer Request</a>
             </div>
         </div>

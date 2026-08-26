@@ -24,9 +24,12 @@ function getHeroFramePath(index) {
 function resizeHeroCanvas() {
     if (!heroCanvas || !heroCtx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    heroCanvas.width = window.innerWidth * dpr;
-    heroCanvas.height = window.innerHeight * dpr;
+    const w = heroCanvas.clientWidth || window.innerWidth;
+    const h = heroCanvas.clientHeight || window.innerHeight;
+    heroCanvas.width = w * dpr;
+    heroCanvas.height = h * dpr;
     heroCtx.scale(dpr, dpr);
+    heroLastFrame = -1;
     renderHeroFrame(heroCurrentProgress);
 }
 
@@ -118,7 +121,9 @@ function renderHeroFrame(prog) {
                 if (frameIdx + d < HERO_TOTAL_FRAMES && heroFrameImages[frameIdx + d]) { img = heroFrameImages[frameIdx + d]; break; }
             }
         }
-        if (img) drawCover(heroCtx, img, window.innerWidth, window.innerHeight);
+        const w = heroCanvas.clientWidth || window.innerWidth;
+        const h = heroCanvas.clientHeight || window.innerHeight;
+        if (img) drawCover(heroCtx, img, w, h);
     }
 
     // Hero Overlays update

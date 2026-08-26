@@ -89,11 +89,11 @@
         referrerpolicy="no-referrer"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Google Fonts: Tamil Typography + Majestic Serif + Sans -->
+    <!-- Google Fonts: Professional Typography Stack -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif+Tamil:wght@400;500;600;700;800;900&family=Mukta+Malar:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif+Tamil:wght@400;500;600;700;800;900&family=Mukta+Malar:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <script>
@@ -121,8 +121,8 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
                         cinzel: ['Cinzel', 'serif'],
                         tamil: ['"Noto Serif Tamil"', '"Mukta Malar"', 'serif'],
                     }
@@ -155,7 +155,7 @@
             </a>
 
             <!-- Desktop Nav Links (Center End-to-End Spacing) -->
-            <div class="hidden xl:flex items-center gap-6 2xl:gap-8 text-[11px] 2xl:text-xs uppercase tracking-[0.16em] 2xl:tracking-[0.2em] font-semibold text-brand-beige">
+            <div class="hidden xl:flex items-center gap-5 2xl:gap-7 text-[11px] 2xl:text-xs uppercase tracking-[0.15em] 2xl:tracking-[0.18em] font-semibold text-brand-beige">
                 <a href="#" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
                 <a href="#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About Us</a>
                 <a href="#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
@@ -164,6 +164,10 @@
                 </a>
                 <a href="#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Our Prayers</a>
                 <a href="gallery.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Gallery</a>
+                <a href="blog.html" class="relative nav-link-underline py-1 text-brand-gold font-bold hover:text-brand-ink transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-calendar-days text-[10px]"></i>
+                    <span>Meetings &amp; News</span>
+                </a>
                 <a href="#request" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Contact</a>
             </div>
 
@@ -287,6 +291,19 @@
                     <i class="fa-solid fa-chevron-right text-[10px] text-brand-beige/40"></i>
                 </a>
 
+                <a href="blog.html" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-brand-gold/30 bg-brand-gold/10 text-brand-ink">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs shadow-sm">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Meetings &amp; News</div>
+                            <div class="text-[10px] text-brand-gold font-tamil">நிகழ்வுகள் &amp; ஆராதனை அறிவிப்புகள்</div>
+                        </div>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-brand-gold text-brand-base text-[9px] font-bold uppercase">Updates</span>
+                </a>
+
                 <a href="#request" class="mobile-link mobile-nav-item flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-line text-brand-ink">
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs">
@@ -320,8 +337,8 @@
                         <span>Sunday Worship Times</span>
                     </div>
                     <p class="text-[11px] text-brand-beige/80 leading-relaxed">
-                        First Service: <strong>9:00 AM</strong> • Second Service: <strong>11:00 AM</strong><br>
-                        <span class="text-[10px] text-brand-beige/60">Main Sanctuary, Pattukkottai</span>
+                        Sunday Worship: <strong>10:00 AM IST</strong><br>
+                        <span class="text-[10px] text-brand-beige/60">Main Sanctuary, Pattukkottai, Thanjavur</span>
                     </p>
                 </div>
             </div>
@@ -353,8 +370,8 @@
 
     <!-- 2. SCROLL-CONTROLLED CINEMATIC HERO SECTION (SANCTUARY REVEAL) -->
     <header id="hero-scroll-track" class="relative w-full h-[220vh] bg-[#070b14]">
-        <!-- Sticky Canvas Viewport (100vh) -->
-        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#070b14] bg-cover bg-center" style="background-image: url('hero image/frame_001.jpg');">
+        <!-- Sticky Canvas Viewport (100vh / 100dvh) -->
+        <div class="sticky top-0 left-0 w-full h-screen h-[100dvh] overflow-hidden flex items-center justify-center bg-[#070b14] bg-cover bg-center" style="background-image: url('hero image/frame_001.jpg');">
 
             <!-- Canvas Rendering 192 High-Res Frames -->
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
@@ -403,14 +420,14 @@
                         class="font-tamil font-extrabold text-2xl sm:text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight sm:leading-snug scripture-glow">
                         கர்த்தர் உங்களையும்,
                     </h1>
-                    <h2
+                    <p
                         class="font-tamil font-extrabold text-2xl sm:text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight sm:leading-snug scripture-glow">
                         உங்கள் பிள்ளைகளையும்
-                    </h2>
-                    <h2
+                    </p>
+                    <p
                         class="font-tamil font-extrabold text-2xl sm:text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight sm:leading-snug scripture-glow">
                         வர்த்திக்கப் பண்ணுவார்.
-                    </h2>
+                    </p>
                 </div>
 
                 <!-- Floating Bible Citation Badge -->
@@ -523,243 +540,191 @@
     </section>
 
     <!-- =========================================================================
-         5. CINEMATIC PHOTOREALISTIC BIBLE "OUR VISION" SEQUENCE (541 FRAMES ENGINE)
+         5. CINEMATIC BIBLE VISION SEQUENCE (300 FRAMES — SCROLL-DRIVEN)
          ========================================================================= -->
-    <section id="vision" class="relative w-full border-t border-brand-line/50" aria-label="Cinematic Church Vision Experience">
+    <section id="vision" class="relative w-full border-t border-brand-line/50" aria-label="Our Church Vision">
         
-        <!-- SCROLL TRACK (240vh sticky viewport for liquid-smooth scrubbing) -->
-        <div id="vision-scroll-track" class="relative w-full h-[240vh] bg-[#070b14]">
+        <!-- SCROLL TRACK (280vh for smooth, unhurried scrubbing) -->
+        <div id="vision-scroll-track" class="relative w-full h-[280vh] bg-[#070b14]">
             
-            <!-- STICKY 100vh CINEMATIC STAGE -->
-            <div class="vision-canvas-viewport flex flex-col justify-between p-4 sm:p-6 md:p-10">
+            <!-- STICKY 100vh CINEMATIC VIEWPORT -->
+            <div class="vision-canvas-viewport flex items-center justify-center p-4 sm:p-6 md:p-10">
                 
-                <!-- Background Atmospheric Canvas (Renders 541 High-Res Frames) -->
+                <!-- Background Canvas (300 Frames) -->
                 <canvas id="vision-canvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
 
-                <!-- Gradient Vignettes for Atmospheric Contrast -->
-                <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#070b14]/75 via-transparent to-[#070b14]/85"></div>
-                <div class="absolute inset-0 z-10 pointer-events-none bg-radial-gradient from-transparent via-[#070b14]/30 to-[#070b14]/80"></div>
+                <!-- Atmospheric Gradients -->
+                <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#070b14]/60 via-transparent to-[#070b14]/70"></div>
+                <div class="absolute inset-0 z-10 pointer-events-none" style="background: radial-gradient(ellipse at center, transparent 30%, rgba(7,11,20,0.65) 100%)"></div>
 
-                <!-- Vision Frame Loader Progress Bar -->
+                <!-- Loading Progress Bar -->
                 <div id="vision-loading-container" class="absolute top-0 left-0 w-full h-1 z-30 bg-black/60 transition-opacity duration-700 pointer-events-none">
                     <div id="vision-loading-bar" class="h-full bg-gradient-to-r from-amber-600 via-amber-300 to-amber-500 w-0 transition-all duration-300"></div>
                 </div>
 
-                <!-- TOP CONTROL BAR: Badges & Scene Indicators -->
-                <div class="relative z-30 w-full max-w-6xl mx-auto flex items-center justify-between gap-4 pt-2 sm:pt-4">
-                    <!-- Church Heritage Badge -->
-                    <div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/60 border border-amber-400/40 text-amber-200 backdrop-blur-md text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold shadow-2xl">
-                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                        <span>ACA CHURCH PKT • OUR VISION</span>
-                    </div>
+                <!-- Subtle top-left badge -->
+                <div class="absolute top-5 left-5 sm:top-8 sm:left-8 z-30 flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/40 border border-amber-400/25 text-amber-200/80 backdrop-blur-md text-[10px] tracking-[0.3em] uppercase font-bold">
+                    <i class="fa-solid fa-cross text-amber-400/60 text-[9px]"></i>
+                    <span>Our Vision</span>
+                </div>
 
-                    <!-- Interactive Scene Step Navigator -->
-                    <div id="visionSceneNav" class="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-amber-300/30 backdrop-blur-xl text-[10px] font-bold shadow-2xl">
-                        <button onclick="visionEngine.jumpToScene(1)" class="vision-scene-pill px-3 py-1.5 rounded-full text-amber-100/70 hover:text-amber-300 cursor-pointer transition-all active" data-scene="1">1. Closed Bible</button>
-                        <div class="w-px h-3.5 bg-amber-300/20"></div>
-                        <button onclick="visionEngine.jumpToScene(2)" class="vision-scene-pill px-3 py-1.5 rounded-full text-amber-100/70 hover:text-amber-300 cursor-pointer transition-all" data-scene="2">2. Opening</button>
-                        <div class="w-px h-3.5 bg-amber-300/20"></div>
-                        <button onclick="visionEngine.jumpToScene(3)" class="vision-scene-pill px-3 py-1.5 rounded-full text-amber-100/70 hover:text-amber-300 cursor-pointer transition-all" data-scene="3">3. Heavenly Light</button>
-                        <div class="w-px h-3.5 bg-amber-300/20"></div>
-                        <button onclick="visionEngine.jumpToScene(4)" class="vision-scene-pill px-3 py-1.5 rounded-full text-amber-100/70 hover:text-amber-300 cursor-pointer transition-all" data-scene="4">4. Vision 01</button>
-                        <div class="w-px h-3.5 bg-amber-300/20"></div>
-                        <button onclick="visionEngine.jumpToScene(5)" class="vision-scene-pill px-3 py-1.5 rounded-full text-amber-100/70 hover:text-amber-300 cursor-pointer transition-all flex items-center gap-1.5" data-scene="5">
-                            <i class="fa-solid fa-crown text-[9px] text-amber-400"></i>
-                            <span>4 Pillars</span>
-                        </button>
-                    </div>
+                <!-- ========================================================
+                     PHASE 1: INTRO TEXT OVERLAY (Closed Bible — frames 1–80)
+                     ======================================================== -->
+                <div id="visionIntroOverlay" class="relative z-20 text-center px-6 max-w-3xl mx-auto" style="opacity: 0; transform: translateY(40px);">
+                    
+                    <!-- Decorative Gold Line -->
+                    <div class="w-12 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
+                    
+                    <!-- English Heading -->
+                    <h2 class="font-cinzel text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-wider leading-tight scripture-glow mb-4">
+                        Every Vision Begins<br>
+                        <span class="italic font-serif font-normal text-amber-200/90">with the Word</span>
+                    </h2>
 
-                    <!-- Auto Play / Pause Toggle Button -->
-                    <div class="flex items-center gap-2">
-                        <button id="visionPlayToggleBtn" onclick="visionEngine.togglePlay()" class="px-3.5 py-1.5 rounded-full bg-black/60 border border-amber-300/40 text-amber-200 hover:bg-amber-400 hover:text-black transition-all duration-300 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-2 cursor-pointer shadow-lg">
-                            <i id="visionPlayIcon" class="fa-solid fa-play text-[10px]"></i>
-                            <span id="visionPlayText">Cinematic Play</span>
-                        </button>
-                        <button id="visionReplayBtn" onclick="visionEngine.replay()" title="Replay from Scene 1" class="w-8 h-8 rounded-full bg-black/60 border border-amber-300/40 text-amber-200 hover:bg-amber-400 hover:text-black transition-all duration-300 flex items-center justify-center text-xs backdrop-blur-md cursor-pointer">
-                            <i class="fa-solid fa-rotate-right"></i>
-                        </button>
+                    <!-- Tamil Scripture -->
+                    <p class="font-tamil text-amber-200/85 font-medium text-sm sm:text-base md:text-lg mb-2 verse-glow leading-relaxed">
+                        "தரிசனத்தை எழுதி, அதைப்படிக்கிறவன் ஓடும்படி பலகைகளிலே தெளிவாக வரை."
+                    </p>
+                    <p class="text-amber-400/70 text-[11px] sm:text-xs tracking-[0.3em] uppercase font-bold">
+                        — Habakkuk 2:2 • ஆபகூக் 2:2
+                    </p>
+                    
+                    <!-- Scroll Cue -->
+                    <div class="mt-8 flex flex-col items-center gap-2 animate-pulse">
+                        <span class="text-amber-300/50 text-[10px] tracking-[0.25em] uppercase font-semibold">Scroll to Reveal</span>
+                        <i class="fa-solid fa-chevron-down text-amber-400/40 text-xs"></i>
                     </div>
                 </div>
 
                 <!-- ========================================================
-                     CENTER STAGE: SACRED VISION TEXT OVERLAY
-                     (Renders physically printed scripture on open Bible pages)
+                     PHASE 3: VISION CONTENT OVERLAY (Open Bible — frames 200–300)
+                     Professional typographic reveal with staggered animations
                      ======================================================== -->
-                <div id="vision-stage-center" class="relative z-20 w-full max-w-6xl mx-auto flex-1 flex items-center justify-center my-2 sm:my-4 pointer-events-none">
+                <div id="visionContentOverlay" class="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 md:p-10 pointer-events-none" style="opacity: 0; transform: translateY(30px); filter: blur(6px);">
                     
-                    <!-- SCENE 1 WELCOME PROMPT (Visible only on Closed Bible) -->
-                    <div id="visionScene1Prompt" class="text-center px-4 transition-all duration-700 ease-out pointer-events-auto" style="opacity: 1; transform: translateY(0);">
-                        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/50 border border-amber-300/30 text-amber-200/90 text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold backdrop-blur-md mb-3 shadow-xl">
-                            <span>SACRED SCRIPTURE FOUNDATION</span>
-                        </span>
-                        <h3 class="font-serif text-3xl sm:text-5xl md:text-6xl text-white font-medium scripture-glow leading-tight mb-2">
-                            "Every vision begins with the Word."
-                        </h3>
-                        <p class="font-tamil text-amber-200 font-semibold text-sm sm:text-lg mb-4 verse-glow">
-                            “தரிசனத்தை எழுதி, அதைப்படிக்கிறவன் ஓடும்படி பலகைகளிலே தெளிவாக வரை.” <span class="font-sans text-xs opacity-80">— ஆபகூக் 2:2</span>
-                        </p>
-                        <div class="flex items-center justify-center gap-3">
-                            <button onclick="visionEngine.jumpToScene(4)" class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-black text-xs font-black uppercase tracking-[0.2em] hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-xl shadow-amber-500/25 cursor-pointer">
-                                <span>OPEN THE BIBLE</span>
-                                <i class="fa-solid fa-book-open text-[10px]"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- SCENE 4 & 5: PRINTED SCRIPTURE ON OPEN BIBLE PAGES -->
-                    <div id="visionPageOverlay" class="w-full max-w-4xl transition-all duration-700 ease-out pointer-events-none opacity-0 translate-y-6" style="filter: blur(4px);">
+                    <div class="w-full max-w-4xl mx-auto">
                         
-                        <!-- Real 2-Page Printed Bible Layout Overlay -->
-                        <div class="relative w-full rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-12 overflow-hidden shadow-2xl pointer-events-auto bg-black/40 backdrop-blur-md border border-amber-300/30">
+                        <!-- Glass Card Container -->
+                        <div class="relative rounded-2xl md:rounded-3xl p-6 sm:p-10 md:p-14 overflow-hidden pointer-events-auto bg-black/35 backdrop-blur-xl border border-amber-300/20 shadow-2xl">
                             
-                            <!-- Ethereal Heavenly Center Glow from Spine -->
+                            <!-- Ethereal Center Glow -->
                             <div class="absolute inset-0 pointer-events-none bible-gutter-glow"></div>
                             
-                            <!-- Cross Filigree Watermark Background -->
-                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10 text-amber-300 text-9xl">
+                            <!-- Cross Watermark -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.06] text-amber-300 text-[200px] sm:text-[280px]">
                                 <i class="fa-solid fa-cross"></i>
                             </div>
 
-                            <!-- Header: OUR VISION / VISION 01 -->
-                            <div class="relative z-10 text-center mb-6 sm:mb-8 border-b border-amber-300/30 pb-4">
-                                <div class="inline-flex items-center gap-3 text-amber-300 mb-1">
-                                    <span class="w-6 sm:w-10 h-px bg-amber-400/60"></span>
-                                    <i class="fa-solid fa-cross text-xs sm:text-sm"></i>
-                                    <span class="font-cinzel text-xs sm:text-sm font-bold tracking-[0.35em] uppercase text-amber-200">OUR VISION</span>
-                                    <i class="fa-solid fa-cross text-xs sm:text-sm"></i>
-                                    <span class="w-6 sm:w-10 h-px bg-amber-400/60"></span>
+                            <!-- Header -->
+                            <div class="relative z-10 text-center mb-8 sm:mb-10 vision-reveal-item" style="opacity: 0; transform: translateY(24px);">
+                                <div class="inline-flex items-center gap-3 text-amber-300 mb-3">
+                                    <span class="w-8 sm:w-14 h-px bg-amber-400/50"></span>
+                                    <i class="fa-solid fa-cross text-[10px]"></i>
+                                    <span class="font-cinzel text-[11px] sm:text-xs font-bold tracking-[0.4em] uppercase text-amber-200/80">Our Vision</span>
+                                    <i class="fa-solid fa-cross text-[10px]"></i>
+                                    <span class="w-8 sm:w-14 h-px bg-amber-400/50"></span>
                                 </div>
-                                <h2 class="font-cinzel text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-widest scripture-glow">
+                                <h2 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-[0.08em] scripture-glow leading-none">
                                     VISION 01
                                 </h2>
-                                <p class="font-tamil text-amber-200 text-xs sm:text-sm font-medium mt-1">
-                                    மகிமையான சபை தரிசனம் • அப்போஸ்தல திருச்சபை பட்டுக்கோட்டை
+                                <p class="font-tamil text-amber-200/70 text-xs sm:text-sm font-medium mt-2 tracking-wide">
+                                    அப்போஸ்தல திருச்சபை பட்டுக்கோட்டை
                                 </p>
                             </div>
 
-                            <!-- Two Columns: Left Page & Right Page Typography -->
-                            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-stretch">
+                            <!-- Vision Statements Grid -->
+                            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
                                 
-                                <!-- LEFT COLUMN: Statements 1 & 2 -->
-                                <div class="space-y-4 sm:space-y-6 flex flex-col justify-center">
-                                    <!-- Statement 1: 1 Soul -->
-                                    <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-amber-300/30 hover:border-amber-400 transition-all duration-300 flex items-start gap-3.5 shadow-lg group">
-                                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400/20 border border-amber-400/50 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-sm">
+                                <!-- Statement 1: 1 Soul -->
+                                <div class="vision-reveal-item p-4 sm:p-5 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500 group" style="opacity: 0; transform: translateY(24px);">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base group-hover:bg-amber-400/25 transition-colors">
                                             1
                                         </div>
                                         <div>
-                                            <h4 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-bold tracking-wide leading-snug">
+                                            <h3 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-semibold tracking-wide leading-snug mb-1">
                                                 God will give me one soul.
-                                            </h4>
-                                            <p class="font-tamil text-amber-200/90 text-xs sm:text-sm font-medium mt-0.5">
+                                            </h3>
+                                            <p class="font-tamil text-amber-200/80 text-xs sm:text-sm font-medium">
                                                 எனக்கு ஒரு ஆத்துமாவைத் தருவார்.
                                             </p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- Statement 2: 7,000 Souls -->
-                                    <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-amber-300/30 hover:border-amber-400 transition-all duration-300 flex items-start gap-3.5 shadow-lg group">
-                                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400/20 border border-amber-400/50 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-sm">
+                                <!-- Statement 2: 7,000 Souls -->
+                                <div class="vision-reveal-item p-4 sm:p-5 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500 group" style="opacity: 0; transform: translateY(24px);">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base group-hover:bg-amber-400/25 transition-colors">
                                             2
                                         </div>
                                         <div>
-                                            <h4 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-bold tracking-wide leading-snug">
+                                            <h3 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-semibold tracking-wide leading-snug mb-1">
                                                 God will give my church 7,000 souls.
-                                            </h4>
-                                            <p class="font-tamil text-amber-200/90 text-xs sm:text-sm font-medium mt-0.5">
+                                            </h3>
+                                            <p class="font-tamil text-amber-200/80 text-xs sm:text-sm font-medium">
                                                 என் சபைக்கு 7,000 ஆத்துமாக்களைத் தருவார்.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- RIGHT COLUMN: Statement 3 (100 Kilai Sabai & 1,000 Koli) -->
-                                <div class="space-y-4 sm:space-y-6 flex flex-col justify-center">
-                                    <div class="p-3.5 sm:p-5 rounded-xl bg-black/40 border border-amber-300/30 hover:border-amber-400 transition-all duration-300 shadow-lg">
-                                        <div class="flex items-start gap-3.5 mb-3">
-                                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400/20 border border-amber-400/50 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-sm">
-                                                3
+                                <!-- Statement 3: 100 Kilai Sabai & 1,000 Koli (Full Width) -->
+                                <div class="vision-reveal-item md:col-span-2 p-5 sm:p-6 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500" style="opacity: 0; transform: translateY(24px);">
+                                    <div class="flex items-start gap-4 mb-4">
+                                        <div class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base">
+                                            3
+                                        </div>
+                                        <div>
+                                            <h3 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-semibold tracking-wide leading-snug mb-1">
+                                                God will give my church:
+                                            </h3>
+                                            <p class="font-tamil text-amber-200/80 text-xs sm:text-sm font-medium">
+                                                என் சபைக்குத் தருவார்:
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Sub-items: Kilai Sabai & Koli -->
+                                    <div class="grid grid-cols-2 gap-3 sm:gap-4 pl-14">
+                                        <div class="p-3 sm:p-4 rounded-lg bg-amber-500/10 border border-amber-400/25 text-left hover:bg-amber-500/15 transition-colors">
+                                            <div class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none mb-1">
+                                                100
                                             </div>
-                                            <div>
-                                                <h4 class="font-serif text-lg sm:text-xl md:text-2xl text-white font-bold tracking-wide leading-snug">
-                                                    God will give my church:
-                                                </h4>
-                                                <p class="font-tamil text-amber-200/90 text-xs sm:text-sm font-medium mt-0.5">
-                                                    என் சபைக்குத் தருவார்:
-                                                </p>
+                                            <div class="font-serif text-sm sm:text-base font-bold text-white uppercase tracking-wider">
+                                                Kilai Sabai
                                             </div>
+                                            <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">100 கிளை சபைகள்</div>
                                         </div>
 
-                                        <!-- Sub-items: Kilai Sabai & Koli -->
-                                        <div class="grid grid-cols-2 gap-2.5 sm:gap-3 pl-2 sm:pl-4 mt-2">
-                                            <div class="p-2.5 sm:p-3 rounded-lg bg-amber-500/15 border border-amber-400/30 text-left">
-                                                <div class="font-cinzel text-lg sm:text-2xl font-bold text-amber-200">
-                                                    100
-                                                </div>
-                                                <div class="font-serif text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
-                                                    Kilai Sabai
-                                                </div>
-                                                <div class="font-tamil text-[10px] text-amber-300/80">100 கிளை சபைகள்</div>
+                                        <div class="p-3 sm:p-4 rounded-lg bg-amber-500/10 border border-amber-400/25 text-left hover:bg-amber-500/15 transition-colors">
+                                            <div class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none mb-1">
+                                                1,000
                                             </div>
-
-                                            <div class="p-2.5 sm:p-3 rounded-lg bg-amber-500/15 border border-amber-400/30 text-left">
-                                                <div class="font-cinzel text-lg sm:text-2xl font-bold text-amber-200">
-                                                    1,000
-                                                </div>
-                                                <div class="font-serif text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
-                                                    Koli
-                                                </div>
-                                                <div class="font-tamil text-[10px] text-amber-300/80">1,000 குழி நிலம்</div>
+                                            <div class="font-serif text-sm sm:text-base font-bold text-white uppercase tracking-wider">
+                                                Koli
                                             </div>
+                                            <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">1,000 குழி நிலம்</div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <!-- Footer Ribbon & Action Controls -->
-                            <div class="relative z-10 mt-6 sm:mt-8 pt-4 border-t border-amber-300/25 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <p class="font-tamil text-xs sm:text-sm text-amber-100/90 text-center sm:text-left">
-                                    <i class="fa-solid fa-book-bible text-amber-300 mr-1.5"></i>
-                                    “விசுவாசிக்கிறவனுக்கு எல்லாம் கூடும்” — மாற்கு 9:23
+                            <!-- Footer Scripture -->
+                            <div class="relative z-10 mt-6 sm:mt-8 pt-5 border-t border-amber-300/15 text-center vision-reveal-item" style="opacity: 0; transform: translateY(24px);">
+                                <p class="font-tamil text-amber-100/80 text-xs sm:text-sm italic leading-relaxed mb-1">
+                                    <i class="fa-solid fa-book-bible text-amber-300/60 mr-2"></i>
+                                    "விசுவாசிக்கிறவனுக்கு எல்லாம் கூடும்"
                                 </p>
-                                <div class="flex items-center gap-3">
-                                    <button id="visionPledgeBtn" onclick="visionEngine.pledgePrayer()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black text-xs font-black uppercase tracking-[0.18em] hover:from-amber-300 hover:to-amber-400 transition-all duration-300 shadow-xl shadow-amber-500/20 cursor-pointer">
-                                        <i class="fa-solid fa-hands-praying"></i>
-                                        <span id="visionPledgeBtnText">I Stand in Prayer for This Vision</span>
-                                    </button>
-                                </div>
+                                <p class="text-amber-400/50 text-[10px] tracking-[0.25em] uppercase font-bold">
+                                    — Mark 9:23 • மாற்கு 9:23
+                                </p>
                             </div>
 
                         </div>
                     </div>
-
-                </div>
-
-                <!-- BOTTOM TIMELINE BAR & SCENE SCRUBBER -->
-                <div class="relative z-30 w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 pb-2 sm:pb-4">
-                    
-                    <!-- Current Scene Status Label -->
-                    <div class="flex items-center gap-2 text-xs text-amber-200/90 font-medium">
-                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                        <span id="visionStatusText">Scene 1: Closed Holy Bible</span>
-                    </div>
-
-                    <!-- Scrub Timeline Slider -->
-                    <div class="w-full sm:w-1/2 flex items-center gap-3">
-                        <span class="text-[10px] text-amber-200/60 uppercase font-mono">Frame 1</span>
-                        <input id="visionFrameScrubber" type="range" min="0" max="540" value="0"
-                            class="w-full h-1.5 bg-black/60 rounded-lg appearance-none cursor-pointer accent-amber-400 border border-amber-300/30"
-                            oninput="visionEngine.onScrub(this.value)">
-                        <span class="text-[10px] text-amber-200/60 uppercase font-mono">541</span>
-                    </div>
-
-                    <!-- Prayer Supporters Badge -->
-                    <div class="flex items-center gap-2 text-[11px] text-amber-200/80 bg-black/50 px-3 py-1 rounded-full border border-amber-300/20 backdrop-blur-md">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span><strong id="visionPledgeCount" class="text-white font-bold">152</strong> praying in covenant</span>
-                    </div>
-
                 </div>
 
             </div>
@@ -984,7 +949,7 @@
                             </div>
                             <h3 class="font-serif text-2xl sm:text-[26px] text-brand-ink mb-1 group-hover:text-brand-gold transition-colors duration-300">Sunday Service</h3>
                             <span class="font-tamil text-xs text-brand-gold/80 block mb-3 font-medium">ஞாயிறு ஆராதனை</span>
-                            <p class="text-brand-beige/70 font-light text-xs sm:text-sm mb-6 leading-relaxed">Praise, spirit-filled worship, and anointed sermon every Sunday at 9:00 AM.</p>
+                            <p class="text-brand-beige/70 font-light text-xs sm:text-sm mb-6 leading-relaxed">Praise, spirit-filled worship, and anointed sermon every Sunday at 10:00 AM IST.</p>
                         </div>
                         <a href="#request" onclick="selectPrayerCategory('Thanksgiving')"
                             class="inline-flex items-center justify-between w-full pt-4 border-t border-brand-line/70 group/btn text-[11px] uppercase tracking-[0.22em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
@@ -1075,7 +1040,7 @@
                             </div>
                             <h3 class="font-serif text-2xl sm:text-[26px] text-brand-ink mb-1 group-hover:text-brand-gold transition-colors duration-300">Sunday Service</h3>
                             <span class="font-tamil text-xs text-brand-gold/80 block mb-3 font-medium">ஞாயிறு ஆராதனை</span>
-                            <p class="text-brand-beige/70 font-light text-xs sm:text-sm mb-6 leading-relaxed">Praise, spirit-filled worship, and anointed sermon every Sunday at 9:00 AM.</p>
+                            <p class="text-brand-beige/70 font-light text-xs sm:text-sm mb-6 leading-relaxed">Praise, spirit-filled worship, and anointed sermon every Sunday at 10:00 AM IST.</p>
                         </div>
                         <a href="#request" onclick="selectPrayerCategory('Thanksgiving')"
                             class="inline-flex items-center justify-between w-full pt-4 border-t border-brand-line/70 group/btn text-[11px] uppercase tracking-[0.22em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
@@ -1645,6 +1610,8 @@
                                 class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Our Vision</a></li>
                         <li><a href="#prayers"
                                 class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Our Prayers</a></li>
+                        <li><a href="blog.html"
+                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block text-brand-gold">Meetings &amp; News</a></li>
                     </ul>
                 </div>
 
@@ -1687,7 +1654,7 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-clock text-brand-gold"></i>
-                            <span>Sun: 9:00 AM &amp; 11:00 AM</span>
+                            <span>Sunday: 10:00 AM IST</span>
                         </li>
                     </ul>
                 </div>
@@ -1717,7 +1684,7 @@
             <div
                 class="pt-10 sm:pt-16 border-t border-brand-line flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 reveal-up">
                 <p class="text-brand-beige/50 text-[10px] font-bold uppercase tracking-[0.25em] text-center sm:text-left">
-                    &copy; 2026 ACA Church PKT, Pattukkottai. All Rights Reserved. • 50+ Years in God's Grace
+                    &copy; <script>document.write(new Date().getFullYear())</script> ACA Church PKT, Pattukkottai. All Rights Reserved. • 50+ Years in God's Grace
                 </p>
                 <div class="flex gap-6 text-brand-beige/40 text-[10px] uppercase font-semibold tracking-wider">
                     <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
