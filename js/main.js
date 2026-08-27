@@ -168,7 +168,15 @@ const openLightbox = (index) => {
     }
 };
 
-galleryItems.forEach((item, idx) => item.addEventListener('click', () => openLightbox(idx)));
+galleryItems.forEach((item, idx) => {
+    item.addEventListener('click', () => openLightbox(idx));
+    item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(idx);
+        }
+    });
+});
 
 if (closeLightbox && lightboxModal) {
     closeLightbox.addEventListener('click', () => {
