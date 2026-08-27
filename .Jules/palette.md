@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive Div Accessibility
+**Learning:** Custom interactive elements (like `div` based gallery items with `onclick` handlers) used throughout this design system were entirely inaccessible to keyboard navigation and screen readers because they lacked `tabindex`, semantic roles, keyboard event listeners (Enter/Space), and accessible names (ARIA labels). Relying solely on `div` click handlers creates significant barriers.
+**Action:** Always ensure custom interactive elements receive `tabindex="0"`, `role="button"` (or appropriate role), `keydown` listeners for 'Enter'/'Space', visible focus states (`focus-visible:ring`), and descriptive `aria-label`s. Avoid mapping click events to non-semantic elements without these enhancements.
