@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aca-church-nine.vercel.app/sitemap.xml
