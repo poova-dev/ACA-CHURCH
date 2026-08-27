@@ -22,16 +22,22 @@ window.addEventListener('DOMContentLoaded', () => {
     if (typeof initHeroLoader === 'function') initHeroLoader();
     if (typeof initVisionLoader === 'function') initVisionLoader();
 
-    // Load saved prayer count
-    const savedCount = localStorage.getItem('aca_vision_pledge_count') || '152';
-    const countElem = document.getElementById('visionPledgeCount');
-    if (countElem) countElem.textContent = `${savedCount}+`;
-    if (localStorage.getItem('aca_vision_pledged') === 'true') {
-        const btnText = document.getElementById('visionPledgeBtnText');
-        const btn = document.getElementById('visionPledgeBtn');
-        if (btnText && btn) {
-            btnText.textContent = "Amen! Standing in Faith";
-            btn.className = "inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 text-white text-xs font-black uppercase tracking-[0.18em] shadow-xl shadow-emerald-500/25";
+    // Ensure background video plays reliably
+    const worshipVideo = document.getElementById('worshipBgVideo');
+    if (worshipVideo) {
+        worshipVideo.muted = true;
+        const playPromise = worshipVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Auto-play was prevented, retry on first interaction
+                const playOnInteraction = () => {
+                    worshipVideo.play();
+                    window.removeEventListener('click', playOnInteraction);
+                    window.removeEventListener('scroll', playOnInteraction);
+                };
+                window.addEventListener('click', playOnInteraction, { once: true });
+                window.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
+            });
         }
     }
 });

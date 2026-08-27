@@ -1539,29 +1539,36 @@
     </section>
 
     <!-- 9. JOIN US CTA BANNER -->
-    <section id="join" class="py-14 sm:py-18 md:py-24 relative overflow-hidden text-center bg-brand-base border-b border-brand-line">
-        <!-- Background Image -->
-        <div class="absolute inset-0 opacity-20 pointer-events-none">
-            <img class="w-full h-full object-cover"
-                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5b875330f6_c4d5a98914c1ae64.png"
-                alt="ACA Church PKT Sanctuary background" />
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-base via-brand-base/60 to-brand-base"></div>
+    <section id="join" class="py-12 sm:py-18 md:py-24 min-h-[380px] sm:min-h-[460px] md:min-h-[520px] flex items-center justify-center relative overflow-hidden text-center bg-brand-base border-b border-brand-line">
+        <!-- Background Video (Mobile Optimized Focal Point on Sheep Flock) -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <video id="worshipBgVideo" 
+                class="w-full h-full object-cover object-[25%_center] sm:object-center opacity-90 dark:opacity-60 transition-opacity duration-1000"
+                autoplay loop muted playsinline webkit-playsinline preload="auto"
+                src="https://res.cloudinary.com/danrznvpa/video/upload/v1787859723/add_Flock_of_sheep_in_left_sid_gwr_video_mvp_online-video-cutter.com_lu67g4.mp4">
+                <source src="https://res.cloudinary.com/danrznvpa/video/upload/v1787859723/add_Flock_of_sheep_in_left_sid_gwr_video_mvp_online-video-cutter.com_lu67g4.mp4" type="video/mp4">
+            </video>
+            <!-- Light subtle ambient edge blending overlay so video remains vivid and text is clear -->
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-base/40 via-brand-base/10 to-brand-base/50 dark:from-brand-base/60 dark:via-transparent dark:to-brand-base/70"></div>
         </div>
 
-        <div class="relative z-10 max-w-4xl mx-auto px-6 reveal-up">
-            <span class="text-brand-gold text-xs tracking-[0.4em] uppercase font-bold mb-3 sm:mb-4 block">WORSHIP WITH US IN PATTUKKOTTAI</span>
-            <h2 class="font-serif text-3xl sm:text-5xl md:text-7xl text-brand-ink mb-4 sm:mb-6 leading-tight">Be Part of Our<br><span
-                    class="italic font-light text-brand-gold">Church Family</span></h2>
-            <p class="text-sm sm:text-base md:text-xl font-light text-brand-beige/85 mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
+        <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 reveal-up w-full">
+            <span class="text-brand-gold text-[10px] sm:text-xs tracking-[0.35em] sm:tracking-[0.4em] uppercase font-bold mb-2 sm:mb-4 block drop-shadow-sm">
+                WORSHIP WITH US IN PATTUKKOTTAI
+            </span>
+            <h2 class="font-serif text-2xl sm:text-4xl md:text-6xl text-brand-ink mb-3 sm:mb-5 leading-tight drop-shadow-sm">
+                Be Part of Our<br><span class="italic font-light text-brand-gold">Church Family</span>
+            </h2>
+            <p class="text-xs sm:text-base md:text-lg font-light text-brand-beige/95 dark:text-brand-beige/85 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
                 Come worship with us, grow in faith, and experience 50+ years of God's grace in Pattukkottai. There is a place for you and your family.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center max-w-xs sm:max-w-none mx-auto">
                 <a href="#request"
-                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 bg-brand-gold text-brand-base text-[11px] font-black uppercase tracking-[0.3em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-500 shadow-2xl shadow-brand-gold/20">
+                    class="w-full sm:w-auto px-7 sm:px-10 py-3 sm:py-3.5 bg-brand-gold text-brand-base text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-500 shadow-xl shadow-brand-gold/25">
                     JOIN US SUNDAY
                 </a>
                 <a href="#request"
-                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 border border-brand-gold/40 text-brand-ink text-[11px] font-black uppercase tracking-[0.3em] rounded-full hover:bg-brand-gold/10 hover:border-brand-gold transition-all duration-500">
+                    class="w-full sm:w-auto px-7 sm:px-10 py-3 sm:py-3.5 bg-brand-base/70 dark:bg-brand-base/80 backdrop-blur-md border border-brand-gold/40 text-brand-ink text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] rounded-full hover:bg-brand-gold/15 hover:border-brand-gold transition-all duration-500 shadow-md">
                     CONTACT US
                 </a>
             </div>
@@ -1569,7 +1576,7 @@
 
         <!-- Background Cross Silhouette -->
         <div class="absolute bottom-[-15%] left-1/2 -translate-x-1/2 opacity-5 pointer-events-none">
-            <i class="fa-solid fa-cross text-[350px] sm:text-[550px] text-brand-ink"></i>
+            <i class="fa-solid fa-cross text-[280px] sm:text-[450px] md:text-[550px] text-brand-ink"></i>
         </div>
     </section>
 
