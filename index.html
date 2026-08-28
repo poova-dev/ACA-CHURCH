@@ -2117,10 +2117,10 @@
                         </div>
 
                         <!-- Confidentiality Toggle -->
-                        <div
-                            class="flex items-center justify-between p-3.5 rounded-xl bg-brand-base/50 dark:bg-brand-frame/30 border border-brand-line/60">
+                        <label
+                            class="flex items-center justify-between p-3.5 rounded-xl bg-brand-base/50 dark:bg-brand-frame/30 border border-brand-line/60 hover:border-brand-gold/50 cursor-pointer group transition-colors">
                             <div class="flex items-center gap-2.5">
-                                <i class="fa-solid fa-shield-halved text-brand-gold text-sm"></i>
+                                <i class="fa-solid fa-shield-halved text-brand-gold text-sm group-hover:scale-110 transition-transform"></i>
                                 <div>
                                     <div class="text-xs font-semibold text-brand-ink leading-tight">Confidential
                                         Pastoral Care</div>
@@ -2128,13 +2128,13 @@
                                         designated intercessors will read this</div>
                                 </div>
                             </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
+                            <div class="relative inline-flex items-center">
                                 <input type="checkbox" id="anonymous" checked class="sr-only peer">
                                 <div
-                                    class="w-9 h-5 bg-brand-line peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-gold">
+                                    class="w-9 h-5 bg-brand-line peer-focus-visible:ring-2 peer-focus-visible:ring-brand-gold peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-brand-base peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-gold">
                                 </div>
-                            </label>
-                        </div>
+                            </div>
+                        </label>
 
                         <!-- Submit Button with Shimmer -->
                         <button type="submit" id="prayerSubmitBtn"
