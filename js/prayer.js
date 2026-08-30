@@ -9,8 +9,10 @@ function setCategoryChip(category) {
     chips.forEach(chip => {
         if (chip.getAttribute('data-cat') === category) {
             chip.classList.add('active');
+            chip.setAttribute('aria-pressed', 'true');
         } else {
             chip.classList.remove('active');
+            chip.setAttribute('aria-pressed', 'false');
         }
     });
 
