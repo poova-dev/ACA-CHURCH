@@ -165,15 +165,33 @@ const openLightbox = (index) => {
     if (lightboxModal) {
         lightboxModal.classList.remove('hidden');
         lightboxModal.classList.add('flex');
+        if (closeLightbox) {
+            setTimeout(() => closeLightbox.focus(), 50);
+        }
     }
 };
 
-galleryItems.forEach((item, idx) => item.addEventListener('click', () => openLightbox(idx)));
+let lastFocusedGalleryItem = null;
+
+galleryItems.forEach((item, idx) => {
+    item.addEventListener('click', () => {
+        lastFocusedGalleryItem = item;
+        openLightbox(idx);
+    });
+    item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            lastFocusedGalleryItem = item;
+            openLightbox(idx);
+        }
+    });
+});
 
 if (closeLightbox && lightboxModal) {
     closeLightbox.addEventListener('click', () => {
         lightboxModal.classList.add('hidden');
         lightboxModal.classList.remove('flex');
+        if (lastFocusedGalleryItem) lastFocusedGalleryItem.focus();
     });
 }
 if (prevLightbox) {
@@ -193,6 +211,7 @@ if (lightboxModal) {
         if (e.target === lightboxModal) {
             lightboxModal.classList.add('hidden');
             lightboxModal.classList.remove('flex');
+            if (lastFocusedGalleryItem) lastFocusedGalleryItem.focus();
         }
     });
 }
