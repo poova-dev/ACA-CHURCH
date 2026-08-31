@@ -1993,7 +1993,7 @@
                         <!-- Interactive Category Chips -->
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <label
+                                <label id="categoryGroupLabel"
                                     class="text-[10px] uppercase tracking-[0.25em] font-bold text-brand-gold block flex items-center gap-1.5">
                                     <i class="fa-solid fa-layer-group text-[9px]"></i>
                                     <span>Prayer Category</span>
@@ -2001,10 +2001,10 @@
                                 <span class="text-brand-beige/50 text-[10px] tracking-wider uppercase font-medium">Click
                                     to select</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5" id="prayerCategoryChips">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5" id="prayerCategoryChips" role="group" aria-labelledby="categoryGroupLabel">
                                 <!-- Chip 1: Healing -->
-                                <button type="button" data-cat="Healing" onclick="setCategoryChip('Healing')"
-                                    class="prayer-chip active flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Healing" onclick="setCategoryChip('Healing')" aria-pressed="true"
+                                    class="prayer-chip active flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-heart-pulse"></i>
@@ -2017,8 +2017,8 @@
                                 </button>
 
                                 <!-- Chip 2: Family -->
-                                <button type="button" data-cat="Family" onclick="setCategoryChip('Family')"
-                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Family" onclick="setCategoryChip('Family')" aria-pressed="false"
+                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-people-roof"></i>
@@ -2032,8 +2032,8 @@
                                 </button>
 
                                 <!-- Chip 3: Guidance -->
-                                <button type="button" data-cat="Guidance" onclick="setCategoryChip('Guidance')"
-                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Guidance" onclick="setCategoryChip('Guidance')" aria-pressed="false"
+                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-compass"></i>
@@ -2047,8 +2047,8 @@
                                 </button>
 
                                 <!-- Chip 4: Provision -->
-                                <button type="button" data-cat="Provision" onclick="setCategoryChip('Provision')"
-                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Provision" onclick="setCategoryChip('Provision')" aria-pressed="false"
+                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-briefcase"></i>
@@ -2061,8 +2061,8 @@
                                 </button>
 
                                 <!-- Chip 5: Thanksgiving -->
-                                <button type="button" data-cat="Thanksgiving" onclick="setCategoryChip('Thanksgiving')"
-                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Thanksgiving" onclick="setCategoryChip('Thanksgiving')" aria-pressed="false"
+                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-hands-praying"></i>
@@ -2075,8 +2075,8 @@
                                 </button>
 
                                 <!-- Chip 6: Other -->
-                                <button type="button" data-cat="Other" onclick="setCategoryChip('Other')"
-                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60">
+                                <button type="button" data-cat="Other" onclick="setCategoryChip('Other')" aria-pressed="false"
+                                    class="prayer-chip flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-brand-line bg-brand-base/60 dark:bg-brand-frame/40 text-left cursor-pointer hover:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none">
                                     <div
                                         class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xs shrink-0">
                                         <i class="fa-solid fa-dove"></i>
