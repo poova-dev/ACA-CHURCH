@@ -9,3 +9,7 @@
 ## 2026-08-31 - A11y for Custom Button Groups (Chips)
 **Learning:** Custom interactive chips acting like radio buttons bypass native accessibility. Without explicit roles and state management, screen readers cannot properly group them or announce their current state.
 **Action:** For custom chip selections, wrap the chips in a container with `role="group"` and `aria-labelledby` linking to the group's label. Then, ensure each chip (button) accurately reflects its active state by syncing the `aria-pressed` attribute (true/false) via JavaScript, and maintain visual focus states using classes like `focus-visible:ring`.
+
+## 2026-09-01 - Add Visual Required Indicators to Form Fields
+**Learning:** Native HTML5 `required` attributes do not provide visual feedback to users *until* they attempt to submit the form. In this app's prayer form, this lack of proactive visual indication led to a poor user experience, as users might unknowingly skip required fields (like Full Name or Phone/Email) and only discover the error upon submission via native browser tooltips.
+**Action:** Always add an explicit visual cue (e.g., a red asterisk `*` with an `aria-hidden="true"` and `title="Required"`) to the labels of required input fields alongside the HTML5 `required` attribute. This proactive visual feedback guides the user before interaction and aligns with established UX and accessibility patterns.
