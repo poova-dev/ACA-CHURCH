@@ -92,11 +92,11 @@
         referrerpolicy="no-referrer"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Google Fonts: Professional Typography Stack -->
+    <!-- Google Fonts: Hallmark 2+1 Typography Discipline -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif+Tamil:wght@400;500;600;700;800;900&family=Mukta+Malar:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Tamil:wght@400;600;700&family=Mukta+Malar:wght@400;600;700&display=swap"
         rel="stylesheet">
 
     <script>
@@ -124,9 +124,9 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        cinzel: ['Cinzel', 'Georgia', 'serif'],
                         tamil: ['"Noto Serif Tamil"', '"Mukta Malar"', 'serif'],
                     }
                 }
@@ -143,34 +143,34 @@
 
     <!-- 1. STICKY TOP NAVIGATION BAR (END-TO-END ALIGNMENT) -->
     <nav id="navbar"
-        class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-brand-surface/90 dark:bg-brand-surface/90 backdrop-blur-2xl border-b border-brand-line shadow-sm opacity-0 -translate-y-10 pointer-events-none">
+        class="fixed top-0 left-0 w-full z-40 transition-[opacity,transform,background-color] duration-300 ease-out bg-brand-surface/95 dark:bg-brand-surface/95 backdrop-blur-2xl border-b border-brand-line shadow-sm opacity-0 -translate-y-10 pointer-events-none">
         <div
             class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
             <!-- Brand Logo (Left) -->
             <a href="#" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
                 <div
-                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:border-brand-gold transition-colors duration-200 shadow-sm">
                     <i class="fa-solid fa-cross text-sm"></i>
                 </div>
                 <div class="flex flex-col">
                     <span
-                        class="text-brand-ink font-serif text-base sm:text-lg md:text-xl tracking-[0.1em] uppercase font-bold leading-tight">ACA
+                        class="text-brand-ink font-serif text-base sm:text-lg md:text-xl tracking-[0.08em] uppercase font-bold leading-tight">ACA
                         Church PKT</span>
                     <span
-                        class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.22em] uppercase font-semibold">Pattukkottai
+                        class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.2em] uppercase font-semibold">Pattukkottai
                         • 50+ Years</span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links (Center End-to-End Spacing) -->
             <div
-                class="hidden xl:flex items-center gap-5 2xl:gap-7 text-[11px] 2xl:text-xs uppercase tracking-[0.15em] 2xl:tracking-[0.18em] font-semibold text-brand-beige">
+                class="hidden xl:flex items-center gap-5 2xl:gap-7 text-[11px] 2xl:text-xs uppercase tracking-[0.14em] font-semibold text-brand-beige">
                 <a href="#" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
                 <a href="#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About
                     Us</a>
                 <a href="#vision"
                     class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
                     <span>Our Vision</span>
                 </a>
                 <a href="#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Our
@@ -190,13 +190,13 @@
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <!-- Theme Toggle Button -->
                 <button id="themeToggleBtn" aria-label="Toggle Dark/Light Mode"
-                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-all duration-300 shadow-sm cursor-pointer">
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-colors duration-200 shadow-sm cursor-pointer">
                     <i id="themeToggleIcon" class="fa-solid fa-moon text-xs"></i>
                 </button>
 
                 <!-- Join Us CTA -->
                 <a href="#join"
-                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-300 shadow-md shadow-brand-gold/15 cursor-pointer">
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-bold uppercase tracking-[0.18em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-colors duration-200 shadow-sm cursor-pointer">
                     <span>Join Us</span>
                     <i class="fa-solid fa-arrow-right text-[9px]"></i>
                 </a>
@@ -282,9 +282,8 @@
                         </div>
                         <div>
                             <div
-                                class="text-xs font-black uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
+                                class="text-xs font-bold uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
                                 <span>Our Vision</span>
-                                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
                             </div>
                             <div class="text-[10px] text-brand-gold font-tamil">நமது தரிசனம் &amp; வேத திறப்பு</div>
                         </div>
@@ -428,37 +427,37 @@
 
             <!-- Initial Ambient Welcome Overlay (Fades out quickly as scroll begins 0-18%) -->
             <div id="hero-welcome-badge"
-                class="absolute top-[16%] sm:top-[18%] md:top-[20%] z-20 text-center pointer-events-none transition-all duration-700 ease-out px-4">
+                class="absolute top-[16%] sm:top-[18%] md:top-[20%] z-20 text-center pointer-events-none transition-[opacity,transform] duration-500 ease-out px-4">
                 <span
-                    class="inline-flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-black/50 border border-amber-300/40 text-amber-200 text-[9px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.35em] uppercase font-bold backdrop-blur-md shadow-2xl">
-                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    class="inline-flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-black/60 border border-brand-gold/40 text-amber-100 text-[9px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold backdrop-blur-md shadow-lg">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
                     ACA CHURCH PKT • PATTUKKOTTAI • 50+ YEARS OF GOD'S GRACE
                 </span>
             </div>
 
             <!-- Initial Scroll Indicator Prompt (Fades out as scroll starts) -->
             <div id="scroll-prompt"
-                class="absolute bottom-8 sm:bottom-10 z-20 flex flex-col items-center gap-2.5 text-white/75 pointer-events-none transition-all duration-500">
+                class="absolute bottom-8 sm:bottom-10 z-20 flex flex-col items-center gap-2.5 text-white/80 pointer-events-none transition-opacity duration-300">
                 <span
-                    class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-semibold text-amber-200/90">Scroll
+                    class="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-medium text-amber-100/90">Scroll
                     to reveal sanctuary</span>
                 <div
-                    class="w-5 h-9 sm:w-6 sm:h-10 border-2 border-amber-300/50 rounded-full flex items-start justify-center p-1 sm:p-1.5 backdrop-blur-sm">
-                    <div class="w-1 sm:w-1.5 h-2.5 sm:h-3 bg-amber-300 rounded-full animate-bounce"></div>
+                    class="w-5 h-9 sm:w-6 sm:h-10 border border-brand-gold/50 rounded-full flex items-start justify-center p-1 sm:p-1.5 backdrop-blur-sm">
+                    <div class="w-1 sm:w-1.5 h-2.5 sm:h-3 bg-brand-gold rounded-full"></div>
                 </div>
             </div>
 
             <!-- Frame Loading Progress Bar -->
             <div id="loading-bar-container"
-                class="absolute bottom-0 left-0 w-full h-1 z-30 bg-black/50 transition-opacity duration-700 pointer-events-none">
+                class="absolute bottom-0 left-0 w-full h-1 z-30 bg-black/50 transition-opacity duration-500 pointer-events-none">
                 <div id="loading-bar"
-                    class="h-full bg-gradient-to-r from-amber-500 via-amber-200 to-amber-400 w-0 transition-all duration-300">
+                    class="h-full bg-brand-gold w-0 transition-[width] duration-200">
                 </div>
             </div>
 
             <!-- REAL HTML SCRIPTURE TEXT OVERLAY (Tamil) - Modern Floating Typography -->
             <div id="hero-scripture-container"
-                class="relative z-20 text-center px-4 sm:px-6 max-w-5xl w-full flex flex-col items-center justify-center transition-all duration-500 pointer-events-none"
+                class="relative z-20 text-center px-4 sm:px-6 max-w-5xl w-full flex flex-col items-center justify-center transition-[opacity,transform] duration-500 pointer-events-none"
                 style="opacity: 0; transform: translate3d(0, 35px, 0); will-change: transform, opacity;">
 
                 <!-- Floating Tamil Scripture Lines -->
@@ -479,13 +478,11 @@
 
                 <!-- Floating Bible Citation Badge -->
                 <div
-                    class="inline-flex items-center gap-3 px-5 sm:px-7 py-2 sm:py-2.5 rounded-full bg-black/40 border border-amber-300/40 backdrop-blur-md shadow-[0_0_40px_rgba(251,191,36,0.25)]">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse"></span>
+                    class="inline-flex items-center gap-3 px-5 sm:px-7 py-2 sm:py-2.5 rounded-full bg-black/60 border border-brand-gold/40 backdrop-blur-md shadow-md">
                     <p
-                        class="font-tamil font-bold text-base sm:text-xl md:text-2xl text-amber-200 tracking-wider verse-glow">
+                        class="font-tamil font-bold text-base sm:text-xl md:text-2xl text-amber-100 tracking-wider verse-glow">
                         சங்கீதம் 115:14
                     </p>
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse"></span>
                 </div>
             </div>
 
@@ -498,8 +495,6 @@
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <!-- Left Side Text Column -->
             <div class="lg:col-span-6 reveal-left">
-                <span class="text-brand-gold text-xs tracking-[0.4em] uppercase font-bold mb-3 sm:mb-4 block">ABOUT ACA
-                    CHURCH PKT</span>
                 <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink mb-4 sm:mb-6 leading-[1.12]">50+
                     Years of Grace in Pattukkottai</h2>
                 <div
@@ -518,10 +513,10 @@
                     </p>
                 </div>
                 <a href="#pastor"
-                    class="inline-flex items-center gap-4 text-brand-gold text-xs font-bold uppercase tracking-[0.25em] group">
+                    class="inline-flex items-center gap-4 text-brand-gold text-xs font-bold uppercase tracking-[0.2em] group">
                     <span>Meet Pastor Sathiya Satchi</span>
                     <span
-                        class="w-12 h-px bg-brand-gold/40 group-hover:w-20 group-hover:bg-brand-gold transition-all duration-300"></span>
+                        class="w-12 h-px bg-brand-gold/40 group-hover:w-20 group-hover:bg-brand-gold transition-[width,background-color] duration-300"></span>
                 </a>
             </div>
 
@@ -531,8 +526,9 @@
                     <!-- Image 1 (Left Portrait) -->
                     <div class="col-span-7 reveal-right" style="transition-delay: 0.2s;">
                         <div
-                            class="aspect-[9/16] overflow-hidden rounded-2xl border border-brand-line/80 shadow-2xl group">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            class="aspect-[9/16] overflow-hidden rounded-2xl border border-brand-line/80 shadow-xl group">
+                            <img class="w-full h-full object-cover transition-opacity duration-500"
+                                loading="lazy" decoding="async"
                                 src="images/Pastor.jpeg" alt="Pastor Sathiya Satchi - ACA Church PKT Pattukkottai" />
                         </div>
                     </div>
@@ -541,8 +537,9 @@
                     <div class="col-span-5 flex flex-col gap-4 sm:gap-5 pt-8 sm:pt-12">
                         <div class="reveal-right" style="transition-delay: 0.4s;">
                             <div
-                                class="aspect-[9/16] overflow-hidden rounded-2xl border border-brand-line/80 shadow-2xl group">
-                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                class="aspect-[9/16] overflow-hidden rounded-2xl border border-brand-line/80 shadow-xl group">
+                                <img class="w-full h-full object-cover transition-opacity duration-500"
+                                    loading="lazy" decoding="async"
                                     src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_decd1b4976_10f4c107eee2beda.png"
                                     alt="Church interior sanctuary in Pattukkottai Thanjavur" />
                             </div>
@@ -550,8 +547,9 @@
 
                         <div class="reveal-right" style="transition-delay: 0.6s;">
                             <div
-                                class="aspect-square overflow-hidden rounded-2xl border border-brand-line/80 shadow-2xl group">
-                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                class="aspect-square overflow-hidden rounded-2xl border border-brand-line/80 shadow-xl group">
+                                <img class="w-full h-full object-cover transition-opacity duration-500"
+                                    loading="lazy" decoding="async"
                                     src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
                                     alt="Worship community at ACA Church PKT" />
                             </div>
@@ -567,31 +565,30 @@
         class="py-12 sm:py-16 md:py-20 lg:py-24 bg-brand-surface border-y border-brand-line relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div class="lg:col-span-5 reveal-left">
-                <div class="relative rounded-3xl overflow-hidden border border-brand-line shadow-2xl group">
-                    <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                <div class="relative rounded-3xl overflow-hidden border border-brand-line shadow-xl group">
+                    <img class="w-full h-auto object-cover transition-opacity duration-500"
+                        loading="lazy" decoding="async"
                         src="images/Pastor.jpeg" alt="Senior Pastor Sathiya Satchi ACA Church PKT Pattukkottai" />
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-brand-base via-transparent to-transparent opacity-60">
                     </div>
                     <div
                         class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-brand-surface/90 dark:bg-brand-surface/75 backdrop-blur-md border border-brand-line text-center">
-                        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-gold">Senior Pastor
+                        <span class="text-[10px] uppercase tracking-[0.25em] font-semibold text-brand-gold">Senior Pastor
                             &amp; Founder</span>
                         <h3 class="font-serif text-2xl text-brand-ink font-bold mt-0.5">Pastor Sathiya Satchi</h3>
-                        <p class="text-xs uppercase tracking-widest text-brand-beige/80 mt-1 font-bold">Pattukkottai,
+                        <p class="text-xs uppercase tracking-widest text-brand-beige/80 mt-1 font-semibold">Pattukkottai,
                             Thanjavur</p>
                     </div>
                 </div>
             </div>
             <div class="lg:col-span-7 reveal-right" style="transition-delay: 0.3s;">
-                <span class="text-brand-gold text-xs tracking-[0.4em] uppercase font-bold mb-3 sm:mb-4 block">OUR SENIOR
-                    PASTOR</span>
                 <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink mb-4 sm:mb-6 leading-tight">Pastor
                     Sathiya Satchi</h2>
                 <blockquote
-                    class="text-base sm:text-xl md:text-2xl font-serif italic leading-relaxed mb-4 sm:mb-6 text-brand-ink/90 border-l-2 border-brand-gold pl-4 sm:pl-6">
-                    "For more than 50 years, God's grace has guided ACA Church PKT in Pattukkottai. Our mission is to
-                    share Christ's divine love, build families in faith, and serve our generation with humility."
+                    class="text-base sm:text-xl md:text-2xl font-serif leading-relaxed mb-4 sm:mb-6 text-brand-ink/90 border-l border-brand-gold/60 pl-4 sm:pl-6">
+                    &ldquo;For more than 50 years, God's grace has guided ACA Church PKT in Pattukkottai. Our mission is to
+                    share Christ's divine love, build families in faith, and serve our generation with humility.&rdquo;
                 </blockquote>
                 <p class="text-brand-beige/70 font-light text-sm sm:text-base leading-relaxed mb-3">
                     Under the visionary leadership of <strong>Pastor Sathiya Satchi</strong>, ACA Church PKT has stood
@@ -652,14 +649,14 @@
 
                     <!-- Decorative Gold Line -->
                     <div
-                        class="w-12 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6">
+                        class="w-12 h-[2px] bg-brand-gold mx-auto mb-6 opacity-80">
                     </div>
 
                     <!-- English Heading -->
                     <h2
                         class="font-cinzel text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-wider leading-tight scripture-glow mb-4">
                         Every Vision Begins<br>
-                        <span class="italic font-serif font-normal text-amber-200/90">with the Word</span>
+                        <span class="font-cinzel font-semibold text-amber-100">With the Word</span>
                     </h2>
 
                     <!-- Tamil Scripture -->
@@ -667,15 +664,15 @@
                         class="font-tamil text-amber-200/85 font-medium text-sm sm:text-base md:text-lg mb-2 verse-glow leading-relaxed">
                         "தரிசனத்தை எழுதி, அதைப்படிக்கிறவன் ஓடும்படி பலகைகளிலே தெளிவாக வரை."
                     </p>
-                    <p class="text-amber-400/70 text-[11px] sm:text-xs tracking-[0.3em] uppercase font-bold">
+                    <p class="text-amber-400/70 text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
                         — Habakkuk 2:2 • ஆபகூக் 2:2
                     </p>
 
                     <!-- Scroll Cue -->
-                    <div class="mt-8 flex flex-col items-center gap-2 animate-pulse">
-                        <span class="text-amber-300/50 text-[10px] tracking-[0.25em] uppercase font-semibold">Scroll to
+                    <div class="mt-8 flex flex-col items-center gap-2">
+                        <span class="text-amber-300/60 text-[10px] tracking-[0.2em] uppercase font-semibold">Scroll to
                             Reveal</span>
-                        <i class="fa-solid fa-chevron-down text-amber-400/40 text-xs"></i>
+                        <i class="fa-solid fa-chevron-down text-amber-400/50 text-xs"></i>
                     </div>
                 </div>
 
@@ -691,35 +688,35 @@
 
                         <!-- Glass Card Container -->
                         <div
-                            class="relative rounded-2xl md:rounded-3xl p-6 sm:p-10 md:p-14 overflow-hidden pointer-events-auto bg-black/35 backdrop-blur-xl border border-amber-300/20 shadow-2xl">
+                            class="relative rounded-2xl md:rounded-3xl p-6 sm:p-10 md:p-14 overflow-hidden pointer-events-auto bg-black/40 backdrop-blur-xl border border-brand-gold/30 shadow-2xl">
 
                             <!-- Ethereal Center Glow -->
                             <div class="absolute inset-0 pointer-events-none bible-gutter-glow"></div>
 
                             <!-- Cross Watermark -->
                             <div
-                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.06] text-amber-300 text-[200px] sm:text-[280px]">
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.06] text-brand-gold text-[200px] sm:text-[280px]">
                                 <i class="fa-solid fa-cross"></i>
                             </div>
 
                             <!-- Header -->
                             <div class="relative z-10 text-center mb-8 sm:mb-10 vision-reveal-item"
                                 style="opacity: 0; transform: translateY(24px);">
-                                <div class="inline-flex items-center gap-3 text-amber-300 mb-3">
-                                    <span class="w-8 sm:w-14 h-px bg-amber-400/50"></span>
+                                <div class="inline-flex items-center gap-3 text-brand-gold mb-3">
+                                    <span class="w-8 sm:w-14 h-px bg-brand-gold/50"></span>
                                     <i class="fa-solid fa-cross text-[10px]"></i>
                                     <span
-                                        class="font-cinzel text-[11px] sm:text-xs font-bold tracking-[0.4em] uppercase text-amber-200/80">Our
+                                        class="font-cinzel text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-amber-100">Our
                                         Vision</span>
                                     <i class="fa-solid fa-cross text-[10px]"></i>
-                                    <span class="w-8 sm:w-14 h-px bg-amber-400/50"></span>
+                                    <span class="w-8 sm:w-14 h-px bg-brand-gold/50"></span>
                                 </div>
                                 <h2
                                     class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-[0.08em] scripture-glow leading-none">
                                     VISION 01
                                 </h2>
                                 <p
-                                    class="font-tamil text-amber-200/70 text-xs sm:text-sm font-medium mt-2 tracking-wide">
+                                    class="font-tamil text-amber-100/80 text-xs sm:text-sm font-medium mt-2 tracking-wide">
                                     அப்போஸ்தல திருச்சபை பட்டுக்கோட்டை
                                 </p>
                             </div>
@@ -728,11 +725,11 @@
                             <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
 
                                 <!-- Statement 1: 1 Soul -->
-                                <div class="vision-reveal-item p-4 sm:p-5 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500 group"
+                                <div class="vision-reveal-item p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-brand-gold/20 hover:border-brand-gold/50 transition-colors duration-200 group"
                                     style="opacity: 0; transform: translateY(24px);">
                                     <div class="flex items-start gap-4">
                                         <div
-                                            class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base group-hover:bg-amber-400/25 transition-colors">
+                                            class="w-10 h-10 rounded-full bg-brand-gold/15 border border-brand-gold/35 flex-shrink-0 flex items-center justify-center text-amber-200 font-cinzel font-bold text-base">
                                             1
                                         </div>
                                         <div>
@@ -748,11 +745,11 @@
                                 </div>
 
                                 <!-- Statement 2: 7,000 Souls -->
-                                <div class="vision-reveal-item p-4 sm:p-5 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500 group"
+                                <div class="vision-reveal-item p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-brand-gold/20 hover:border-brand-gold/50 transition-colors duration-200 group"
                                     style="opacity: 0; transform: translateY(24px);">
                                     <div class="flex items-start gap-4">
                                         <div
-                                            class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base group-hover:bg-amber-400/25 transition-colors">
+                                            class="w-10 h-10 rounded-full bg-brand-gold/15 border border-brand-gold/35 flex-shrink-0 flex items-center justify-center text-amber-200 font-cinzel font-bold text-base">
                                             2
                                         </div>
                                         <div>
@@ -767,53 +764,51 @@
                                     </div>
                                 </div>
 
-                                <!-- Statement 3: 100 Kilai Sabai & 1,000 Koli (Full Width) -->
-                                <div class="vision-reveal-item md:col-span-2 p-5 sm:p-6 rounded-xl bg-white/[0.04] border border-amber-300/15 hover:border-amber-400/40 transition-all duration-500"
+                                <!-- Statement 3: 100 Kilai Sabai & 1,000 Koli (Full Width - Flattened Layout) -->
+                                <div class="vision-reveal-item md:col-span-2 p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-brand-gold/20 hover:border-brand-gold/50 transition-colors duration-200"
                                     style="opacity: 0; transform: translateY(24px);">
-                                    <div class="flex items-start gap-4 mb-4">
-                                        <div
-                                            class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex-shrink-0 flex items-center justify-center text-amber-300 font-cinzel font-bold text-base">
-                                            3
-                                        </div>
-                                        <div>
-                                            <h3
-                                                class="font-serif text-lg sm:text-xl md:text-2xl text-white font-semibold tracking-wide leading-snug mb-1">
-                                                God will give my church:
-                                            </h3>
-                                            <p class="font-tamil text-amber-200/80 text-xs sm:text-sm font-medium">
-                                                என் சபைக்குத் தருவார்:
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Sub-items: Kilai Sabai & Koli -->
-                                    <div class="grid grid-cols-2 gap-3 sm:gap-4 pl-14">
-                                        <div
-                                            class="p-3 sm:p-4 rounded-lg bg-amber-500/10 border border-amber-400/25 text-left hover:bg-amber-500/15 transition-colors">
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                        <div class="flex items-center gap-4">
                                             <div
-                                                class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none mb-1">
-                                                100
+                                                class="w-10 h-10 rounded-full bg-brand-gold/15 border border-brand-gold/35 flex-shrink-0 flex items-center justify-center text-amber-200 font-cinzel font-bold text-base">
+                                                3
                                             </div>
-                                            <div
-                                                class="font-serif text-sm sm:text-base font-bold text-white uppercase tracking-wider">
-                                                Kilai Sabai
-                                            </div>
-                                            <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">100 கிளை சபைகள்
+                                            <div>
+                                                <h3
+                                                    class="font-serif text-lg sm:text-xl md:text-2xl text-white font-semibold tracking-wide leading-snug">
+                                                    God will give my church:
+                                                </h3>
+                                                <p class="font-tamil text-amber-200/80 text-xs sm:text-sm font-medium">
+                                                    என் சபைக்குத் தருவார்:
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="p-3 sm:p-4 rounded-lg bg-amber-500/10 border border-amber-400/25 text-left hover:bg-amber-500/15 transition-colors">
-                                            <div
-                                                class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none mb-1">
-                                                1,000
+                                        <!-- Sub-items: Direct Typographic Hierarchy (No nested cards) -->
+                                        <div class="grid grid-cols-2 gap-6 sm:gap-10 sm:pr-4">
+                                            <div>
+                                                <div class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none">
+                                                    100
+                                                </div>
+                                                <div class="font-serif text-xs sm:text-sm font-bold text-white uppercase tracking-wider mt-1">
+                                                    Kilai Sabai
+                                                </div>
+                                                <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">
+                                                    100 கிளை சபைகள்
+                                                </div>
                                             </div>
-                                            <div
-                                                class="font-serif text-sm sm:text-base font-bold text-white uppercase tracking-wider">
-                                                Koli
+
+                                            <div>
+                                                <div class="font-cinzel text-2xl sm:text-3xl font-bold text-amber-200 leading-none">
+                                                    1,000
+                                                </div>
+                                                <div class="font-serif text-xs sm:text-sm font-bold text-white uppercase tracking-wider mt-1">
+                                                    Koli
+                                                </div>
+                                                <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">
+                                                    1,000 குழி நிலம்
+                                                </div>
                                             </div>
-                                            <div class="font-tamil text-[11px] text-amber-300/70 mt-0.5">1,000 குழி
-                                                நிலம்</div>
                                         </div>
                                     </div>
                                 </div>
@@ -821,13 +816,13 @@
                             </div>
 
                             <!-- Footer Scripture -->
-                            <div class="relative z-10 mt-6 sm:mt-8 pt-5 border-t border-amber-300/15 text-center vision-reveal-item"
+                            <div class="relative z-10 mt-6 sm:mt-8 pt-5 border-t border-brand-gold/20 text-center vision-reveal-item"
                                 style="opacity: 0; transform: translateY(24px);">
-                                <p class="font-tamil text-amber-100/80 text-xs sm:text-sm italic leading-relaxed mb-1">
-                                    <i class="fa-solid fa-book-bible text-amber-300/60 mr-2"></i>
+                                <p class="font-tamil text-amber-100/90 text-xs sm:text-sm leading-relaxed mb-1">
+                                    <i class="fa-solid fa-book-bible text-brand-gold mr-2"></i>
                                     "விசுவாசிக்கிறவனுக்கு எல்லாம் கூடும்"
                                 </p>
-                                <p class="text-amber-400/50 text-[10px] tracking-[0.25em] uppercase font-bold">
+                                <p class="text-amber-400/60 text-[10px] tracking-[0.2em] uppercase font-semibold">
                                     — Mark 9:23 • மாற்கு 9:23
                                 </p>
                             </div>
@@ -842,19 +837,10 @@
 
     </section>
 
-    <!-- 6. OUR PRAYERS & SERVICES SECTION — ULTRA-LUXURY GLASSY DUAL MARQUEE -->
+    <!-- 6. OUR PRAYERS & SERVICES SECTION — ULTRA-LUXURY DUAL MARQUEE -->
     <section id="prayers"
         class="py-14 sm:py-18 md:py-24 bg-brand-surface/60 dark:bg-brand-surface/40 border-y border-brand-line relative overflow-hidden">
-        <!-- Ambient background aura & glass reflections -->
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-brand-gold/10 blur-[140px] pointer-events-none rounded-full">
-        </div>
-
         <div class="max-w-7xl mx-auto px-6 mb-10 sm:mb-14 text-center reveal-up relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/35 text-brand-gold text-[10.5px] uppercase font-bold tracking-[0.3em] backdrop-blur-md mb-3 sm:mb-4 shadow-sm">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
-                <span>PRAYER SCHEDULE &amp; SERVICES</span>
-            </div>
             <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink mb-3 sm:mb-4">Our Prayers &amp; Services</h2>
             <p class="text-brand-beige/75 font-light text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
                 Experience divine power, unceasing intercession, and holy fellowship in Pattukkottai. Click any prayer or service to send your petition directly.
@@ -871,7 +857,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-sun"></i>
                                 </div>
                                 <span
@@ -893,7 +879,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -905,7 +891,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-church"></i>
                                 </div>
                                 <span
@@ -927,7 +913,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -939,7 +925,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-dove"></i>
                                 </div>
                                 <span
@@ -961,7 +947,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -973,7 +959,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-star-of-life"></i>
                                 </div>
                                 <span
@@ -995,7 +981,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1007,7 +993,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-hourglass-half"></i>
                                 </div>
                                 <span
@@ -1029,7 +1015,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1041,7 +1027,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-infinity"></i>
                                 </div>
                                 <span
@@ -1063,7 +1049,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1078,7 +1064,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-sun"></i>
                                 </div>
                                 <span
@@ -1100,7 +1086,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1112,7 +1098,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-church"></i>
                                 </div>
                                 <span
@@ -1134,7 +1120,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1146,7 +1132,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-dove"></i>
                                 </div>
                                 <span
@@ -1168,7 +1154,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1180,7 +1166,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-star-of-life"></i>
                                 </div>
                                 <span
@@ -1202,7 +1188,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1214,7 +1200,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-hourglass-half"></i>
                                 </div>
                                 <span
@@ -1236,7 +1222,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1248,7 +1234,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-infinity"></i>
                                 </div>
                                 <span
@@ -1270,7 +1256,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1287,7 +1273,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-moon"></i>
                                 </div>
                                 <span
@@ -1309,7 +1295,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1321,7 +1307,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-fire-flame-curved"></i>
                                 </div>
                                 <span
@@ -1343,7 +1329,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1355,7 +1341,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-people-roof"></i>
                                 </div>
                                 <span
@@ -1377,7 +1363,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1389,7 +1375,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-shield-halved"></i>
                                 </div>
                                 <span
@@ -1411,7 +1397,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1423,7 +1409,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-fire"></i>
                                 </div>
                                 <span
@@ -1445,7 +1431,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1457,7 +1443,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-cross"></i>
                                 </div>
                                 <span
@@ -1479,7 +1465,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1494,7 +1480,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-moon"></i>
                                 </div>
                                 <span
@@ -1516,7 +1502,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1528,7 +1514,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-fire-flame-curved"></i>
                                 </div>
                                 <span
@@ -1550,7 +1536,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1562,7 +1548,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-people-roof"></i>
                                 </div>
                                 <span
@@ -1584,7 +1570,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1596,7 +1582,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-shield-halved"></i>
                                 </div>
                                 <span
@@ -1618,7 +1604,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1630,7 +1616,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-fire"></i>
                                 </div>
                                 <span
@@ -1652,7 +1638,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1664,7 +1650,7 @@
                         <div class="relative">
                             <div class="flex items-center justify-between mb-4">
                                 <div
-                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-brand-gold group-hover:text-brand-base transition-all duration-500 shadow-sm">
+                                    class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-brand-base transition-colors duration-200 shadow-sm">
                                     <i class="fa-solid fa-cross"></i>
                                 </div>
                                 <span
@@ -1686,7 +1672,7 @@
                             class="inline-flex items-center justify-between w-full pt-3.5 border-t border-brand-line/80 group/btn text-[10.5px] uppercase tracking-[0.2em] font-bold text-brand-gold hover:text-brand-ink transition-colors cursor-pointer">
                             <span>Request This Prayer</span>
                             <div
-                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
+                                class="w-7 h-7 rounded-full bg-brand-gold/15 group-hover/btn:bg-brand-gold group-hover/btn:text-brand-base flex items-center justify-center transition-colors duration-200">
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </a>
@@ -1699,10 +1685,8 @@
     <!-- 7. GALLERY SECTION — MOMENTS OF FAITH WITH LIGHTBOX -->
     <section id="gallery" class="py-12 sm:py-16 md:py-20 lg:py-24 px-6 md:px-12 max-w-7xl mx-auto">
         <div class="text-center mb-8 sm:mb-12 reveal-up">
-            <span class="text-brand-gold text-xs tracking-[0.4em] uppercase font-bold mb-3 sm:mb-4 block">MOMENTS OF
-                FAITH</span>
             <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink mb-3 sm:mb-4">Moments of Grace</h2>
-            <p class="text-brand-gold/80 tracking-[0.25em] uppercase text-[10px] sm:text-[11px] font-bold">Pattukkottai
+            <p class="text-brand-gold/90 tracking-[0.2em] uppercase text-[10px] sm:text-[11px] font-semibold">Pattukkottai
                 • Worship • Fellowship • Service</p>
         </div>
 
@@ -1713,7 +1697,8 @@
                 <div tabindex="0" role="button" aria-label="View gallery image" class="gallery-item group focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none relative overflow-hidden rounded-2xl border border-brand-line h-[300px] sm:h-[380px] md:h-[420px] cursor-pointer"
                     data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5fc4d807fa_2c00a40e0bf262ef.png"
                     data-title="Sunday Morning Worship Service" data-category="Worship">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    <img class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async"
                         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5fc4d807fa_2c00a40e0bf262ef.png"
                         alt="Sunday Worship Service at ACA Church PKT Pattukkottai" />
                     <div
@@ -1723,13 +1708,13 @@
                         class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 flex justify-between items-end">
                         <div>
                             <span
-                                class="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-1.5 sm:mb-2 drop-shadow-sm">Worship</span>
+                                class="text-brand-gold text-[10px] uppercase tracking-[0.25em] font-semibold block mb-1.5 sm:mb-2 drop-shadow-sm">Worship</span>
                             <h3
                                 class="font-serif text-xl sm:text-2xl md:text-3xl text-white font-semibold drop-shadow-md">
                                 Sunday Morning Praise Service</h3>
                         </div>
                         <div
-                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-colors duration-200 shadow-lg">
                             <i class="fa-solid fa-expand text-xs sm:text-sm"></i>
                         </div>
                     </div>
@@ -1741,7 +1726,8 @@
                 <div tabindex="0" role="button" aria-label="View gallery image" class="gallery-item group focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none relative overflow-hidden rounded-2xl border border-brand-line h-[300px] sm:h-[380px] md:h-[420px] cursor-pointer"
                     data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png"
                     data-title="Congregation in Silent Prayer" data-category="Prayer">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    <img class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async"
                         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png"
                         alt="Congregation in Prayer at ACA Church PKT Pattukkottai" />
                     <div
@@ -1751,12 +1737,12 @@
                         class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 flex justify-between items-end">
                         <div>
                             <span
-                                class="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-1.5 sm:mb-2 drop-shadow-sm">Prayer</span>
+                                class="text-brand-gold text-[10px] uppercase tracking-[0.25em] font-semibold block mb-1.5 sm:mb-2 drop-shadow-sm">Prayer</span>
                             <h3 class="font-serif text-xl sm:text-2xl text-white font-semibold drop-shadow-md">Silent
                                 Prayer Sanctuary</h3>
                         </div>
                         <div
-                            class="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                            class="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-colors duration-200 shadow-lg">
                             <i class="fa-solid fa-expand text-xs"></i>
                         </div>
                     </div>
@@ -1768,7 +1754,8 @@
                 <div tabindex="0" role="button" aria-label="View gallery image" class="gallery-item group focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none relative overflow-hidden rounded-2xl border border-brand-line h-[280px] sm:h-[340px] md:h-[360px] cursor-pointer"
                     data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png"
                     data-title="Community Outreach & Service" data-category="Service">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    <img class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async"
                         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png"
                         alt="Community Outreach in Pattukkottai Thanjavur" />
                     <div
@@ -1778,12 +1765,12 @@
                         class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 flex justify-between items-end">
                         <div>
                             <span
-                                class="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-1.5 sm:mb-2 drop-shadow-sm">Service</span>
+                                class="text-brand-gold text-[10px] uppercase tracking-[0.25em] font-semibold block mb-1.5 sm:mb-2 drop-shadow-sm">Service</span>
                             <h3 class="font-serif text-xl sm:text-2xl text-white font-semibold drop-shadow-md">
                                 Compassionate Outreach</h3>
                         </div>
                         <div
-                            class="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                            class="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-colors duration-200 shadow-lg">
                             <i class="fa-solid fa-expand text-xs"></i>
                         </div>
                     </div>
@@ -1795,7 +1782,8 @@
                 <div tabindex="0" role="button" aria-label="View gallery image" class="gallery-item group focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:outline-none relative overflow-hidden rounded-2xl border border-brand-line h-[280px] sm:h-[340px] md:h-[360px] cursor-pointer"
                     data-src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
                     data-title="Youth Fellowship & Joy" data-category="Fellowship">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    <img class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async"
                         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
                         alt="Youth Fellowship gathering at ACA Church PKT" />
                     <div
@@ -1805,13 +1793,13 @@
                         class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 flex justify-between items-end">
                         <div>
                             <span
-                                class="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-1.5 sm:mb-2 drop-shadow-sm">Fellowship</span>
+                                class="text-brand-gold text-[10px] uppercase tracking-[0.25em] font-semibold block mb-1.5 sm:mb-2 drop-shadow-sm">Fellowship</span>
                             <h3
                                 class="font-serif text-xl sm:text-2xl md:text-3xl text-white font-semibold drop-shadow-md">
                                 Youth Worship &amp; Gathering</h3>
                         </div>
                         <div
-                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300 shadow-lg">
+                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-colors duration-200 shadow-lg">
                             <i class="fa-solid fa-expand text-xs sm:text-sm"></i>
                         </div>
                     </div>
@@ -1822,14 +1810,10 @@
         <!-- Explore Full Gallery Luxury CTA Banner -->
         <div class="mt-8 sm:mt-12 reveal-up">
             <div
-                class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-brand-surface via-brand-frame to-brand-surface border border-brand-gold/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left relative overflow-hidden">
-                <div
-                    class="absolute -right-12 -bottom-12 w-48 h-48 bg-brand-gold/10 blur-3xl pointer-events-none rounded-full">
-                </div>
-
+                class="p-6 sm:p-8 rounded-3xl bg-brand-surface border border-brand-line shadow-md flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left relative overflow-hidden">
                 <div class="space-y-1 relative z-10">
                     <div
-                        class="inline-flex items-center gap-2 text-brand-gold text-[10px] font-bold tracking-[0.25em] uppercase">
+                        class="inline-flex items-center gap-2 text-brand-gold text-[10px] font-bold tracking-[0.2em] uppercase">
                         <i class="fa-solid fa-camera-retro text-xs"></i>
                         <span>ARCHIVES &amp; MEMORIES</span>
                     </div>
@@ -1840,7 +1824,7 @@
                 </div>
 
                 <a href="gallery.html"
-                    class="btn-gold-shimmer px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-brand-base text-xs font-black uppercase tracking-[0.22em] shadow-lg shadow-brand-gold/25 flex items-center gap-3 shrink-0 hover:scale-105 transition-transform duration-300 group cursor-pointer relative z-10">
+                    class="btn-gold-shimmer px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-brand-base text-xs font-bold uppercase tracking-[0.18em] shadow-md flex items-center gap-3 shrink-0 transition-colors duration-200 group cursor-pointer relative z-10">
                     <span>EXPLORE ALL PHOTOS &amp; MOMENTS</span>
                     <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -1878,36 +1862,25 @@
 
     <!-- 8. PRAYER REQUEST FORM SECTION -->
     <section id="request" class="py-12 sm:py-16 md:py-20 lg:py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
-        <!-- Ambient radial backlight -->
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/5 blur-[150px] pointer-events-none rounded-full">
-        </div>
-
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
-            <!-- Left Side Image + Scripture + Floating Badges -->
+            <!-- Left Side Image + Scripture -->
             <div class="lg:col-span-5 reveal-left">
                 <div
-                    class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-brand-line/80 shadow-2xl group">
+                    class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-brand-line/80 shadow-xl group">
                     <!-- Image -->
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                    <img class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async"
                         src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6463b22381_6a462d6ec136e88b.png"
                         alt="Kneeling in prayer at ACA Church PKT Pattukkottai" />
-
-                    <!-- Golden Shimmer Light Beam Effect -->
-                    <div
-                        class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full animate-shimmer-beam pointer-events-none z-10">
-                    </div>
 
                     <!-- Subtle dark vignette overlay -->
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-brand-base via-brand-base/40 to-black/20 opacity-90">
                     </div>
 
-
-
-                    <!-- Floating Counter Badge Top Right -->
+                    <!-- Floating Badge Top Right -->
                     <div
-                        class="absolute top-6 right-6 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-gold text-brand-base text-[10px] font-black tracking-wider uppercase shadow-lg">
+                        class="absolute top-6 right-6 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-gold text-brand-base text-[10px] font-bold tracking-wider uppercase shadow-md">
                         <i class="fa-solid fa-dove text-[10px]"></i>
                         <span>Faith &amp; Grace</span>
                     </div>
@@ -1915,15 +1888,15 @@
                     <!-- Scripture Bottom Content -->
                     <div class="absolute bottom-8 sm:bottom-10 left-6 sm:left-10 right-6 sm:right-10 z-20">
                         <div class="w-10 h-[2px] bg-brand-gold mb-4"></div>
-                        <p
-                            class="font-serif text-xl sm:text-2xl md:text-3xl text-white font-medium italic mb-2 leading-snug drop-shadow-md">
+                        <blockquote
+                            class="font-serif text-xl sm:text-2xl md:text-3xl text-white font-medium mb-2 leading-snug drop-shadow-md">
                             "Cast all your anxiety on Him because He cares for you."
-                        </p>
+                        </blockquote>
                         <p
                             class="font-tamil text-xs sm:text-sm text-brand-gold-bright/90 mb-3 leading-relaxed drop-shadow-sm">
                             “உங்கள் கவலைகளையெல்லாம் அவர்மேல் வைத்துவிடுங்கள்; ஏனென்றால் அவர் உங்களை விசாரிக்கிறார்.”
                         </p>
-                        <p class="text-brand-gold text-xs tracking-[0.25em] uppercase font-bold">— 1 Peter 5:7 | 1
+                        <p class="text-brand-gold text-xs tracking-[0.2em] uppercase font-semibold">— 1 Peter 5:7 | 1
                             பேதுரு 5:7</p>
                     </div>
                 </div>
@@ -1942,14 +1915,13 @@
                     <div class="mb-6 sm:mb-8">
                         <div class="flex items-center justify-between gap-4 mb-2">
                             <span
-                                class="text-brand-gold text-xs tracking-[0.4em] uppercase font-bold flex items-center gap-2">
+                                class="text-brand-gold text-xs tracking-[0.25em] uppercase font-semibold flex items-center gap-2">
                                 <i class="fa-solid fa-hands-praying"></i>
-                                <span>PRAYER REQUEST</span>
+                                <span>Prayer Petition</span>
                             </span>
                             <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] font-bold tracking-wider uppercase">
-                                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
-                                <span>Pastor's Intercession</span>
+                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] font-semibold tracking-wider uppercase">
+                                <span>Pastoral Intercession</span>
                             </span>
                         </div>
                         <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-ink mb-2.5">Submit Your Prayer
@@ -2202,13 +2174,12 @@
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 reveal-up w-full">
-            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-amber-400/30 text-amber-200 backdrop-blur-md text-[10px] sm:text-xs tracking-[0.35em] sm:tracking-[0.4em] uppercase font-bold mb-4 sm:mb-6 drop-shadow-md">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-                <span>WORSHIP WITH US IN PATTUKKOTTAI</span>
-            </div>
+            <span class="text-brand-gold text-[11px] tracking-[0.3em] uppercase font-semibold block mb-3 drop-shadow-md">
+                Worship With Us in Pattukkottai
+            </span>
             <h2
-                class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4 sm:mb-6 leading-tight tracking-[0.04em] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
-                Be Part of Our<br><span class="italic font-serif font-light text-amber-300">Church Family</span>
+                class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4 sm:mb-6 leading-tight tracking-[0.03em] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+                Be Part of Our<br><span class="text-brand-gold">Church Family</span>
             </h2>
             <p
                 class="text-xs sm:text-base md:text-lg lg:text-xl font-light text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
@@ -2218,11 +2189,11 @@
             <div
                 class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-xs sm:max-w-none mx-auto">
                 <a href="#request"
-                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 via-amber-300 to-amber-500 text-black text-[11px] font-black uppercase tracking-[0.28em] rounded-full hover:scale-105 transition-all duration-300 shadow-2xl shadow-amber-500/40">
+                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 bg-brand-gold hover:bg-white text-brand-base text-[11px] font-bold uppercase tracking-[0.2em] rounded-full transition-colors duration-200 shadow-lg">
                     JOIN US SUNDAY
                 </a>
-                <a href="#request"
-                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 border-2 border-white/60 hover:border-amber-300 text-white hover:text-amber-300 text-[11px] font-black uppercase tracking-[0.28em] rounded-full hover:bg-black/30 transition-all duration-300 backdrop-blur-sm shadow-xl">
+                <a href="#contact"
+                    class="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 border border-white/60 hover:border-brand-gold text-white hover:text-brand-gold text-[11px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-brand-base/40 transition-colors duration-200 backdrop-blur-sm shadow-md">
                     CONTACT US
                 </a>
             </div>
@@ -2234,145 +2205,106 @@
         </div>
     </section>
 
-    <!-- 10. FOOTER SECTION -->
+    <!-- 10. FOOTER / CHURCH COLOPHON SECTION -->
     <footer id="contact"
-        class="bg-brand-base pt-12 sm:pt-16 md:pt-20 pb-10 sm:pb-12 px-6 md:px-12 border-t border-brand-line">
+        class="bg-brand-base pt-14 sm:pt-18 md:pt-22 pb-12 px-6 md:px-12 border-t border-brand-line">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-10 sm:mb-14 reveal-up">
-                <!-- Column 1: Church Branding -->
-                <div class="lg:col-span-1">
-                    <a href="#" class="flex items-center gap-3 mb-4 sm:mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 sm:mb-16 reveal-up">
+                <!-- Colophon 1: Church Heritage & Identity (5 cols) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <a href="#" class="flex items-center gap-3">
                         <div
                             class="w-8 h-8 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
                             <i class="fa-solid fa-cross text-xs"></i>
                         </div>
-                        <span class="text-brand-ink font-serif text-xl tracking-[0.15em] uppercase font-bold">ACA Church
-                            PKT</span>
+                        <span class="text-brand-ink font-serif text-xl tracking-[0.12em] uppercase font-bold">ACA Church PKT</span>
                     </a>
-                    <p class="text-brand-beige/60 font-light text-sm leading-relaxed mb-4">
-                        Apostolic Christian Assembly Pattukkottai. Serving over <strong>50+ years in God's
-                            grace</strong> in Pattukkottai, Thanjavur District.
+                    <p class="text-brand-beige/70 font-light text-sm leading-relaxed max-w-md">
+                        Apostolic Christian Assembly, Pattukkottai. Founded on biblical truth and unceasing prayer, serving over <strong>50 years in God's grace</strong> across Thanjavur District and the Cauvery delta region.
                     </p>
-                    <span
-                        class="inline-block px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-bold rounded-full tracking-wider">
-                        50+ Years Heritage
-                    </span>
+                    <div class="pt-2 flex flex-wrap items-center gap-3">
+                        <span class="inline-block px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-semibold rounded-full tracking-wider">
+                            Est. 1974 · 50+ Years Heritage
+                        </span>
+                        <span class="inline-block px-3 py-1 bg-brand-frame border border-brand-line text-brand-beige/70 text-[10px] uppercase font-semibold rounded-full tracking-wider">
+                            Pattukkottai Sanctuary
+                        </span>
+                    </div>
                 </div>
 
-                <!-- Column 2: Quick Links -->
-                <div>
-                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">Quick
-                        Links</h4>
-                    <ul class="space-y-3.5 text-brand-beige/60 font-medium text-[11px] uppercase tracking-widest">
-                        <li><a href="#"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Home</a>
+                <!-- Colophon 2: Worship Times (3 cols) -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-brand-ink text-[11px] font-bold uppercase tracking-[0.25em]">Worship Gatherings</h4>
+                    <ul class="space-y-3 text-xs text-brand-beige/70">
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Sunday Worship &amp; Communion</strong>
+                            <span>9:30 AM – 1:00 PM</span>
                         </li>
-                        <li><a href="#about"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">About
-                                Us</a></li>
-                        <li><a href="#pastor"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Pastor
-                                Sathiya Satchi</a>
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Daily Morning Intercession</strong>
+                            <span>9:00 AM – 11:30 AM</span>
                         </li>
-                        <li><a href="#vision"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Our
-                                Vision</a></li>
-                        <li><a href="#prayers"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Our
-                                Prayers</a></li>
-                        <li><a href="blog.html"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block text-brand-gold">Meetings
-                                &amp; News</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Resources -->
-                <div>
-                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">Services
-                    </h4>
-                    <ul class="space-y-3.5 text-brand-beige/60 font-medium text-[11px] uppercase tracking-widest">
-                        <li><a href="#prayers"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Sunday
-                                Worship</a></li>
-                        <li><a href="#prayers"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Fasting
-                                Prayer</a>
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Friday Deliverance Prayer</strong>
+                            <span>7:00 PM – 9:00 PM</span>
                         </li>
-                        <li><a href="#prayers"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Youth
-                                Ministry</a>
-                        </li>
-                        <li><a href="#request"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Prayer
-                                Request</a>
-                        </li>
-                        <li><a href="gallery.html"
-                                class="hover:text-brand-gold transition-colors nav-link-underline relative py-0.5 inline-block">Church
-                                Gallery</a>
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Youth &amp; Sunday School</strong>
+                            <span>Saturdays 5:30 PM / Sundays 8:00 AM</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Column 4: Contact -->
-                <div>
-                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">Location
-                        &amp; Contact</h4>
-                    <ul class="space-y-3.5 text-brand-beige/60 font-light text-xs">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-brand-gold mt-1"></i>
-                            <span>ACA Church PKT, Main Sanctuary, Pattukkottai, Thanjavur District, Tamil Nadu - 614601,
-                                India</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-brand-gold"></i>
-                            <span>+91 94431 00000</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-brand-gold"></i>
+                <!-- Colophon 3: Sanctuary Location & Pastoral Care (4 cols) -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 class="text-brand-ink text-[11px] font-bold uppercase tracking-[0.25em]">Sanctuary &amp; Pastoral Care</h4>
+                    <div class="space-y-3 text-xs text-brand-beige/70 font-light leading-relaxed">
+                        <p class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold mt-1 shrink-0"></i>
+                            <span>Apostolic Christian Assembly, Main Sanctuary, Pattukkottai, Thanjavur District, Tamil Nadu 614601</span>
+                        </p>
+                        <p class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-brand-gold shrink-0"></i>
+                            <span>Pastoral Care Line: +91 94431 00000</span>
+                        </p>
+                        <p class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-envelope text-brand-gold shrink-0"></i>
                             <span>info@acachurchpkt.org</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-clock text-brand-gold"></i>
-                            <span>Sunday: 10:00 AM IST</span>
-                        </li>
-                    </ul>
-                </div>
+                        </p>
+                    </div>
 
-                <!-- Column 5: Follow Us -->
-                <div>
-                    <h4 class="text-brand-ink text-[10.5px] font-black uppercase tracking-[0.3em] mb-6 sm:mb-8">Follow
-                        Us</h4>
-                    <p class="text-brand-beige/60 text-xs font-light mb-5">Connect with ACA Church PKT on social media
-                        for daily scripture and live worship updates.</p>
-                    <div class="flex gap-3.5">
-                        <a href="#" aria-label="Facebook"
-                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-all duration-300 shadow-xl">
-                            <i class="fa-brands fa-facebook-f text-sm"></i>
-                        </a>
-                        <a href="#" aria-label="Instagram"
-                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-all duration-300 shadow-xl">
-                            <i class="fa-brands fa-instagram text-sm"></i>
-                        </a>
-                        <a href="#" aria-label="YouTube"
-                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-all duration-300 shadow-xl">
-                            <i class="fa-brands fa-youtube text-sm"></i>
-                        </a>
+                    <div class="pt-2">
+                        <span class="text-[10px] text-brand-gold uppercase tracking-[0.2em] font-semibold block mb-2">Live Broadcasts &amp; Fellowship</span>
+                        <div class="flex gap-3">
+                            <a href="#" aria-label="Facebook"
+                                class="w-9 h-9 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-colors duration-200">
+                                <i class="fa-brands fa-facebook-f text-xs"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube Live Stream"
+                                class="w-9 h-9 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-colors duration-200">
+                                <i class="fa-brands fa-youtube text-xs"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram"
+                                class="w-9 h-9 rounded-full border border-brand-line flex items-center justify-center text-brand-beige/70 hover:border-brand-gold hover:text-brand-gold hover:bg-brand-gold/10 transition-colors duration-200">
+                                <i class="fa-brands fa-instagram text-xs"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright Bar -->
+            <!-- Bottom Colophon Statement Bar -->
             <div
-                class="pt-10 sm:pt-16 border-t border-brand-line flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 reveal-up">
-                <p
-                    class="text-brand-beige/50 text-[10px] font-bold uppercase tracking-[0.25em] text-center sm:text-left">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script> ACA Church PKT, Pattukkottai. All Rights
-                    Reserved. • 50+ Years in God's Grace
+                class="pt-8 border-t border-brand-line flex flex-col sm:flex-row justify-between items-center gap-4 reveal-up text-brand-beige/60 text-[10.5px]">
+                <p class="tracking-wide text-center sm:text-left">
+                    &copy; <script>document.write(new Date().getFullYear())</script> Apostolic Christian Assembly Pattukkottai. All rights reserved.
                 </p>
-                <div class="flex gap-6 text-brand-beige/40 text-[10px] uppercase font-semibold tracking-wider">
-                    <a href="#" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand-gold transition-colors">Terms of Grace</a>
+                <div class="flex items-center gap-6">
+                    <a href="#request" class="hover:text-brand-gold transition-colors">Submit Prayer Petition</a>
+                    <span class="text-brand-line">•</span>
+                    <a href="gallery.html" class="hover:text-brand-gold transition-colors">Church Archives</a>
+                    <span class="text-brand-line">•</span>
+                    <a href="#about" class="hover:text-brand-gold transition-colors">Our History</a>
                 </div>
             </div>
         </div>
@@ -2381,6 +2313,11 @@
     <!-- =========================================================================
          SCRIPT SECTION: MODULAR ENGINES & CONTROLLERS
          ========================================================================= -->
+    <!-- Firebase JS SDK (v9+ compat) for live content hydration & prayer petitions -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-public.js"></script>
+
     <script src="js/hero-canvas.js"></script>
     <script src="js/vision-canvas.js"></script>
     <script src="js/prayer.js"></script>

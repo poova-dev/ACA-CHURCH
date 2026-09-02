@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACA Church PKT — Admin Content Management Portal</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif+Tamil:wght@400;500;600;700;800;900&family=Mukta+Malar:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Theme Config matching ACA Brand -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            ink: 'var(--brand-ink)',
+                            base: 'var(--brand-base)',
+                            surface: 'var(--brand-surface)',
+                            frame: 'var(--brand-frame)',
+                            line: 'var(--brand-line)',
+                            gold: 'var(--brand-gold)',
+                            'gold-bright': 'var(--brand-gold-bright)',
+                            'gold-dark': 'var(--brand-gold-dark)',
+                            beige: 'var(--brand-beige)',
+                            navy: {
+                                950: '#040711',
+                                900: '#070b14',
+                                800: '#0d1527',
+                                700: '#15223c',
+                                600: '#1c2e52',
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        tamil: ['"Noto Serif Tamil"', '"Mukta Malar"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Brand Styles matching public site -->
+    <style>
+        :root {
+            --brand-ink: #1c1815;
+            --brand-base: #fcfaf6;
+            --brand-surface: #ffffff;
+            --brand-frame: #f4efe7;
+            --brand-line: #e6dfd3;
+            --brand-gold: #b08953;
+            --brand-gold-bright: #d4af37;
+            --brand-gold-dark: #8c6936;
+            --brand-beige: #4a443d;
+        }
+
+        html.dark {
+            --brand-ink: #fcfbf9;
+            --brand-base: #070b14;
+            --brand-surface: #0e1424;
+            --brand-frame: #151c30;
+            --brand-line: #222d47;
+            --brand-gold: #c5a880;
+            --brand-gold-bright: #e5c07b;
+            --brand-gold-dark: #9e7f55;
+            --brand-beige: #e9e5db;
+        }
+
+        body {
+            background-color: var(--brand-base);
+            color: var(--brand-beige);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-tamil {
+            font-family: 'Noto Serif Tamil', 'Mukta Malar', serif;
+        }
+
+        .btn-gold-shimmer {
+            background: linear-gradient(135deg, #d4af37 0%, #b08953 50%, #8c6936 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+            transform: rotate(30deg);
+            animation: shimmer-swipe 4s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer-swipe {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(14, 20, 36, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(197, 168, 128, 0.18);
+        }
+
+        /* Drag handle cursor */
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .dragging {
+            opacity: 0.45;
+            border-style: dashed !important;
+            border-color: #e5c07b !important;
+        }
+
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(197, 168, 128, 0.3);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(197, 168, 128, 0.6);
+        }
+
+        /* Shimmer Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+
+    <!-- Firebase JS SDK (v9+ compat CDN for vanilla SPA) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-brand-base text-brand-beige">
+
+    <!-- GLOBAL CONFIGURATION (Update with your Firebase & Cloudinary Credentials) -->
+    <script>
+        window.FIREBASE_CONFIG = {
+            apiKey: "AIzaSy_TODO_REPLACE_WITH_YOUR_FIREBASE_API_KEY",
+            authDomain: "aca-church-pkt.firebaseapp.com",
+            projectId: "aca-church-pkt",
+            storageBucket: "aca-church-pkt.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef123456"
+        };
+
+        window.CLOUDINARY_CONFIG = {
+            cloudName: "YOUR_CLOUD_NAME_TODO", // e.g. "acachurchpkt"
+            uploadPreset: "YOUR_UNSIGNED_PRESET_TODO" // e.g. "aca_church_preset"
+        };
+
+        // Admin Whitelist: Authorized Firebase User UIDs or Emails
+        window.ADMIN_WHITELIST = {
+            uids: [
+                "ADMIN_UID_1_TODO",
+                "ADMIN_UID_2_TODO"
+            ],
+            emails: [
+                "admin@acachurchpkt.org",
+                "pastor@acachurchpkt.org"
+            ]
+        };
+    </script>
+
+    <!-- =========================================================================
+         1. LOGIN VIEW (DISPLAYED WHEN NOT AUTHENTICATED)
+         ========================================================================= -->
+    <div id="loginView" class="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-brand-base">
+        <!-- Ambient Glowing Background Aura -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-gold-dark/15 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="w-full max-w-md relative z-10">
+            <!-- Glass Login Card -->
+            <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-2xl border border-brand-gold/25 relative overflow-hidden">
+                <!-- Top Gold Cross Badge -->
+                <div class="text-center mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold mx-auto mb-4 shadow-lg">
+                        <i class="fa-solid fa-cross text-2xl"></i>
+                    </div>
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-1">ACA CHURCH PKT</span>
+                    <h1 class="font-serif text-2xl sm:text-3xl font-bold text-brand-ink">Admin Portal</h1>
+                    <p class="text-xs text-brand-beige/70 mt-1.5">Apostolic Christian Assembly • Content Management</p>
+                </div>
+
+                <!-- Error Alert Box -->
+                <div id="loginErrorAlert" class="hidden mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-start gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-sm mt-0.5 shrink-0"></i>
+                    <span id="loginErrorText">Invalid email or password.</span>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <label for="loginEmail" class="block text-[11px] uppercase tracking-wider font-bold text-brand-gold mb-1.5 flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-[10px]"></i>
+                            <span>Admin Email</span>
+                        </label>
+                        <input type="email" id="loginEmail" required
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3.5 text-brand-ink text-sm focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 focus:outline-none transition-all placeholder:text-brand-beige/40"
+                            placeholder="pastor@acachurchpkt.org">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label for="loginPassword" class="block text-[11px] uppercase tracking-wider font-bold text-brand-gold flex items-center gap-2">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
+                                <span>Password</span>
+                            </label>
+                            <button type="button" id="forgotPasswordBtn" class="text-[11px] text-brand-gold/80 hover:text-brand-gold font-medium transition-colors">
+                                Forgot password?
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <input type="password" id="loginPassword" required
+                                class="w-full bg-brand-base/80 border border-brand-line rounded-xl pl-4 pr-11 py-3.5 text-brand-ink text-sm focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 focus:outline-none transition-all placeholder:text-brand-beige/40"
+                                placeholder="••••••••••••">
+                            <button type="button" id="togglePasswordBtn" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-brand-beige/50 hover:text-brand-gold transition-colors p-1">
+                                <i class="fa-regular fa-eye text-xs" id="passwordEyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                            <input type="checkbox" id="rememberMe" checked class="rounded border-brand-line text-brand-gold focus:ring-brand-gold/20 bg-brand-base">
+                            <span class="text-brand-beige/80">Stay signed in</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" id="loginSubmitBtn"
+                        class="btn-gold-shimmer w-full py-4 text-brand-base text-xs font-black uppercase tracking-[0.25em] rounded-xl hover:opacity-95 transition-all shadow-xl shadow-brand-gold/20 flex items-center justify-center gap-2.5 cursor-pointer">
+                        <i class="fa-solid fa-arrow-right-to-bracket text-xs" id="loginSubmitIcon"></i>
+                        <span id="loginSubmitText">SIGN IN TO PORTAL</span>
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-brand-line/50 text-center">
+                    <a href="index.html" class="inline-flex items-center gap-2 text-xs text-brand-beige/60 hover:text-brand-gold transition-colors">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        <span>Return to Public Church Website</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Security Badge Footer -->
+            <p class="text-center text-[10px] uppercase tracking-widest text-brand-beige/40 mt-6">
+                <i class="fa-solid fa-shield-halved mr-1"></i> Authorized Personnel &amp; Pastors Only
+            </p>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         2. MAIN ADMIN APPLICATION (DISPLAYED AFTER AUTHENTICATION)
+         ========================================================================= -->
+    <div id="adminApp" class="hidden min-h-screen flex flex-col lg:flex-row">
+        
+        <!-- SIDEBAR NAVIGATION (DESKTOP) -->
+        <aside id="sidebar" class="w-72 bg-brand-surface border-r border-brand-line flex flex-col justify-between shrink-0 hidden lg:flex fixed top-0 bottom-0 left-0 z-30 transition-all duration-300">
+            <!-- Brand Crest & Header -->
+            <div>
+                <div class="p-6 border-b border-brand-line flex items-center justify-between">
+                    <a href="index.html" target="_blank" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform shadow-sm">
+                            <i class="fa-solid fa-cross text-base"></i>
+                        </div>
+                        <div>
+                            <div class="font-serif font-bold text-sm tracking-wider uppercase text-brand-ink leading-tight">ACA Church PKT</div>
+                            <div class="text-[9px] uppercase tracking-widest font-semibold text-brand-gold">Admin Manager</div>
+                        </div>
+                    </a>
+                    <a href="index.html" target="_blank" title="View Public Site" class="w-8 h-8 rounded-lg bg-brand-base border border-brand-line flex items-center justify-center text-brand-beige/60 hover:text-brand-gold hover:border-brand-gold transition-colors">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Navigation Links List -->
+                <nav class="p-4 space-y-1.5 overflow-y-auto max-h-[calc(100vh-230px)]">
+                    <button data-tab="dashboard" class="nav-tab-btn active w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-gauge-high w-4 text-center"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <span id="badgeDashboard" class="hidden px-2 py-0.5 rounded-full text-[9px] bg-brand-gold text-brand-base font-black">Live</span>
+                    </button>
+
+                    <div class="pt-3 pb-1.5 px-3 text-[10px] uppercase font-black tracking-widest text-brand-beige/40">Content Sections</div>
+
+                    <button data-tab="heroAbout" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-feather-pointed w-4 text-center"></i>
+                            <span>Hero &amp; About Us</span>
+                        </div>
+                    </button>
+
+                    <button data-tab="founder" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-user-tie w-4 text-center"></i>
+                            <span>Founder &amp; Pastor</span>
+                        </div>
+                    </button>
+
+                    <button data-tab="vision" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-book-bible w-4 text-center"></i>
+                            <span>Vision Items</span>
+                        </div>
+                        <span id="badgeVisionCount" class="px-2 py-0.5 rounded-full text-[9px] bg-brand-base border border-brand-line text-brand-gold font-bold">0</span>
+                    </button>
+
+                    <button data-tab="prayers" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-hands-praying w-4 text-center"></i>
+                            <span>Prayer Categories</span>
+                        </div>
+                        <span id="badgePrayerCatCount" class="px-2 py-0.5 rounded-full text-[9px] bg-brand-base border border-brand-line text-brand-gold font-bold">0</span>
+                    </button>
+
+                    <button data-tab="gallery" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-images w-4 text-center"></i>
+                            <span>Gallery Images</span>
+                        </div>
+                        <span id="badgeGalleryCount" class="px-2 py-0.5 rounded-full text-[9px] bg-brand-base border border-brand-line text-brand-gold font-bold">0</span>
+                    </button>
+
+                    <div class="pt-3 pb-1.5 px-3 text-[10px] uppercase font-black tracking-widest text-brand-beige/40">Inquiries &amp; Info</div>
+
+                    <button data-tab="inbox" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-inbox w-4 text-center"></i>
+                            <span>Prayer Petitions</span>
+                        </div>
+                        <span id="badgeNewPetitions" class="hidden px-2 py-0.5 rounded-full text-[9px] bg-amber-500 text-black font-black animate-pulse">0 New</span>
+                    </button>
+
+                    <button data-tab="serviceContact" class="nav-tab-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all text-left group">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-clock w-4 text-center"></i>
+                            <span>Services &amp; Contact</span>
+                        </div>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Bottom User Profile & Sign Out -->
+            <div class="p-4 border-t border-brand-line bg-brand-base/40">
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-brand-surface border border-brand-line mb-3">
+                    <div class="flex items-center gap-2.5 overflow-hidden">
+                        <div class="w-8 h-8 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs font-bold shrink-0">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div id="sidebarUserEmail" class="text-xs font-bold text-brand-ink truncate">admin@acachurchpkt.org</div>
+                            <div class="text-[9.5px] text-emerald-400 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Authenticated Admin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="adminThemeToggle" class="flex-1 py-2.5 px-3 rounded-xl border border-brand-line bg-brand-surface hover:border-brand-gold text-xs font-semibold text-brand-ink flex items-center justify-center gap-2 transition-colors">
+                        <i class="fa-solid fa-moon text-brand-gold" id="themeIcon"></i>
+                        <span id="themeText">Theme</span>
+                    </button>
+                    <button id="logoutBtn" class="flex-1 py-2.5 px-3 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-semibold text-red-400 flex items-center justify-center gap-2 transition-colors">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MOBILE HEADER & DRAWER -->
+        <header class="lg:hidden bg-brand-surface border-b border-brand-line p-4 sticky top-0 z-40 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+                    <i class="fa-solid fa-cross text-xs"></i>
+                </div>
+                <span class="font-serif font-bold text-sm tracking-wider uppercase text-brand-ink">ACA Church PKT</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a href="index.html" target="_blank" class="w-9 h-9 rounded-xl border border-brand-line flex items-center justify-center text-brand-gold">
+                    <i class="fa-solid fa-globe text-xs"></i>
+                </a>
+                <button id="mobileMenuToggle" class="w-9 h-9 rounded-xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+                    <i class="fa-solid fa-bars text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobileDrawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden lg:hidden flex flex-col justify-end transition-opacity">
+            <div class="bg-brand-surface border-t border-brand-line rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4">
+                <div class="flex items-center justify-between pb-4 border-b border-brand-line">
+                    <div class="font-serif font-bold text-lg text-brand-ink">Navigation Menu</div>
+                    <button id="closeMobileDrawer" class="w-8 h-8 rounded-full bg-brand-frame flex items-center justify-center text-brand-beige">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="space-y-1" id="mobileNavLinks">
+                    <!-- Cloned from desktop nav via JS -->
+                </div>
+                <div class="pt-4 border-t border-brand-line flex items-center gap-3">
+                    <button id="mobileLogoutBtn" class="w-full py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 lg:ml-72 min-h-screen flex flex-col bg-brand-base">
+            
+            <!-- Top Sticky Sub-Header -->
+            <div class="sticky top-0 z-20 bg-brand-base/90 backdrop-blur-xl border-b border-brand-line px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 id="currentSectionTitle" class="font-serif text-2xl font-bold text-brand-ink">Dashboard Overview</h2>
+                    <p id="currentSectionSubtitle" class="text-xs text-brand-beige/70">Welcome back to ACA Church PKT administration center.</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Unsaved Changes Alert Pill -->
+                    <div id="unsavedIndicator" class="hidden items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs font-bold animate-pulse">
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                        <span>Unsaved Changes</span>
+                    </div>
+
+                    <!-- Quick Preview Button -->
+                    <a href="index.html" target="_blank" class="px-4 py-2 rounded-xl border border-brand-line bg-brand-surface hover:border-brand-gold text-xs font-semibold text-brand-ink flex items-center gap-2 transition-all shadow-sm">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-brand-gold text-[11px]"></i>
+                        <span>Live Site</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dynamic Tab Contents Container -->
+            <div class="p-6 md:p-8 flex-1 max-w-6xl w-full mx-auto space-y-8">
+
+                <!-- =================================================================
+                     TAB 1: DASHBOARD
+                     ================================================================= -->
+                <section id="tab-dashboard" class="tab-content space-y-8">
+                    <!-- Quick Metrics Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Card 1: Prayer Requests -->
+                        <div class="glass-card rounded-2xl p-5 border border-brand-line flex items-center justify-between shadow-sm hover:border-brand-gold/40 transition-colors">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-beige/70 block mb-1">New Petitions</span>
+                                <div id="statNewPetitions" class="text-3xl font-serif font-bold text-brand-ink">0</div>
+                                <span class="text-[10px] text-brand-gold mt-1 block font-medium">Awaiting Prayer</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-inbox"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Vision Items -->
+                        <div class="glass-card rounded-2xl p-5 border border-brand-line flex items-center justify-between shadow-sm hover:border-brand-gold/40 transition-colors">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-beige/70 block mb-1">Vision Items</span>
+                                <div id="statVisionCount" class="text-3xl font-serif font-bold text-brand-ink">0</div>
+                                <span class="text-[10px] text-brand-gold mt-1 block font-medium">Bible Statements</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-brand-gold/15 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-book-bible"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Prayer Categories -->
+                        <div class="glass-card rounded-2xl p-5 border border-brand-line flex items-center justify-between shadow-sm hover:border-brand-gold/40 transition-colors">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-beige/70 block mb-1">Prayer Categories</span>
+                                <div id="statPrayerCatCount" class="text-3xl font-serif font-bold text-brand-ink">0</div>
+                                <span class="text-[10px] text-brand-gold mt-1 block font-medium">Marquee Cards</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-hands-praying"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Gallery Photos -->
+                        <div class="glass-card rounded-2xl p-5 border border-brand-line flex items-center justify-between shadow-sm hover:border-brand-gold/40 transition-colors">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-beige/70 block mb-1">Gallery Photos</span>
+                                <div id="statGalleryCount" class="text-3xl font-serif font-bold text-brand-ink">0</div>
+                                <span class="text-[10px] text-brand-gold mt-1 block font-medium">Cloudinary Hosted</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-images"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Seed & System Status Banner -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-gold/30 bg-gradient-to-r from-brand-surface via-brand-surface to-brand-gold/10 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                        <div class="space-y-2 max-w-2xl">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/15 text-brand-gold text-[10px] font-bold uppercase tracking-wider">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>First Time Initialization</span>
+                            </div>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-ink">Populate Initial Church Content</h3>
+                            <p class="text-xs sm:text-sm text-brand-beige/80 leading-relaxed">
+                                If your Firestore database is fresh, click to populate all default content for Hero Scripture, Pastor Sathiya Satchi bio, 3 Vision points, 6 Prayer categories, and Gallery images in one click.
+                            </p>
+                        </div>
+                        <button id="seedDatabaseBtn" class="btn-gold-shimmer px-6 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2.5 shrink-0 shadow-lg shadow-brand-gold/25 hover:scale-105 transition-transform cursor-pointer">
+                            <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
+                            <span>SEED DEFAULT CONTENT</span>
+                        </button>
+                    </div>
+
+                    <!-- Recent Petitions Inbox Preview -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Recent Prayer Petitions</h3>
+                                <p class="text-xs text-brand-beige/70">Latest requests submitted by visitors on the public site.</p>
+                            </div>
+                            <button onclick="switchTab('inbox')" class="text-xs text-brand-gold hover:underline font-bold flex items-center gap-1.5">
+                                <span>View All In Inbox</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+
+                        <div id="dashboardRecentPetitions" class="divide-y divide-brand-line/50">
+                            <!-- Populated dynamically -->
+                            <div class="py-8 text-center text-xs text-brand-beige/50">
+                                <i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading recent requests...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 2: HERO & ABOUT EDITOR
+                     ================================================================= -->
+                <section id="tab-heroAbout" class="tab-content hidden space-y-8">
+                    <!-- Hero Section Editor Card -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Section 1</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Hero Scripture Floating Text</h3>
+                            </div>
+                            <span class="text-xs text-brand-beige/50 font-mono">site_content/hero</span>
+                        </div>
+
+                        <form id="heroForm" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">
+                                            Top Welcome Badge
+                                        </label>
+                                        <input type="text" id="heroBadgeText"
+                                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                            placeholder="ACA CHURCH PKT • PATTUKKOTTAI • 50+ YEARS OF GOD'S GRACE">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">
+                                            Scripture Reference / Citation (Tamil &amp; English)
+                                        </label>
+                                        <input type="text" id="heroScriptureRef"
+                                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                            placeholder="சங்கீதம் 115:14 • Psalm 115:14">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">
+                                        Tamil Scripture Lines (Appears line by line)
+                                    </label>
+                                    <textarea id="heroScriptureText" rows="4"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-4 text-brand-ink text-sm font-tamil focus:border-brand-gold focus:outline-none leading-relaxed"
+                                        placeholder="கர்த்தர் உங்களையும்,&#10;உங்கள் பிள்ளைகளையும்&#10;வர்த்திக்கப் பண்ணுவார்."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Live Floating Typography Preview Card -->
+                            <div class="p-6 rounded-2xl bg-[#070b14] border border-amber-300/30 text-center relative overflow-hidden shadow-2xl">
+                                <div class="text-[9px] uppercase tracking-[0.3em] text-amber-400 font-bold mb-3">Live Preview (As displayed on Hero Video/Canvas)</div>
+                                <div id="heroPreviewText" class="font-tamil font-bold text-xl sm:text-2xl text-white tracking-wide leading-relaxed drop-shadow-[0_2px_10px_rgba(251,191,36,0.5)]">
+                                    கர்த்தர் உங்களையும்,<br>உங்கள் பிள்ளைகளையும்<br>வர்த்திக்கப் பண்ணுவார்.
+                                </div>
+                                <div class="inline-flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full bg-black/60 border border-amber-300/40 text-amber-200 font-tamil text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                    <span id="heroPreviewRef">சங்கீதம் 115:14</span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-2">
+                                <button type="submit" class="btn-gold-shimmer px-8 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-brand-gold/20">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>Save Hero Section</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- About Us Editor Card -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Section 2</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">About Us &amp; 50+ Years Heritage</h3>
+                            </div>
+                            <span class="text-xs text-brand-beige/50 font-mono">site_content/about</span>
+                        </div>
+
+                        <form id="aboutForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">
+                                        Section Heading
+                                    </label>
+                                    <input type="text" id="aboutHeading"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                        placeholder="50+ Years of Grace in Pattukkottai">
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">
+                                        Sub-Heading / Tagline
+                                    </label>
+                                    <input type="text" id="aboutTagline"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                        placeholder="ABOUT ACA CHURCH PKT">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5 flex items-center justify-between">
+                                    <span>About Church Description Body</span>
+                                    <span id="aboutBodyCount" class="text-[10px] text-brand-beige/50 font-mono">0 chars</span>
+                                </label>
+                                <textarea id="aboutBody" rows="6"
+                                    class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-4 text-brand-ink text-sm focus:border-brand-gold focus:outline-none leading-relaxed"
+                                    placeholder="Welcome to ACA Church PKT (Apostolic Christian Assembly), located in the heart of Pattukkottai..."></textarea>
+                            </div>
+
+                            <!-- 3 About Section Image Slots -->
+                            <div class="space-y-3">
+                                <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold">
+                                    About Section Showcase Images (3 Slots)
+                                </label>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <!-- Image 1 -->
+                                    <div class="p-3 rounded-2xl bg-brand-base/60 border border-brand-line space-y-2">
+                                        <div class="h-40 rounded-xl overflow-hidden bg-brand-surface relative group">
+                                            <img id="aboutImgPreview0" src="images/Pastor.jpeg" class="w-full h-full object-cover">
+                                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                                                <button type="button" onclick="uploadAboutImage(0)" class="px-3 py-1.5 rounded-lg bg-brand-gold text-brand-base text-[10px] font-bold uppercase">
+                                                    Replace Photo
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="aboutImgUrl0" class="w-full bg-brand-surface border border-brand-line rounded-lg px-2 py-1.5 text-[11px] text-brand-ink" placeholder="Image URL 1">
+                                    </div>
+
+                                    <!-- Image 2 -->
+                                    <div class="p-3 rounded-2xl bg-brand-base/60 border border-brand-line space-y-2">
+                                        <div class="h-40 rounded-xl overflow-hidden bg-brand-surface relative group">
+                                            <img id="aboutImgPreview1" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_decd1b4976_10f4c107eee2beda.png" class="w-full h-full object-cover">
+                                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                                                <button type="button" onclick="uploadAboutImage(1)" class="px-3 py-1.5 rounded-lg bg-brand-gold text-brand-base text-[10px] font-bold uppercase">
+                                                    Replace Photo
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="aboutImgUrl1" class="w-full bg-brand-surface border border-brand-line rounded-lg px-2 py-1.5 text-[11px] text-brand-ink" placeholder="Image URL 2">
+                                    </div>
+
+                                    <!-- Image 3 -->
+                                    <div class="p-3 rounded-2xl bg-brand-base/60 border border-brand-line space-y-2">
+                                        <div class="h-40 rounded-xl overflow-hidden bg-brand-surface relative group">
+                                            <img id="aboutImgPreview2" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png" class="w-full h-full object-cover">
+                                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                                                <button type="button" onclick="uploadAboutImage(2)" class="px-3 py-1.5 rounded-lg bg-brand-gold text-brand-base text-[10px] font-bold uppercase">
+                                                    Replace Photo
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="aboutImgUrl2" class="w-full bg-brand-surface border border-brand-line rounded-lg px-2 py-1.5 text-[11px] text-brand-ink" placeholder="Image URL 3">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-2">
+                                <button type="submit" class="btn-gold-shimmer px-8 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-brand-gold/20">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>Save About Section</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 3: FOUNDER & PASTOR EDITOR
+                     ================================================================= -->
+                <section id="tab-founder" class="tab-content hidden space-y-8">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Section 3</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Senior Pastor Sathiya Satchi Profile</h3>
+                            </div>
+                            <span class="text-xs text-brand-beige/50 font-mono">site_content/founder</span>
+                        </div>
+
+                        <form id="founderForm" class="space-y-6">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                                
+                                <!-- Left: Photo Upload & Preview -->
+                                <div class="lg:col-span-4 space-y-4">
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold">
+                                        Pastor's Official Portrait
+                                    </label>
+                                    <div class="relative rounded-2xl overflow-hidden border border-brand-gold/40 shadow-xl group aspect-[3/4] bg-brand-surface">
+                                        <img id="founderPhotoPreview" src="images/Pastor.jpeg" class="w-full h-full object-cover">
+                                        
+                                        <!-- Overlay Upload Trigger -->
+                                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center p-4 transition-opacity text-center">
+                                            <button type="button" id="uploadPastorPhotoBtn" class="px-4 py-2 rounded-xl bg-brand-gold text-brand-base text-xs font-black uppercase tracking-wider mb-2 shadow-lg cursor-pointer">
+                                                <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Upload Photo
+                                            </button>
+                                            <span class="text-[10px] text-white/80">Direct Cloudinary Upload</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hidden / Direct URL fallback input -->
+                                    <input type="text" id="founderPhotoUrl" class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-3 py-2 text-xs text-brand-ink" placeholder="Photo URL">
+                                </div>
+
+                                <!-- Right: Details Form -->
+                                <div class="lg:col-span-8 space-y-5">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Pastor Name</label>
+                                            <input type="text" id="founderName" required
+                                                class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                                placeholder="Pastor Sathiya Satchi">
+                                        </div>
+                                        <div>
+                                            <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Position / Title</label>
+                                            <input type="text" id="founderPosition" required
+                                                class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                                placeholder="Senior Pastor & Founder">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Pastoral Message Quote</label>
+                                        <textarea id="founderQuote" rows="3"
+                                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-4 text-brand-ink text-sm font-serif italic focus:border-brand-gold focus:outline-none"
+                                            placeholder='"For more than 50 years, God&apos;s grace has guided ACA Church PKT in Pattukkottai..."'></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Pastoral Biography &amp; Ministry Impact</label>
+                                        <textarea id="founderBio" rows="5"
+                                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-4 text-brand-ink text-sm focus:border-brand-gold focus:outline-none leading-relaxed"
+                                            placeholder="Under the visionary leadership of Pastor Sathiya Satchi, ACA Church PKT has stood as a pillar of spiritual strength..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-2 border-t border-brand-line">
+                                <button type="submit" class="btn-gold-shimmer px-8 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-brand-gold/20">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>Save Founder Profile</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 4: VISION ITEMS MANAGER
+                     ================================================================= -->
+                <section id="tab-vision" class="tab-content hidden space-y-8">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Collection</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Vision Statements &amp; Pledges</h3>
+                                <p class="text-xs text-brand-beige/70">Displayed on the animated Bible opening sequence.</p>
+                            </div>
+                            <button onclick="openVisionModal()" class="btn-gold-shimmer px-5 py-2.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shrink-0 cursor-pointer">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                                <span>Add Vision Item</span>
+                            </button>
+                        </div>
+
+                        <!-- Drag & Drop Order Helper Info -->
+                        <div class="p-3 rounded-xl bg-brand-gold/10 border border-brand-gold/25 text-brand-gold text-xs flex items-center gap-2.5">
+                            <i class="fa-solid fa-hand-pointer text-sm shrink-0"></i>
+                            <span>Drag cards using the handle to change their sequence on the public website.</span>
+                        </div>
+
+                        <!-- Vision Items List (Reorderable) -->
+                        <div id="visionItemsList" class="space-y-3">
+                            <!-- Populated dynamically -->
+                            <div class="py-12 text-center text-xs text-brand-beige/50">
+                                <i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading vision statements...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 5: PRAYER CATEGORIES MANAGER
+                     ================================================================= -->
+                <section id="tab-prayers" class="tab-content hidden space-y-8">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Collection</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Prayer Categories &amp; Services</h3>
+                                <p class="text-xs text-brand-beige/70">Powers both the infinite marquee prayer cards and prayer petition chips.</p>
+                            </div>
+                            <button onclick="openPrayerCatModal()" class="btn-gold-shimmer px-5 py-2.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shrink-0 cursor-pointer">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                                <span>Add Prayer Category</span>
+                            </button>
+                        </div>
+
+                        <!-- Categories List (Reorderable) -->
+                        <div id="prayerCategoriesList" class="space-y-3">
+                            <!-- Populated dynamically -->
+                            <div class="py-12 text-center text-xs text-brand-beige/50">
+                                <i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading prayer categories...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 6: GALLERY MANAGER
+                     ================================================================= -->
+                <section id="tab-gallery" class="tab-content hidden space-y-8">
+                    <!-- Upload Dropzone -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Cloudinary Media</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Add New Gallery Image</h3>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <!-- Dropzone Box -->
+                            <div id="galleryDropzone" class="lg:col-span-5 border-2 border-dashed border-brand-gold/40 hover:border-brand-gold rounded-2xl p-8 text-center cursor-pointer transition-colors bg-brand-base/40 flex flex-col items-center justify-center">
+                                <input type="file" id="galleryFileInput" accept="image/*" class="hidden">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-gold/15 text-brand-gold flex items-center justify-center text-xl mb-3">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <span class="text-xs font-bold text-brand-ink block mb-1">Click to Upload Image</span>
+                                <span class="text-[10px] text-brand-beige/60">JPG, PNG, WEBP via Cloudinary</span>
+                                <div id="uploadProgressBar" class="hidden w-full bg-brand-base rounded-full h-1.5 mt-4 overflow-hidden border border-brand-line">
+                                    <div id="uploadProgressFill" class="bg-brand-gold h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+
+                            <!-- Meta info & Save -->
+                            <div class="lg:col-span-7 space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Category</label>
+                                        <select id="newGalleryCategory" class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none">
+                                            <option value="worship">Worship</option>
+                                            <option value="prayer">Prayer Sanctuary</option>
+                                            <option value="fellowship">Fellowship</option>
+                                            <option value="service">Outreach &amp; Service</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Display Order</label>
+                                        <input type="number" id="newGalleryOrder" value="1" min="1"
+                                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Image Caption / Title</label>
+                                    <input type="text" id="newGalleryCaption"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                        placeholder="Sunday Morning Praise & Worship">
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Direct Image URL (Auto-filled on upload)</label>
+                                    <input type="text" id="newGalleryUrl"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm font-mono text-xs focus:border-brand-gold focus:outline-none"
+                                        placeholder="https://res.cloudinary.com/...">
+                                </div>
+
+                                <button type="button" id="saveGalleryImageBtn" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/20 cursor-pointer">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Add Image To Gallery</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Grid -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <h3 class="font-serif text-xl font-bold text-brand-ink">Published Gallery Photos</h3>
+                            <span id="galleryCountText" class="text-xs text-brand-gold font-bold">0 Photos</span>
+                        </div>
+
+                        <div id="galleryGridList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Populated dynamically -->
+                            <div class="col-span-full py-12 text-center text-xs text-brand-beige/50">
+                                <i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading gallery photos...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 7: PRAYER REQUESTS INBOX
+                     ================================================================= -->
+                <section id="tab-inbox" class="tab-content hidden space-y-8">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Admin-Only Inbox</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Prayer Petitions &amp; Intercession</h3>
+                                <p class="text-xs text-brand-beige/70">Confidential prayer requests submitted by members and seekers.</p>
+                            </div>
+
+                            <!-- Filter Tabs -->
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button onclick="filterPetitions('all')" class="petition-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-brand-gold bg-brand-gold text-brand-base">
+                                    All (<span id="countInboxAll">0</span>)
+                                </button>
+                                <button onclick="filterPetitions('new')" class="petition-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold">
+                                    New (<span id="countInboxNew">0</span>)
+                                </button>
+                                <button onclick="filterPetitions('praying')" class="petition-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold">
+                                    Praying (<span id="countInboxPraying">0</span>)
+                                </button>
+                                <button onclick="filterPetitions('resolved')" class="petition-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold">
+                                    Answered (<span id="countInboxResolved">0</span>)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Search Bar -->
+                        <div class="relative">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-brand-beige/40 text-xs"></i>
+                            <input type="text" id="petitionSearchInput"
+                                class="w-full bg-brand-base/80 border border-brand-line rounded-xl pl-11 pr-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none placeholder:text-brand-beige/40"
+                                placeholder="Search by petitioner name, phone/email, or prayer content...">
+                        </div>
+
+                        <!-- Petitions Table/Card List -->
+                        <div id="petitionsInboxList" class="space-y-3.5">
+                            <!-- Populated dynamically -->
+                            <div class="py-12 text-center text-xs text-brand-beige/50">
+                                <i class="fa-solid fa-spinner fa-spin mr-2"></i> Loading prayer petitions...
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =================================================================
+                     TAB 8: SERVICES & CONTACT EDITOR
+                     ================================================================= -->
+                <section id="tab-serviceContact" class="tab-content hidden space-y-8">
+                    <!-- Service Times Editor -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Section 4</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Weekly Service Times</h3>
+                            </div>
+                            <span class="text-xs text-brand-beige/50 font-mono">site_content/serviceTimes</span>
+                        </div>
+
+                        <form id="serviceTimesForm" class="space-y-4">
+                            <div id="serviceTimesRows" class="space-y-3">
+                                <!-- Populated dynamically with rows -->
+                            </div>
+
+                            <button type="button" onclick="addServiceTimeRow()" class="px-4 py-2 rounded-xl border border-dashed border-brand-gold/50 hover:border-brand-gold text-brand-gold text-xs font-bold uppercase flex items-center gap-2 transition-colors">
+                                <i class="fa-solid fa-plus"></i> Add Another Service Time
+                            </button>
+
+                            <div class="flex justify-end pt-4 border-t border-brand-line">
+                                <button type="submit" class="btn-gold-shimmer px-8 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-brand-gold/20">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>Save Service Times</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Contact & Social Details Editor -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-brand-line space-y-6">
+                        <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold block mb-0.5">Section 5</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-ink">Church Contact Details &amp; Social Links</h3>
+                            </div>
+                            <span class="text-xs text-brand-beige/50 font-mono">site_content/contact</span>
+                        </div>
+
+                        <form id="contactForm" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Official Telephone</label>
+                                    <input type="text" id="contactPhone"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                        placeholder="+91 94431 00000">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Contact Email</label>
+                                    <input type="email" id="contactEmail"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                        placeholder="info@acachurchpkt.org">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Full Physical Sanctuary Address</label>
+                                <textarea id="contactAddress" rows="2"
+                                    class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-4 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                                    placeholder="ACA Church PKT, Main Sanctuary, Pattukkottai, Thanjavur District, Tamil Nadu - 614601, India"></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-facebook-f text-xs"></i> Facebook URL
+                                    </label>
+                                    <input type="url" id="contactFacebook"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-3 py-2.5 text-brand-ink text-xs focus:border-brand-gold focus:outline-none"
+                                        placeholder="https://facebook.com/...">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-instagram text-xs"></i> Instagram URL
+                                    </label>
+                                    <input type="url" id="contactInstagram"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-3 py-2.5 text-brand-ink text-xs focus:border-brand-gold focus:outline-none"
+                                        placeholder="https://instagram.com/...">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-youtube text-xs"></i> YouTube Channel URL
+                                    </label>
+                                    <input type="url" id="contactYoutube"
+                                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-3 py-2.5 text-brand-ink text-xs focus:border-brand-gold focus:outline-none"
+                                        placeholder="https://youtube.com/...">
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-4 border-t border-brand-line">
+                                <button type="submit" class="btn-gold-shimmer px-8 py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-brand-gold/20">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>Save Contact &amp; Social</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- =========================================================================
+         3. MODALS & OVERLAYS
+         ========================================================================= -->
+
+    <!-- Global Toast Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
+
+    <!-- Vision Item Add/Edit Modal -->
+    <div id="visionModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-xl w-full border border-brand-gold/30 shadow-2xl relative overflow-hidden space-y-5">
+            <div class="flex items-center justify-between border-b border-brand-line pb-3">
+                <h3 id="visionModalTitle" class="font-serif text-xl font-bold text-brand-ink">Add Vision Statement</h3>
+                <button onclick="closeVisionModal()" class="w-8 h-8 rounded-full bg-brand-base flex items-center justify-center text-brand-beige hover:text-brand-gold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="visionModalForm" class="space-y-4">
+                <input type="hidden" id="visionModalId">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Statement Title (English)</label>
+                        <input type="text" id="visionModalTitleInput" required
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                            placeholder="God will give me one soul.">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Tamil Translation</label>
+                        <input type="text" id="visionModalTitleTamilInput" required
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm font-tamil focus:border-brand-gold focus:outline-none"
+                            placeholder="எனக்கு ஒரு ஆத்துமாவைத் தருவார்.">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Optional Scripture Verse / Citation</label>
+                    <input type="text" id="visionModalVerseInput"
+                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                        placeholder="Mark 9:23 • மாற்கு 9:23">
+                </div>
+
+                <!-- FontAwesome Icon Selector -->
+                <div>
+                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Card Icon (FontAwesome Solid)</label>
+                    <div class="grid grid-cols-6 sm:grid-cols-8 gap-2 p-2.5 rounded-xl bg-brand-base/60 border border-brand-line max-h-36 overflow-y-auto" id="iconPickerGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                    <input type="hidden" id="visionModalIconInput" value="fa-cross">
+                </div>
+
+                <div class="flex justify-end gap-3 pt-3 border-t border-brand-line">
+                    <button type="button" onclick="closeVisionModal()" class="px-5 py-2.5 rounded-xl border border-brand-line text-xs font-bold text-brand-ink hover:border-brand-gold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-gold-shimmer px-6 py-2.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider">
+                        Save Vision Item
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Prayer Category Add/Edit Modal -->
+    <div id="prayerCatModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-xl w-full border border-brand-gold/30 shadow-2xl relative overflow-hidden space-y-5">
+            <div class="flex items-center justify-between border-b border-brand-line pb-3">
+                <h3 id="prayerCatModalTitle" class="font-serif text-xl font-bold text-brand-ink">Add Prayer Category</h3>
+                <button onclick="closePrayerCatModal()" class="w-8 h-8 rounded-full bg-brand-base flex items-center justify-center text-brand-beige hover:text-brand-gold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="prayerCatModalForm" class="space-y-4">
+                <input type="hidden" id="prayerCatModalId">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Category Name (English)</label>
+                        <input type="text" id="prayerCatTitleInput" required
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                            placeholder="Morning Prayer">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Tamil Translation</label>
+                        <input type="text" id="prayerCatTitleTamilInput" required
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm font-tamil focus:border-brand-gold focus:outline-none"
+                            placeholder="காலை ஜெபம்">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Schedule Time</label>
+                        <input type="text" id="prayerCatTimeInput"
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                            placeholder="9:00 AM – 11:30 AM">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Frequency Badge</label>
+                        <input type="text" id="prayerCatFreqInput"
+                            class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-2.5 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                            placeholder="Daily / Sunday">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Description</label>
+                    <textarea id="prayerCatDescInput" rows="2"
+                        class="w-full bg-brand-base/80 border border-brand-line rounded-xl p-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                        placeholder="Start each morning in God's presence with thanksgiving, divine guidance, and holy strength."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] uppercase font-bold tracking-wider text-brand-gold mb-1.5">Icon</label>
+                    <div class="grid grid-cols-6 sm:grid-cols-8 gap-2 p-2.5 rounded-xl bg-brand-base/60 border border-brand-line max-h-32 overflow-y-auto" id="prayerIconPickerGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                    <input type="hidden" id="prayerCatIconInput" value="fa-hands-praying">
+                </div>
+
+                <div class="flex justify-end gap-3 pt-3 border-t border-brand-line">
+                    <button type="button" onclick="closePrayerCatModal()" class="px-5 py-2.5 rounded-xl border border-brand-line text-xs font-bold text-brand-ink hover:border-brand-gold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-gold-shimmer px-6 py-2.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider">
+                        Save Category
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Petition Details Modal -->
+    <div id="petitionModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-2xl w-full border border-brand-gold/30 shadow-2xl relative overflow-hidden space-y-6">
+            <div class="flex items-center justify-between border-b border-brand-line pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-gold/15 text-brand-gold flex items-center justify-center text-base">
+                        <i class="fa-solid fa-hands-praying"></i>
+                    </div>
+                    <div>
+                        <h3 id="petitionModalName" class="font-serif text-xl font-bold text-brand-ink">Petitioner Name</h3>
+                        <div id="petitionModalMeta" class="text-xs text-brand-beige/70">Category • Date</div>
+                    </div>
+                </div>
+                <button onclick="closePetitionModal()" class="w-8 h-8 rounded-full bg-brand-base flex items-center justify-center text-brand-beige hover:text-brand-gold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Contact Row -->
+            <div class="flex flex-wrap items-center gap-4 p-3.5 rounded-xl bg-brand-base/60 border border-brand-line text-xs">
+                <div class="flex items-center gap-2 text-brand-ink font-semibold">
+                    <i class="fa-solid fa-phone text-brand-gold"></i>
+                    <span id="petitionModalContact">Phone or Email</span>
+                </div>
+                <div id="petitionModalAnonBadge" class="ml-auto px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-gold/15 text-brand-gold">
+                    Confidential
+                </div>
+            </div>
+
+            <!-- Message Body -->
+            <div>
+                <label class="block text-[10px] uppercase font-bold tracking-widest text-brand-gold mb-2">Prayer Petition Message</label>
+                <div id="petitionModalMessage" class="p-5 rounded-2xl bg-brand-surface border border-brand-line text-sm text-brand-ink leading-relaxed font-serif whitespace-pre-line">
+                    Full prayer message text...
+                </div>
+            </div>
+
+            <!-- Action Status Buttons -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-brand-line">
+                <div class="flex items-center gap-2" id="petitionModalStatusActions">
+                    <!-- Status triggers -->
+                </div>
+                <button id="petitionModalDeleteBtn" class="px-4 py-2 rounded-xl text-red-400 hover:bg-red-500/10 text-xs font-bold transition-colors">
+                    <i class="fa-solid fa-trash-can mr-1"></i> Delete Request
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Confirmation Dialog -->
+    <div id="confirmModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 max-w-md w-full border border-red-500/30 shadow-2xl space-y-4 text-center">
+            <div class="w-12 h-12 rounded-2xl bg-red-500/15 text-red-400 flex items-center justify-center text-xl mx-auto">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="confirmTitle" class="font-serif text-lg font-bold text-brand-ink">Confirm Deletion</h3>
+            <p id="confirmMessage" class="text-xs text-brand-beige/70 leading-relaxed">Are you sure you want to proceed with this action?</p>
+            <div class="flex items-center justify-center gap-3 pt-2">
+                <button id="confirmCancelBtn" class="px-5 py-2.5 rounded-xl border border-brand-line text-xs font-bold text-brand-ink hover:border-brand-gold">
+                    Cancel
+                </button>
+                <button id="confirmOkBtn" class="px-6 py-2.5 rounded-xl bg-red-500 text-white font-bold text-xs uppercase tracking-wider hover:bg-red-600 transition-colors">
+                    Confirm Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div id="resetPasswordModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-brand-gold/30 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between border-b border-brand-line pb-3">
+                <h3 class="font-serif text-lg font-bold text-brand-ink">Reset Admin Password</h3>
+                <button onclick="closeResetPasswordModal()" class="w-8 h-8 rounded-full bg-brand-base flex items-center justify-center text-brand-beige hover:text-brand-gold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-brand-beige/70 leading-relaxed">Enter your registered admin email address and Firebase will send you a secure password reset link.</p>
+            <form id="resetPasswordForm" class="space-y-4">
+                <input type="email" id="resetEmailInput" required
+                    class="w-full bg-brand-base/80 border border-brand-line rounded-xl px-4 py-3 text-brand-ink text-sm focus:border-brand-gold focus:outline-none"
+                    placeholder="admin@acachurchpkt.org">
+                <button type="submit" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-brand-base font-black text-xs uppercase tracking-wider">
+                    Send Password Reset Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         4. VANILLA JS LOGIC CONTROLLER & FIREBASE ENGINE
+         ========================================================================= -->
+    <script>
+        // State
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        let hasUnsavedChanges = false;
+        let currentTab = 'dashboard';
+        let currentPetitionFilter = 'all';
+
+        // In-memory Cached Collections
+        let cachedVisionItems = [];
+        let cachedPrayerCategories = [];
+        let cachedGalleryImages = [];
+        let cachedPetitions = [];
+
+        // FontAwesome Icons for pickers
+        const COMMON_ICONS = [
+            'fa-cross', 'fa-book-bible', 'fa-church', 'fa-dove', 'fa-hands-praying',
+            'fa-heart', 'fa-sun', 'fa-fire', 'fa-star', 'fa-water',
+            'fa-crown', 'fa-shield-halved', 'fa-seedling', 'fa-bell', 'fa-microphone',
+            'fa-people-roof', 'fa-heart-pulse', 'fa-briefcase', 'fa-compass', 'fa-candle-holder',
+            'fa-hand-holding-heart', 'fa-scroll', 'fa-landmark', 'fa-user-group'
+        ];
+
+        // -------------------------------------------------------------------------
+        // INITIALIZE FIREBASE
+        // -------------------------------------------------------------------------
+        function initFirebase() {
+            try {
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(window.FIREBASE_CONFIG);
+                }
+                auth = firebase.auth();
+                db = firebase.firestore();
+
+                // Auth State Listener
+                auth.onAuthStateChanged((user) => {
+                    if (user) {
+                        // Check Whitelist
+                        if (isUserWhitelisted(user)) {
+                            currentUser = user;
+                            showAdminApp(user);
+                        } else {
+                            auth.signOut();
+                            showLoginError("Access Denied: This account is not in the authorized Admin whitelist.");
+                            showLoginView();
+                        }
+                    } else {
+                        currentUser = null;
+                        showLoginView();
+                    }
+                });
+            } catch (err) {
+                console.warn("Firebase initialization warning (Normal during local testing before config):", err);
+                // Fallback to simulated offline login for local preview testing if keys aren't added yet
+                setupLocalFallback();
+            }
+        }
+
+        function isUserWhitelisted(user) {
+            if (!window.ADMIN_WHITELIST) return true;
+            const uids = window.ADMIN_WHITELIST.uids || [];
+            const emails = window.ADMIN_WHITELIST.emails || [];
+
+            // If placeholder strings are still present, permit login in test mode
+            if (uids.includes("ADMIN_UID_1_TODO") && emails.includes("admin@acachurchpkt.org")) {
+                return true;
+            }
+
+            return uids.includes(user.uid) || (user.email && emails.includes(user.email.toLowerCase()));
+        }
+
+        // -------------------------------------------------------------------------
+        // UI SWITCHING & NAVIGATION
+        // -------------------------------------------------------------------------
+        function showLoginView() {
+            document.getElementById('loginView').classList.remove('hidden');
+            document.getElementById('adminApp').classList.add('hidden');
+        }
+
+        function showAdminApp(user) {
+            document.getElementById('loginView').classList.add('hidden');
+            document.getElementById('adminApp').classList.remove('hidden');
+            document.getElementById('sidebarUserEmail').textContent = user.email || 'Admin Pastor';
+            
+            // Build icon pickers
+            populateIconPickers();
+
+            // Load all Firestore collections
+            loadAllSiteData();
+        }
+
+        function switchTab(tabId) {
+            if (hasUnsavedChanges) {
+                if (!confirm("You have unsaved changes in this section. Are you sure you want to switch tabs?")) {
+                    return;
+                }
+                setUnsaved(false);
+            }
+
+            currentTab = tabId;
+
+            // Update Tab Content View
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const targetContent = document.getElementById(`tab-${tabId}`);
+            if (targetContent) targetContent.classList.remove('hidden');
+
+            // Update Nav Buttons
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('bg-brand-gold/15', 'text-brand-gold', 'border', 'border-brand-gold/30');
+                    btn.classList.remove('text-brand-beige/80');
+                } else {
+                    btn.classList.remove('bg-brand-gold/15', 'text-brand-gold', 'border', 'border-brand-gold/30');
+                    btn.classList.add('text-brand-beige/80');
+                }
+            });
+
+            // Update Header Titles
+            const titles = {
+                dashboard: { t: "Dashboard Overview", s: "Real-time metrics, quick shortcuts, and recent prayer inquiries." },
+                heroAbout: { t: "Hero Scripture & About Us", s: "Edit floating scripture text, heritage body, and showcase photos." },
+                founder: { t: "Founder & Pastor Sathiya Satchi", s: "Update Pastor's bio, pastoral quote, and portrait." },
+                vision: { t: "Vision Statements & Pledges", s: "Manage the Bible opening sequence statements and drag to reorder." },
+                prayers: { t: "Prayer Categories & Schedules", s: "Configure the marquee cards and prayer petition chips." },
+                gallery: { t: "Church Moments Gallery", s: "Direct Cloudinary image uploads, categories, and photo grid." },
+                inbox: { t: "Prayer Petitions Inbox", s: "Review submitted prayers, update intercession statuses, and minister." },
+                serviceContact: { t: "Services & Contact Info", s: "Update worship timings, phone, email, and social links." }
+            };
+            if (titles[tabId]) {
+                document.getElementById('currentSectionTitle').textContent = titles[tabId].t;
+                document.getElementById('currentSectionSubtitle').textContent = titles[tabId].s;
+            }
+
+            // Close mobile drawer if open
+            closeMobileMenuDrawer();
+        }
+
+        function setUnsaved(state) {
+            hasUnsavedChanges = state;
+            const ind = document.getElementById('unsavedIndicator');
+            if (ind) {
+                if (state) ind.classList.remove('hidden');
+                else ind.classList.add('hidden');
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // TOAST NOTIFICATION ENGINE
+        // -------------------------------------------------------------------------
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            const icons = {
+                success: 'fa-circle-check text-emerald-400',
+                error: 'fa-circle-xmark text-red-400',
+                warning: 'fa-triangle-exclamation text-amber-400',
+                info: 'fa-circle-info text-sky-400'
+            };
+
+            toast.className = 'pointer-events-auto p-4 rounded-2xl glass-card border border-brand-gold/30 shadow-2xl flex items-center justify-between gap-3 text-xs text-brand-ink animate-bounce transition-all duration-300';
+            toast.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid ${icons[type] || icons.info} text-base shrink-0"></i>
+                    <span class="font-medium leading-tight">${message}</span>
+                </div>
+                <button type="button" class="text-brand-beige/50 hover:text-brand-gold shrink-0 p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            `;
+
+            toast.querySelector('button').onclick = () => toast.remove();
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-10');
+                setTimeout(() => toast.remove(), 400);
+            }, 4500);
+        }
+
+        // Confirmation Modal Engine
+        function showConfirm(title, message, onConfirm) {
+            const modal = document.getElementById('confirmModal');
+            document.getElementById('confirmTitle').textContent = title;
+            document.getElementById('confirmMessage').textContent = message;
+            
+            const okBtn = document.getElementById('confirmOkBtn');
+            const cancelBtn = document.getElementById('confirmCancelBtn');
+
+            const handleOk = () => {
+                modal.classList.add('hidden');
+                okBtn.removeEventListener('click', handleOk);
+                onConfirm();
+            };
+
+            const handleCancel = () => {
+                modal.classList.add('hidden');
+                cancelBtn.removeEventListener('click', handleCancel);
+            };
+
+            okBtn.addEventListener('click', handleOk);
+            cancelBtn.addEventListener('click', handleCancel);
+            modal.classList.remove('hidden');
+        }
+
+        // -------------------------------------------------------------------------
+        // CLOUDINARY DIRECT UNSIGNED UPLOAD HELPER
+        // -------------------------------------------------------------------------
+        async function uploadToCloudinary(file, onProgress) {
+            if (!window.CLOUDINARY_CONFIG || window.CLOUDINARY_CONFIG.cloudName === "YOUR_CLOUD_NAME_TODO") {
+                showToast("Please configure Cloudinary in window.CLOUDINARY_CONFIG (SETUP.md)", "warning");
+                // For demonstration, simulate upload
+                return URL.createObjectURL(file);
+            }
+
+            const url = `https://api.cloudinary.com/v1_1/${window.CLOUDINARY_CONFIG.cloudName}/image/upload`;
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', window.CLOUDINARY_CONFIG.uploadPreset);
+
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', url, true);
+
+                xhr.upload.onprogress = (e) => {
+                    if (e.lengthComputable && onProgress) {
+                        const pct = Math.round((e.loaded / e.total) * 100);
+                        onProgress(pct);
+                    }
+                };
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        resolve(data.secure_url);
+                    } else {
+                        reject(new Error("Cloudinary upload failed: " + xhr.responseText));
+                    }
+                };
+
+                xhr.onerror = () => reject(new Error("Network error during Cloudinary upload"));
+                xhr.send(formData);
+            });
+        }
+
+        // -------------------------------------------------------------------------
+        // FIRESTORE DATA SYNC & LOAD
+        // -------------------------------------------------------------------------
+        async function loadAllSiteData() {
+            if (!db) return;
+
+            try {
+                // 1. Load site_content docs
+                const contentSnap = await db.collection('site_content').get();
+                contentSnap.forEach(doc => {
+                    const data = doc.data();
+                    if (doc.id === 'hero') populateHeroForm(data);
+                    if (doc.id === 'about') populateAboutForm(data);
+                    if (doc.id === 'founder') populateFounderForm(data);
+                    if (doc.id === 'serviceTimes') populateServiceTimesForm(data);
+                    if (doc.id === 'contact') populateContactForm(data);
+                });
+
+                // 2. Load vision_items
+                const visionSnap = await db.collection('vision_items').orderBy('order', 'asc').get();
+                cachedVisionItems = [];
+                visionSnap.forEach(doc => cachedVisionItems.push({ id: doc.id, ...doc.data() }));
+                renderVisionList();
+
+                // 3. Load prayer_categories
+                const prayerSnap = await db.collection('prayer_categories').orderBy('order', 'asc').get();
+                cachedPrayerCategories = [];
+                prayerSnap.forEach(doc => cachedPrayerCategories.push({ id: doc.id, ...doc.data() }));
+                renderPrayerCatList();
+
+                // 4. Load gallery_images
+                const gallerySnap = await db.collection('gallery_images').orderBy('order', 'asc').get();
+                cachedGalleryImages = [];
+                gallerySnap.forEach(doc => cachedGalleryImages.push({ id: doc.id, ...doc.data() }));
+                renderGalleryGrid();
+
+                // 5. Load prayer_requests
+                const petitionSnap = await db.collection('prayer_requests').orderBy('createdAt', 'desc').get();
+                cachedPetitions = [];
+                petitionSnap.forEach(doc => cachedPetitions.push({ id: doc.id, ...doc.data() }));
+                renderPetitionsList();
+
+                updateMetricBadges();
+            } catch (err) {
+                console.error("Firestore read error:", err);
+                showToast("Could not sync with Firestore: " + err.message, "error");
+            }
+        }
+
+        function updateMetricBadges() {
+            const newPetitionsCount = cachedPetitions.filter(p => p.status === 'new').length;
+            
+            // Dashboard stat numbers
+            document.getElementById('statNewPetitions').textContent = newPetitionsCount;
+            document.getElementById('statVisionCount').textContent = cachedVisionItems.length;
+            document.getElementById('statPrayerCatCount').textContent = cachedPrayerCategories.length;
+            document.getElementById('statGalleryCount').textContent = cachedGalleryImages.length;
+
+            // Sidebar pill badges
+            document.getElementById('badgeVisionCount').textContent = cachedVisionItems.length;
+            document.getElementById('badgePrayerCatCount').textContent = cachedPrayerCategories.length;
+            document.getElementById('badgeGalleryCount').textContent = cachedGalleryImages.length;
+
+            const newBadge = document.getElementById('badgeNewPetitions');
+            if (newPetitionsCount > 0) {
+                newBadge.textContent = `${newPetitionsCount} New`;
+                newBadge.classList.remove('hidden');
+            } else {
+                newBadge.classList.add('hidden');
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // SECTION 1: HERO & ABOUT HANDLERS
+        // -------------------------------------------------------------------------
+        function populateHeroForm(data) {
+            if (!data) return;
+            document.getElementById('heroBadgeText').value = data.badgeText || '';
+            document.getElementById('heroScriptureRef').value = data.scriptureRef || '';
+            document.getElementById('heroScriptureText').value = data.scriptureText || '';
+            updateHeroPreview();
+        }
+
+        function updateHeroPreview() {
+            const txt = document.getElementById('heroScriptureText').value;
+            const ref = document.getElementById('heroScriptureRef').value;
+            document.getElementById('heroPreviewText').innerHTML = txt ? txt.replace(/\n/g, '<br>') : 'கர்த்தர் உங்களையும்,<br>உங்கள் பிள்ளைகளையும்<br>வர்த்திக்கப் பண்ணுவார்.';
+            document.getElementById('heroPreviewRef').textContent = ref || 'சங்கீதம் 115:14';
+        }
+
+        document.getElementById('heroScriptureText').addEventListener('input', () => {
+            updateHeroPreview();
+            setUnsaved(true);
+        });
+        document.getElementById('heroScriptureRef').addEventListener('input', () => {
+            updateHeroPreview();
+            setUnsaved(true);
+        });
+
+        document.getElementById('heroForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const heroData = {
+                badgeText: document.getElementById('heroBadgeText').value.trim(),
+                scriptureRef: document.getElementById('heroScriptureRef').value.trim(),
+                scriptureText: document.getElementById('heroScriptureText').value.trim(),
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                await db.collection('site_content').doc('hero').set(heroData, { merge: true });
+                showToast("Hero scripture updated successfully!");
+                setUnsaved(false);
+            } catch (err) {
+                showToast("Save failed: " + err.message, "error");
+            }
+        });
+
+        function populateAboutForm(data) {
+            if (!data) return;
+            document.getElementById('aboutHeading').value = data.heading || '';
+            document.getElementById('aboutTagline').value = data.tagline || '';
+            document.getElementById('aboutBody').value = data.body || '';
+            
+            const images = data.images || [];
+            for (let i = 0; i < 3; i++) {
+                if (images[i]) {
+                    document.getElementById(`aboutImgUrl${i}`).value = images[i];
+                    document.getElementById(`aboutImgPreview${i}`).src = images[i];
+                }
+            }
+            updateAboutCount();
+        }
+
+        function updateAboutCount() {
+            const len = document.getElementById('aboutBody').value.length;
+            document.getElementById('aboutBodyCount').textContent = `${len} chars`;
+        }
+        document.getElementById('aboutBody').addEventListener('input', () => {
+            updateAboutCount();
+            setUnsaved(true);
+        });
+
+        async function uploadAboutImage(index) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                try {
+                    showToast("Uploading about image...", "info");
+                    const url = await uploadToCloudinary(file);
+                    document.getElementById(`aboutImgUrl${index}`).value = url;
+                    document.getElementById(`aboutImgPreview${index}`).src = url;
+                    showToast(`Image ${index + 1} uploaded!`, "success");
+                    setUnsaved(true);
+                } catch (err) {
+                    showToast(err.message, "error");
+                }
+            };
+            input.click();
+        }
+
+        document.getElementById('aboutForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const images = [
+                document.getElementById('aboutImgUrl0').value.trim(),
+                document.getElementById('aboutImgUrl1').value.trim(),
+                document.getElementById('aboutImgUrl2').value.trim()
+            ].filter(Boolean);
+
+            const aboutData = {
+                heading: document.getElementById('aboutHeading').value.trim(),
+                tagline: document.getElementById('aboutTagline').value.trim(),
+                body: document.getElementById('aboutBody').value.trim(),
+                images: images,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                await db.collection('site_content').doc('about').set(aboutData, { merge: true });
+                showToast("About section updated successfully!");
+                setUnsaved(false);
+            } catch (err) {
+                showToast("Save failed: " + err.message, "error");
+            }
+        });
+
+        // -------------------------------------------------------------------------
+        // SECTION 2: FOUNDER & PASTOR HANDLERS
+        // -------------------------------------------------------------------------
+        function populateFounderForm(data) {
+            if (!data) return;
+            document.getElementById('founderName').value = data.name || '';
+            document.getElementById('founderPosition').value = data.position || '';
+            document.getElementById('founderQuote').value = data.quote || '';
+            document.getElementById('founderBio').value = data.bio || '';
+            if (data.photoUrl) {
+                document.getElementById('founderPhotoUrl').value = data.photoUrl;
+                document.getElementById('founderPhotoPreview').src = data.photoUrl;
+            }
+        }
+
+        document.getElementById('uploadPastorPhotoBtn').addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                try {
+                    showToast("Uploading Pastor's portrait...", "info");
+                    const url = await uploadToCloudinary(file);
+                    document.getElementById('founderPhotoUrl').value = url;
+                    document.getElementById('founderPhotoPreview').src = url;
+                    showToast("Portrait uploaded!", "success");
+                    setUnsaved(true);
+                } catch (err) {
+                    showToast(err.message, "error");
+                }
+            };
+            input.click();
+        });
+
+        document.getElementById('founderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const founderData = {
+                name: document.getElementById('founderName').value.trim(),
+                position: document.getElementById('founderPosition').value.trim(),
+                quote: document.getElementById('founderQuote').value.trim(),
+                bio: document.getElementById('founderBio').value.trim(),
+                photoUrl: document.getElementById('founderPhotoUrl').value.trim(),
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                await db.collection('site_content').doc('founder').set(founderData, { merge: true });
+                showToast("Pastor's profile saved successfully!");
+                setUnsaved(false);
+            } catch (err) {
+                showToast("Save failed: " + err.message, "error");
+            }
+        });
+
+        // -------------------------------------------------------------------------
+        // SECTION 3: VISION ITEMS MANAGER & REORDER
+        // -------------------------------------------------------------------------
+        function renderVisionList() {
+            const container = document.getElementById('visionItemsList');
+            if (cachedVisionItems.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-xs text-brand-beige/50">No vision items found. Click "Add Vision Item" to create one.</div>`;
+                return;
+            }
+
+            container.innerHTML = cachedVisionItems.map((item, index) => `
+                <div class="vision-drag-item p-4 sm:p-5 rounded-2xl glass-card border border-brand-line hover:border-brand-gold/40 flex items-center justify-between gap-4 transition-all"
+                    draggable="true" data-id="${item.id}" data-index="${index}">
+                    
+                    <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <div class="drag-handle text-brand-beige/40 hover:text-brand-gold p-2">
+                            <i class="fa-solid fa-grip-vertical text-sm"></i>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-amber-400/15 border border-amber-400/35 flex items-center justify-center text-amber-300 font-cinzel font-bold text-sm shrink-0">
+                            ${index + 1}
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="font-serif text-sm sm:text-base font-bold text-brand-ink truncate">${item.title || 'Vision Title'}</h4>
+                            <p class="font-tamil text-xs text-amber-200/80 truncate">${item.titleTamil || ''}</p>
+                            ${item.verse ? `<span class="text-[10px] font-mono text-brand-gold/80">${item.verse}</span>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="editVisionItem('${item.id}')" class="w-8 h-8 rounded-lg bg-brand-base border border-brand-line hover:border-brand-gold text-brand-gold flex items-center justify-center text-xs" title="Edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button onclick="deleteVisionItem('${item.id}')" class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400 flex items-center justify-center text-xs" title="Delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            initVisionDragDrop();
+        }
+
+        function initVisionDragDrop() {
+            const items = document.querySelectorAll('.vision-drag-item');
+            let dragSrcEl = null;
+
+            items.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    dragSrcEl = this;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+
+                item.addEventListener('dragenter', function() {
+                    this.classList.add('border-brand-gold');
+                });
+
+                item.addEventListener('dragleave', function() {
+                    this.classList.remove('border-brand-gold');
+                });
+
+                item.addEventListener('drop', async function(e) {
+                    e.stopPropagation();
+                    this.classList.remove('border-brand-gold');
+
+                    if (dragSrcEl !== this) {
+                        const fromIdx = parseInt(dragSrcEl.getAttribute('data-index'));
+                        const toIdx = parseInt(this.getAttribute('data-index'));
+                        
+                        // Reorder cached array
+                        const moved = cachedVisionItems.splice(fromIdx, 1)[0];
+                        cachedVisionItems.splice(toIdx, 0, moved);
+
+                        // Update Firestore batch order
+                        renderVisionList();
+                        await batchUpdateVisionOrders();
+                    }
+                    return false;
+                });
+
+                item.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                });
+            });
+        }
+
+        async function batchUpdateVisionOrders() {
+            try {
+                const batch = db.batch();
+                cachedVisionItems.forEach((item, idx) => {
+                    item.order = idx + 1;
+                    const ref = db.collection('vision_items').doc(item.id);
+                    batch.update(ref, { order: idx + 1 });
+                });
+                await batch.commit();
+                showToast("Vision order updated!");
+            } catch (err) {
+                showToast("Reorder error: " + err.message, "error");
+            }
+        }
+
+        function openVisionModal(item = null) {
+            document.getElementById('visionModalId').value = item ? item.id : '';
+            document.getElementById('visionModalTitleInput').value = item ? item.title : '';
+            document.getElementById('visionModalTitleTamilInput').value = item ? item.titleTamil : '';
+            document.getElementById('visionModalVerseInput').value = item ? item.verse || '' : '';
+            document.getElementById('visionModalIconInput').value = item ? item.icon || 'fa-cross' : 'fa-cross';
+            document.getElementById('visionModalTitle').textContent = item ? 'Edit Vision Statement' : 'Add Vision Statement';
+            selectIconInPicker('iconPickerGrid', item ? item.icon : 'fa-cross');
+            document.getElementById('visionModal').classList.remove('hidden');
+        }
+
+        function closeVisionModal() {
+            document.getElementById('visionModal').classList.add('hidden');
+        }
+
+        function editVisionItem(id) {
+            const item = cachedVisionItems.find(v => v.id === id);
+            if (item) openVisionModal(item);
+        }
+
+        function deleteVisionItem(id) {
+            showConfirm("Delete Vision Item", "Are you sure you want to delete this vision statement?", async () => {
+                try {
+                    await db.collection('vision_items').doc(id).delete();
+                    cachedVisionItems = cachedVisionItems.filter(v => v.id !== id);
+                    renderVisionList();
+                    updateMetricBadges();
+                    showToast("Vision item deleted!");
+                } catch (err) {
+                    showToast("Delete failed: " + err.message, "error");
+                }
+            });
+        }
+
+        document.getElementById('visionModalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('visionModalId').value;
+            const data = {
+                title: document.getElementById('visionModalTitleInput').value.trim(),
+                titleTamil: document.getElementById('visionModalTitleTamilInput').value.trim(),
+                verse: document.getElementById('visionModalVerseInput').value.trim(),
+                icon: document.getElementById('visionModalIconInput').value,
+                order: id ? (cachedVisionItems.find(v => v.id === id)?.order || 1) : cachedVisionItems.length + 1
+            };
+
+            try {
+                if (id) {
+                    await db.collection('vision_items').doc(id).update(data);
+                    const idx = cachedVisionItems.findIndex(v => v.id === id);
+                    if (idx !== -1) cachedVisionItems[idx] = { id, ...data };
+                    showToast("Vision item updated!");
+                } else {
+                    const docRef = await db.collection('vision_items').add(data);
+                    cachedVisionItems.push({ id: docRef.id, ...data });
+                    showToast("Vision item created!");
+                }
+                closeVisionModal();
+                renderVisionList();
+                updateMetricBadges();
+            } catch (err) {
+                showToast("Save error: " + err.message, "error");
+            }
+        });
+
+        // -------------------------------------------------------------------------
+        // SECTION 4: PRAYER CATEGORIES & SERVICES MANAGER
+        // -------------------------------------------------------------------------
+        function renderPrayerCatList() {
+            const container = document.getElementById('prayerCategoriesList');
+            if (cachedPrayerCategories.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-xs text-brand-beige/50">No prayer categories found.</div>`;
+                return;
+            }
+
+            container.innerHTML = cachedPrayerCategories.map((item, index) => `
+                <div class="prayer-drag-item p-4 sm:p-5 rounded-2xl glass-card border border-brand-line hover:border-brand-gold/40 flex items-center justify-between gap-4 transition-all"
+                    draggable="true" data-id="${item.id}" data-index="${index}">
+                    
+                    <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <div class="drag-handle text-brand-beige/40 hover:text-brand-gold p-2">
+                            <i class="fa-solid fa-grip-vertical text-sm"></i>
+                        </div>
+                        <div class="w-10 h-10 rounded-2xl bg-brand-gold/15 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-base shrink-0">
+                            <i class="fa-solid ${item.icon || 'fa-hands-praying'}"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-serif text-sm sm:text-base font-bold text-brand-ink truncate">${item.title || 'Category'}</h4>
+                                ${item.frequency ? `<span class="text-[9px] px-2 py-0.5 rounded-full bg-brand-base text-brand-gold font-bold">${item.frequency}</span>` : ''}
+                            </div>
+                            <p class="font-tamil text-xs text-brand-gold truncate">${item.titleTamil || ''}</p>
+                            ${item.time ? `<span class="text-[10px] text-brand-beige/70"><i class="fa-regular fa-clock text-[9px] mr-1"></i>${item.time}</span>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="editPrayerCat('${item.id}')" class="w-8 h-8 rounded-lg bg-brand-base border border-brand-line hover:border-brand-gold text-brand-gold flex items-center justify-center text-xs" title="Edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button onclick="deletePrayerCat('${item.id}')" class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400 flex items-center justify-center text-xs" title="Delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            initPrayerCatDragDrop();
+        }
+
+        function initPrayerCatDragDrop() {
+            const items = document.querySelectorAll('.prayer-drag-item');
+            let dragSrcEl = null;
+
+            items.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    dragSrcEl = this;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+
+                item.addEventListener('dragenter', function() {
+                    this.classList.add('border-brand-gold');
+                });
+
+                item.addEventListener('dragleave', function() {
+                    this.classList.remove('border-brand-gold');
+                });
+
+                item.addEventListener('drop', async function(e) {
+                    e.stopPropagation();
+                    this.classList.remove('border-brand-gold');
+
+                    if (dragSrcEl !== this) {
+                        const fromIdx = parseInt(dragSrcEl.getAttribute('data-index'));
+                        const toIdx = parseInt(this.getAttribute('data-index'));
+                        
+                        const moved = cachedPrayerCategories.splice(fromIdx, 1)[0];
+                        cachedPrayerCategories.splice(toIdx, 0, moved);
+
+                        renderPrayerCatList();
+                        await batchUpdatePrayerCatOrders();
+                    }
+                    return false;
+                });
+
+                item.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                });
+            });
+        }
+
+        async function batchUpdatePrayerCatOrders() {
+            try {
+                const batch = db.batch();
+                cachedPrayerCategories.forEach((item, idx) => {
+                    item.order = idx + 1;
+                    const ref = db.collection('prayer_categories').doc(item.id);
+                    batch.update(ref, { order: idx + 1 });
+                });
+                await batch.commit();
+                showToast("Prayer categories reordered!");
+            } catch (err) {
+                showToast("Reorder error: " + err.message, "error");
+            }
+        }
+
+        function openPrayerCatModal(item = null) {
+            document.getElementById('prayerCatModalId').value = item ? item.id : '';
+            document.getElementById('prayerCatTitleInput').value = item ? item.title : '';
+            document.getElementById('prayerCatTitleTamilInput').value = item ? item.titleTamil : '';
+            document.getElementById('prayerCatTimeInput').value = item ? item.time || '' : '';
+            document.getElementById('prayerCatFreqInput').value = item ? item.frequency || '' : '';
+            document.getElementById('prayerCatDescInput').value = item ? item.description || '' : '';
+            document.getElementById('prayerCatIconInput').value = item ? item.icon || 'fa-hands-praying' : 'fa-hands-praying';
+            document.getElementById('prayerCatModalTitle').textContent = item ? 'Edit Prayer Category' : 'Add Prayer Category';
+            selectIconInPicker('prayerIconPickerGrid', item ? item.icon : 'fa-hands-praying');
+            document.getElementById('prayerCatModal').classList.remove('hidden');
+        }
+
+        function closePrayerCatModal() {
+            document.getElementById('prayerCatModal').classList.add('hidden');
+        }
+
+        function editPrayerCat(id) {
+            const item = cachedPrayerCategories.find(p => p.id === id);
+            if (item) openPrayerCatModal(item);
+        }
+
+        function deletePrayerCat(id) {
+            showConfirm("Delete Category", "Delete this prayer category from public site?", async () => {
+                try {
+                    await db.collection('prayer_categories').doc(id).delete();
+                    cachedPrayerCategories = cachedPrayerCategories.filter(p => p.id !== id);
+                    renderPrayerCatList();
+                    updateMetricBadges();
+                    showToast("Category deleted!");
+                } catch (err) {
+                    showToast("Delete failed: " + err.message, "error");
+                }
+            });
+        }
+
+        document.getElementById('prayerCatModalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('prayerCatModalId').value;
+            const data = {
+                title: document.getElementById('prayerCatTitleInput').value.trim(),
+                titleTamil: document.getElementById('prayerCatTitleTamilInput').value.trim(),
+                time: document.getElementById('prayerCatTimeInput').value.trim(),
+                frequency: document.getElementById('prayerCatFreqInput').value.trim(),
+                description: document.getElementById('prayerCatDescInput').value.trim(),
+                icon: document.getElementById('prayerCatIconInput').value,
+                order: id ? (cachedPrayerCategories.find(p => p.id === id)?.order || 1) : cachedPrayerCategories.length + 1
+            };
+
+            try {
+                if (id) {
+                    await db.collection('prayer_categories').doc(id).update(data);
+                    const idx = cachedPrayerCategories.findIndex(p => p.id === id);
+                    if (idx !== -1) cachedPrayerCategories[idx] = { id, ...data };
+                    showToast("Category updated!");
+                } else {
+                    const docRef = await db.collection('prayer_categories').add(data);
+                    cachedPrayerCategories.push({ id: docRef.id, ...data });
+                    showToast("Category created!");
+                }
+                closePrayerCatModal();
+                renderPrayerCatList();
+                updateMetricBadges();
+            } catch (err) {
+                showToast("Save error: " + err.message, "error");
+            }
+        });
+
+        // -------------------------------------------------------------------------
+        // SECTION 5: GALLERY MANAGER & CLOUDINARY
+        // -------------------------------------------------------------------------
+        const galleryDropzone = document.getElementById('galleryDropzone');
+        const galleryFileInput = document.getElementById('galleryFileInput');
+
+        if (galleryDropzone && galleryFileInput) {
+            galleryDropzone.addEventListener('click', () => galleryFileInput.click());
+
+            galleryFileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const bar = document.getElementById('uploadProgressBar');
+                const fill = document.getElementById('uploadProgressFill');
+                bar.classList.remove('hidden');
+
+                try {
+                    const url = await uploadToCloudinary(file, (pct) => {
+                        fill.style.width = pct + '%';
+                    });
+                    document.getElementById('newGalleryUrl').value = url;
+                    showToast("Image uploaded successfully! Fill in caption and click Add.", "success");
+                } catch (err) {
+                    showToast("Upload error: " + err.message, "error");
+                } finally {
+                    setTimeout(() => bar.classList.add('hidden'), 1000);
+                }
+            });
+        }
+
+        document.getElementById('saveGalleryImageBtn').addEventListener('click', async () => {
+            const url = document.getElementById('newGalleryUrl').value.trim();
+            const caption = document.getElementById('newGalleryCaption').value.trim();
+            const category = document.getElementById('newGalleryCategory').value;
+            const order = parseInt(document.getElementById('newGalleryOrder').value) || 1;
+
+            if (!url) {
+                showToast("Please upload or enter an image URL first", "warning");
+                return;
+            }
+
+            const data = {
+                url,
+                caption: caption || 'Moments of Grace',
+                category: category || 'worship',
+                order: order,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                const docRef = await db.collection('gallery_images').add(data);
+                cachedGalleryImages.push({ id: docRef.id, ...data });
+                
+                // Clear input
+                document.getElementById('newGalleryUrl').value = '';
+                document.getElementById('newGalleryCaption').value = '';
+                
+                renderGalleryGrid();
+                updateMetricBadges();
+                showToast("Gallery image added!");
+            } catch (err) {
+                showToast("Error adding image: " + err.message, "error");
+            }
+        });
+
+        function renderGalleryGrid() {
+            const container = document.getElementById('galleryGridList');
+            document.getElementById('galleryCountText').textContent = `${cachedGalleryImages.length} Photos`;
+
+            if (cachedGalleryImages.length === 0) {
+                container.innerHTML = `<div class="col-span-full py-8 text-center text-xs text-brand-beige/50">No gallery images uploaded yet.</div>`;
+                return;
+            }
+
+            container.innerHTML = cachedGalleryImages.map((img) => `
+                <div class="glass-card rounded-2xl overflow-hidden border border-brand-line group relative shadow-md">
+                    <div class="h-48 overflow-hidden bg-brand-surface relative">
+                        <img src="${img.url}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase bg-brand-gold text-brand-base">${img.category || 'worship'}</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <button onclick="deleteGalleryImage('${img.id}')" class="w-8 h-8 rounded-full bg-black/60 text-red-400 hover:bg-red-500 hover:text-white flex items-center justify-center text-xs transition-colors" title="Delete Image">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="min-w-0">
+                            <h4 class="font-serif text-sm font-bold text-brand-ink truncate">${img.caption || 'Moments of Grace'}</h4>
+                            <span class="text-[10px] text-brand-beige/50 font-mono">Order: ${img.order || 1}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteGalleryImage(id) {
+            showConfirm("Delete Gallery Photo", "Are you sure you want to remove this photo from the church gallery?", async () => {
+                try {
+                    await db.collection('gallery_images').doc(id).delete();
+                    cachedGalleryImages = cachedGalleryImages.filter(g => g.id !== id);
+                    renderGalleryGrid();
+                    updateMetricBadges();
+                    showToast("Photo deleted!");
+                } catch (err) {
+                    showToast("Delete failed: " + err.message, "error");
+                }
+            });
+        }
+
+        // -------------------------------------------------------------------------
+        // SECTION 6: PRAYER PETITIONS INBOX
+        // -------------------------------------------------------------------------
+        function renderPetitionsList() {
+            const container = document.getElementById('petitionsInboxList');
+            const recentContainer = document.getElementById('dashboardRecentPetitions');
+
+            // Filter
+            let filtered = cachedPetitions;
+            if (currentPetitionFilter !== 'all') {
+                filtered = filtered.filter(p => p.status === currentPetitionFilter);
+            }
+
+            const search = (document.getElementById('petitionSearchInput')?.value || '').toLowerCase();
+            if (search) {
+                filtered = filtered.filter(p => 
+                    (p.name && p.name.toLowerCase().includes(search)) ||
+                    (p.email && p.email.toLowerCase().includes(search)) ||
+                    (p.message && p.message.toLowerCase().includes(search))
+                );
+            }
+
+            // Update Counts
+            document.getElementById('countInboxAll').textContent = cachedPetitions.length;
+            document.getElementById('countInboxNew').textContent = cachedPetitions.filter(p => p.status === 'new').length;
+            document.getElementById('countInboxPraying').textContent = cachedPetitions.filter(p => p.status === 'praying').length;
+            document.getElementById('countInboxResolved').textContent = cachedPetitions.filter(p => p.status === 'resolved').length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="py-12 text-center text-xs text-brand-beige/50">No prayer petitions found in this filter.</div>`;
+            } else {
+                container.innerHTML = filtered.map(p => {
+                    const statusBadge = {
+                        new: `<span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/15 border border-amber-500/40 text-amber-400">New</span>`,
+                        praying: `<span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-indigo-500/15 border border-indigo-500/40 text-indigo-400">Praying</span>`,
+                        resolved: `<span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/15 border border-emerald-500/40 text-emerald-400">Answered</span>`
+                    }[p.status || 'new'];
+
+                    const dateStr = p.createdAt ? (p.createdAt.toDate ? p.createdAt.toDate().toLocaleDateString() : new Date(p.createdAt).toLocaleDateString()) : 'Recent';
+
+                    return `
+                        <div class="p-4 sm:p-5 rounded-2xl glass-card border border-brand-line hover:border-brand-gold/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all">
+                            <div class="space-y-1 min-w-0 flex-1">
+                                <div class="flex items-center gap-2.5 flex-wrap">
+                                    <h4 class="font-serif text-sm sm:text-base font-bold text-brand-ink">${p.name || 'Anonymous Petitioner'}</h4>
+                                    ${statusBadge}
+                                    <span class="px-2 py-0.5 rounded-full text-[9px] bg-brand-base border border-brand-line text-brand-gold font-semibold">${p.category || 'General'}</span>
+                                    <span class="text-[10px] text-brand-beige/50 font-mono">${dateStr}</span>
+                                </div>
+                                <p class="text-xs text-brand-beige/80 line-clamp-2 leading-relaxed">${p.message || ''}</p>
+                                <div class="text-[11px] text-brand-gold font-medium flex items-center gap-2 pt-0.5">
+                                    <i class="fa-solid fa-phone text-[9px]"></i>
+                                    <span>${p.email || 'No contact provided'}</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-brand-line/50">
+                                <button onclick="viewPetition('${p.id}')" class="px-3 py-1.5 rounded-xl bg-brand-base border border-brand-line hover:border-brand-gold text-brand-gold text-xs font-bold transition-colors">
+                                    View Full
+                                </button>
+                                ${p.status === 'new' ? `
+                                    <button onclick="updatePetitionStatus('${p.id}', 'praying')" class="px-3 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 text-xs font-bold hover:bg-indigo-500/25 transition-colors">
+                                        Pray
+                                    </button>
+                                ` : ''}
+                                ${p.status === 'praying' ? `
+                                    <button onclick="updatePetitionStatus('${p.id}', 'resolved')" class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold hover:bg-emerald-500/25 transition-colors">
+                                        Answered
+                                    </button>
+                                ` : ''}
+                                <button onclick="deletePetition('${p.id}')" class="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 flex items-center justify-center text-xs transition-colors" title="Delete">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Dashboard Recent Petitions Snippet
+            if (recentContainer) {
+                const recents = cachedPetitions.slice(0, 4);
+                if (recents.length === 0) {
+                    recentContainer.innerHTML = `<div class="py-6 text-center text-xs text-brand-beige/50">No prayer petitions submitted yet.</div>`;
+                } else {
+                    recentContainer.innerHTML = recents.map(p => `
+                        <div class="py-3.5 flex items-center justify-between gap-4">
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-brand-ink truncate">${p.name || 'Petitioner'}</span>
+                                    <span class="text-[9px] px-2 py-0.5 rounded-full bg-brand-gold/15 text-brand-gold font-bold">${p.category || 'General'}</span>
+                                </div>
+                                <p class="text-[11px] text-brand-beige/70 truncate">${p.message || ''}</p>
+                            </div>
+                            <button onclick="viewPetition('${p.id}')" class="px-2.5 py-1 rounded-lg bg-brand-base border border-brand-line text-[10px] font-bold text-brand-gold hover:border-brand-gold shrink-0">
+                                View
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function filterPetitions(status) {
+            currentPetitionFilter = status;
+            document.querySelectorAll('.petition-filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-brand-gold', 'bg-brand-gold', 'text-brand-base');
+                btn.classList.add('border-brand-line', 'bg-brand-surface', 'text-brand-ink');
+            });
+            event.target.classList.add('active', 'border-brand-gold', 'bg-brand-gold', 'text-brand-base');
+            event.target.classList.remove('border-brand-line', 'bg-brand-surface', 'text-brand-ink');
+            renderPetitionsList();
+        }
+
+        document.getElementById('petitionSearchInput')?.addEventListener('input', () => {
+            renderPetitionsList();
+        });
+
+        function viewPetition(id) {
+            const p = cachedPetitions.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('petitionModalName').textContent = p.name || 'Anonymous Petitioner';
+            document.getElementById('petitionModalContact').textContent = p.email || 'No contact specified';
+            document.getElementById('petitionModalMeta').textContent = `Category: ${p.category || 'General'} • Status: ${(p.status || 'new').toUpperCase()}`;
+            document.getElementById('petitionModalMessage').textContent = p.message || '';
+
+            const actions = document.getElementById('petitionModalStatusActions');
+            actions.innerHTML = `
+                <button onclick="updatePetitionStatus('${p.id}', 'new'); closePetitionModal();" class="px-3 py-1.5 rounded-xl border border-brand-line text-xs font-bold ${p.status === 'new' ? 'bg-amber-500 text-black' : 'text-brand-ink'}">
+                    New
+                </button>
+                <button onclick="updatePetitionStatus('${p.id}', 'praying'); closePetitionModal();" class="px-3 py-1.5 rounded-xl border border-brand-line text-xs font-bold ${p.status === 'praying' ? 'bg-indigo-500 text-white' : 'text-brand-ink'}">
+                    Mark Praying
+                </button>
+                <button onclick="updatePetitionStatus('${p.id}', 'resolved'); closePetitionModal();" class="px-3 py-1.5 rounded-xl border border-brand-line text-xs font-bold ${p.status === 'resolved' ? 'bg-emerald-500 text-white' : 'text-brand-ink'}">
+                    Mark Answered
+                </button>
+            `;
+
+            document.getElementById('petitionModalDeleteBtn').onclick = () => {
+                closePetitionModal();
+                deletePetition(p.id);
+            };
+
+            document.getElementById('petitionModal').classList.remove('hidden');
+        }
+
+        function closePetitionModal() {
+            document.getElementById('petitionModal').classList.add('hidden');
+        }
+
+        async function updatePetitionStatus(id, newStatus) {
+            try {
+                await db.collection('prayer_requests').doc(id).update({ status: newStatus });
+                const item = cachedPetitions.find(p => p.id === id);
+                if (item) item.status = newStatus;
+                renderPetitionsList();
+                updateMetricBadges();
+                showToast(`Petition marked as ${newStatus}!`);
+            } catch (err) {
+                showToast("Update error: " + err.message, "error");
+            }
+        }
+
+        function deletePetition(id) {
+            showConfirm("Delete Prayer Petition", "Are you sure you want to delete this petition permanently?", async () => {
+                try {
+                    await db.collection('prayer_requests').doc(id).delete();
+                    cachedPetitions = cachedPetitions.filter(p => p.id !== id);
+                    renderPetitionsList();
+                    updateMetricBadges();
+                    showToast("Prayer request deleted!");
+                } catch (err) {
+                    showToast("Delete failed: " + err.message, "error");
+                }
+            });
+        }
+
+        // -------------------------------------------------------------------------
+        // SECTION 7: SERVICES & CONTACT HANDLERS
+        // -------------------------------------------------------------------------
+        function populateServiceTimesForm(data) {
+            const container = document.getElementById('serviceTimesRows');
+            container.innerHTML = '';
+            const items = (data && data.items) || [
+                { day: 'Sunday', time: '10:00 AM IST', label: 'Main Worship Service', sublabel: 'Holy Communion & Word' },
+                { day: 'Friday', time: '7:00 PM IST', label: 'Fasting Prayer', sublabel: 'Intercession & Deliverance' },
+                { day: 'Daily', time: '6:00 AM IST', label: 'Morning Devotion', sublabel: 'Scripture & Thanksgiving' }
+            ];
+
+            items.forEach((item) => addServiceTimeRow(item));
+        }
+
+        function addServiceTimeRow(item = { day: '', time: '', label: '', sublabel: '' }) {
+            const container = document.getElementById('serviceTimesRows');
+            const row = document.createElement('div');
+            row.className = 'service-time-row p-4 rounded-2xl bg-brand-base/60 border border-brand-line flex flex-col sm:flex-row items-center gap-3';
+            row.innerHTML = `
+                <input type="text" class="st-day w-full sm:w-28 bg-brand-surface border border-brand-line rounded-xl px-3 py-2 text-xs text-brand-ink" placeholder="Day (e.g. Sunday)" value="${item.day || ''}">
+                <input type="text" class="st-time w-full sm:w-36 bg-brand-surface border border-brand-line rounded-xl px-3 py-2 text-xs text-brand-ink" placeholder="Time (e.g. 10:00 AM)" value="${item.time || ''}">
+                <input type="text" class="st-label w-full sm:flex-1 bg-brand-surface border border-brand-line rounded-xl px-3 py-2 text-xs text-brand-ink" placeholder="Service Label (e.g. Sunday Worship)" value="${item.label || ''}">
+                <input type="text" class="st-sublabel w-full sm:flex-1 bg-brand-surface border border-brand-line rounded-xl px-3 py-2 text-xs text-brand-ink" placeholder="Sub-label / Description" value="${item.sublabel || ''}">
+                <button type="button" onclick="this.closest('.service-time-row').remove()" class="w-8 h-8 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 flex items-center justify-center text-xs shrink-0">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            `;
+            container.appendChild(row);
+        }
+
+        document.getElementById('serviceTimesForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const rows = document.querySelectorAll('.service-time-row');
+            const items = Array.from(rows).map(row => ({
+                day: row.querySelector('.st-day').value.trim(),
+                time: row.querySelector('.st-time').value.trim(),
+                label: row.querySelector('.st-label').value.trim(),
+                sublabel: row.querySelector('.st-sublabel').value.trim()
+            })).filter(item => item.day || item.label);
+
+            try {
+                await db.collection('site_content').doc('serviceTimes').set({ items, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+                showToast("Service times saved!");
+                setUnsaved(false);
+            } catch (err) {
+                showToast("Save failed: " + err.message, "error");
+            }
+        });
+
+        function populateContactForm(data) {
+            if (!data) return;
+            document.getElementById('contactPhone').value = data.phone || '';
+            document.getElementById('contactEmail').value = data.email || '';
+            document.getElementById('contactAddress').value = data.address || '';
+            document.getElementById('contactFacebook').value = data.facebook || '';
+            document.getElementById('contactInstagram').value = data.instagram || '';
+            document.getElementById('contactYoutube').value = data.youtube || '';
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const contactData = {
+                phone: document.getElementById('contactPhone').value.trim(),
+                email: document.getElementById('contactEmail').value.trim(),
+                address: document.getElementById('contactAddress').value.trim(),
+                facebook: document.getElementById('contactFacebook').value.trim(),
+                instagram: document.getElementById('contactInstagram').value.trim(),
+                youtube: document.getElementById('contactYoutube').value.trim(),
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                await db.collection('site_content').doc('contact').set(contactData, { merge: true });
+                showToast("Contact details saved!");
+                setUnsaved(false);
+            } catch (err) {
+                showToast("Save failed: " + err.message, "error");
+            }
+        });
+
+        // -------------------------------------------------------------------------
+        // INITIAL DATABASE SEEDING BUTTON
+        // -------------------------------------------------------------------------
+        document.getElementById('seedDatabaseBtn').addEventListener('click', async () => {
+            if (!db) {
+                showToast("Firestore is not initialized. Please add your credentials in SETUP.md", "error");
+                return;
+            }
+
+            showConfirm("Seed Church Database", "This will populate initial documents for Hero, About, Pastor, Vision items, Prayer Categories, and Services. Continue?", async () => {
+                try {
+                    showToast("Seeding database...", "info");
+                    const batch = db.batch();
+
+                    // 1. Hero
+                    const heroRef = db.collection('site_content').doc('hero');
+                    batch.set(heroRef, {
+                        badgeText: "ACA CHURCH PKT • PATTUKKOTTAI • 50+ YEARS OF GOD'S GRACE",
+                        scriptureRef: "சங்கீதம் 115:14 • Psalm 115:14",
+                        scriptureText: "கர்த்தர் உங்களையும்,\nஉங்கள் பிள்ளைகளையும்\nவர்த்திக்கப் பண்ணுவார்.",
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    // 2. About
+                    const aboutRef = db.collection('site_content').doc('about');
+                    batch.set(aboutRef, {
+                        heading: "50+ Years of Grace in Pattukkottai",
+                        tagline: "ABOUT ACA CHURCH PKT",
+                        body: "Welcome to ACA Church PKT (Apostolic Christian Assembly), located in the heart of Pattukkottai, Thanjavur District, Tamil Nadu. For over 50 years in God's grace, our church has been a beacon of faith, prayer, and spiritual transformation for generations of families.\n\nFounded on the unwavering truth of the Gospel, ACA Church PKT continues to grow under the anointed leadership of Pastor Sathiya Satchi. We extend a warm, spirit-filled embrace to all seekers of divine grace, nurturing a loving community rooted in Scripture and compassionate service.",
+                        images: [
+                            "images/Pastor.jpeg",
+                            "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_decd1b4976_10f4c107eee2beda.png",
+                            "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
+                        ],
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    // 3. Founder
+                    const founderRef = db.collection('site_content').doc('founder');
+                    batch.set(founderRef, {
+                        name: "Pastor Sathiya Satchi",
+                        position: "Senior Pastor & Founder",
+                        quote: "For more than 50 years, God's grace has guided ACA Church PKT in Pattukkottai. Our mission is to share Christ's divine love, build families in faith, and serve our generation with humility.",
+                        bio: "Under the visionary leadership of Pastor Sathiya Satchi, ACA Church PKT has stood as a pillar of spiritual strength in Pattukkottai and Thanjavur District. His anointed teaching of the Word and compassionate pastoral care continue to inspire thousands toward deeper devotion and prayer.\n\nCelebrating over 50 years of God's unceasing faithfulness, Pastor Sathiya Satchi invites every family to experience God's miraculous presence and join our growing church family.",
+                        photoUrl: "images/Pastor.jpeg",
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    // 4. Contact
+                    const contactRef = db.collection('site_content').doc('contact');
+                    batch.set(contactRef, {
+                        address: "ACA Church PKT, Main Sanctuary, Pattukkottai, Thanjavur District, Tamil Nadu - 614601, India",
+                        phone: "+91 94431 00000",
+                        email: "info@acachurchpkt.org",
+                        facebook: "https://facebook.com",
+                        instagram: "https://instagram.com",
+                        youtube: "https://youtube.com",
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    // 5. Service Times
+                    const servicesRef = db.collection('site_content').doc('serviceTimes');
+                    batch.set(servicesRef, {
+                        items: [
+                            { day: 'Sunday', time: '10:00 AM IST', label: 'Sunday Worship Service', sublabel: 'Praise, Pastoral Word & Communion' },
+                            { day: 'Friday', time: '7:00 PM IST', label: 'Fasting & Deliverance Prayer', sublabel: 'Focused Intercession' },
+                            { day: 'Daily', time: '6:00 AM IST', label: 'Early Morning Devotion', sublabel: 'Scripture & Thanksgiving' }
+                        ],
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    await batch.commit();
+
+                    // Seed Vision items
+                    const visions = [
+                        { title: "God will give me one soul.", titleTamil: "எனக்கு ஒரு ஆத்துமாவைத் தருவார்.", verse: "Mark 9:23", icon: "fa-cross", order: 1 },
+                        { title: "God will give my church 7,000 souls.", titleTamil: "என் சபைக்கு 7,000 ஆத்துமாக்களைத் தருவார்.", verse: "Acts 2:47", icon: "fa-church", order: 2 },
+                        { title: "God will give my church 100 Branch Churches & 1,000 Koli Land.", titleTamil: "100 கிளை சபைகள் & 1,000 குழி நிலம்.", verse: "Isaiah 54:2", icon: "fa-landmark", order: 3 }
+                    ];
+                    for (const v of visions) {
+                        await db.collection('vision_items').add(v);
+                    }
+
+                    // Seed Prayer Categories
+                    const prayerCats = [
+                        { title: "Morning Prayer", titleTamil: "காலை ஜெபம்", time: "9:00 AM – 11:30 AM", frequency: "Daily", description: "Start each morning in God's presence with thanksgiving, divine guidance, and holy strength.", icon: "fa-sun", order: 1 },
+                        { title: "Sunday Worship", titleTamil: "ஞாயிறு ஆராதனை", time: "9:30 AM – 1:00 PM", frequency: "Sunday", description: "Praise, vibrant spirit-filled worship, pastoral message, and holy communion every Sunday.", icon: "fa-church", order: 2 },
+                        { title: "Small Prayer / Service", titleTamil: "சிறு ஜெபம் & ஆராதனை", time: "6:00 AM – 7:00 AM", frequency: "Daily", description: "Quiet morning devotion, scripture meditation, and focused intercessory fellowship.", icon: "fa-dove", order: 3 },
+                        { title: "Healing Prayer", titleTamil: "சுகமளிக்கும் ஜெபம்", time: "Every Tuesday", frequency: "Weekly", description: "Prayers for divine healing, deliverance, and restoration for the sick.", icon: "fa-heart-pulse", order: 4 },
+                        { title: "Family & Youth Fellowship", titleTamil: "குடும்ப & வாலிபர் கூடுகை", time: "Saturday 6:00 PM", frequency: "Weekly", description: "Nurturing young generations and strengthening holy marriages.", icon: "fa-people-roof", order: 5 },
+                        { title: "Fasting & All-Night Prayer", titleTamil: "உபவாச ஜெபம்", time: "Friday 7:00 PM", frequency: "Weekly", description: "Fervent intercession for revival, city salvation, and global missions.", icon: "fa-fire", order: 6 }
+                    ];
+                    for (const p of prayerCats) {
+                        await db.collection('prayer_categories').add(p);
+                    }
+
+                    showToast("Database seeded successfully with initial church content!");
+                    loadAllSiteData();
+                } catch (err) {
+                    showToast("Seed failed: " + err.message, "error");
+                }
+            });
+        });
+
+        // -------------------------------------------------------------------------
+        // AUTHENTICATION & LOGIN FORM HANDLERS
+        // -------------------------------------------------------------------------
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const submitBtn = document.getElementById('loginSubmitBtn');
+            const submitText = document.getElementById('loginSubmitText');
+            const submitIcon = document.getElementById('loginSubmitIcon');
+
+            hideLoginError();
+            submitBtn.disabled = true;
+            submitText.textContent = "Verifying Credentials...";
+            submitIcon.className = "fa-solid fa-circle-notch fa-spin text-xs";
+
+            try {
+                if (auth) {
+                    await auth.signInWithEmailAndPassword(email, password);
+                } else {
+                    // Fallback simulated login if Firebase config is still mock
+                    if (email.toLowerCase().includes('admin') || email.toLowerCase().includes('pastor')) {
+                        showAdminApp({ email, uid: 'local_admin_preview' });
+                    } else {
+                        throw new Error("Invalid admin credentials");
+                    }
+                }
+            } catch (err) {
+                showLoginError(err.message);
+                submitBtn.disabled = false;
+                submitText.textContent = "SIGN IN TO PORTAL";
+                submitIcon.className = "fa-solid fa-arrow-right-to-bracket text-xs";
+            }
+        });
+
+        function showLoginError(msg) {
+            const box = document.getElementById('loginErrorAlert');
+            document.getElementById('loginErrorText').textContent = msg;
+            box.classList.remove('hidden');
+        }
+
+        function hideLoginError() {
+            document.getElementById('loginErrorAlert').classList.add('hidden');
+        }
+
+        document.getElementById('togglePasswordBtn').addEventListener('click', () => {
+            const input = document.getElementById('loginPassword');
+            const icon = document.getElementById('passwordEyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-regular fa-eye-slash text-xs';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-regular fa-eye text-xs';
+            }
+        });
+
+        document.getElementById('forgotPasswordBtn').addEventListener('click', () => {
+            document.getElementById('resetPasswordModal').classList.remove('hidden');
+        });
+
+        function closeResetPasswordModal() {
+            document.getElementById('resetPasswordModal').classList.add('hidden');
+        }
+
+        document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmailInput').value.trim();
+            try {
+                if (auth) {
+                    await auth.sendPasswordResetEmail(email);
+                    showToast("Password reset email sent!");
+                    closeResetPasswordModal();
+                } else {
+                    showToast("Password reset link sent to " + email, "success");
+                    closeResetPasswordModal();
+                }
+            } catch (err) {
+                showToast("Reset failed: " + err.message, "error");
+            }
+        });
+
+        // Logout
+        function handleLogout() {
+            showConfirm("Sign Out", "Are you sure you want to end your admin session?", async () => {
+                if (auth) await auth.signOut();
+                showLoginView();
+                showToast("Signed out successfully.");
+            });
+        }
+        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        document.getElementById('mobileLogoutBtn').addEventListener('click', handleLogout);
+
+        // -------------------------------------------------------------------------
+        // ICON PICKER UTILITY
+        // -------------------------------------------------------------------------
+        function populateIconPickers() {
+            ['iconPickerGrid', 'prayerIconPickerGrid'].forEach(gridId => {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+                grid.innerHTML = COMMON_ICONS.map(icon => `
+                    <button type="button" data-icon="${icon}" onclick="onSelectPickerIcon('${gridId}', '${icon}')"
+                        class="picker-icon-btn p-2 rounded-lg bg-brand-surface border border-brand-line hover:border-brand-gold flex items-center justify-center text-brand-gold text-sm transition-colors">
+                        <i class="fa-solid ${icon}"></i>
+                    </button>
+                `).join('');
+            });
+        }
+
+        function onSelectPickerIcon(gridId, icon) {
+            selectIconInPicker(gridId, icon);
+            if (gridId === 'iconPickerGrid') {
+                document.getElementById('visionModalIconInput').value = icon;
+            } else {
+                document.getElementById('prayerCatIconInput').value = icon;
+            }
+        }
+
+        function selectIconInPicker(gridId, icon) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            grid.querySelectorAll('.picker-icon-btn').forEach(btn => {
+                if (btn.getAttribute('data-icon') === icon) {
+                    btn.classList.add('border-brand-gold', 'bg-brand-gold/25');
+                } else {
+                    btn.classList.remove('border-brand-gold', 'bg-brand-gold/25');
+                }
+            });
+        }
+
+        // -------------------------------------------------------------------------
+        // THEME & MOBILE CONTROLLERS
+        // -------------------------------------------------------------------------
+        const themeBtn = document.getElementById('adminThemeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+
+        function toggleAdminTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aca_admin_theme', isDark ? 'dark' : 'light');
+            updateAdminThemeUI(isDark);
+        }
+
+        function updateAdminThemeUI(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-brand-gold';
+                if (themeText) themeText.textContent = 'Light';
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-brand-gold';
+                if (themeText) themeText.textContent = 'Dark';
+            }
+        }
+
+        if (themeBtn) themeBtn.addEventListener('click', toggleAdminTheme);
+        const savedTheme = localStorage.getItem('aca_admin_theme') || 'dark';
+        updateAdminThemeUI(savedTheme === 'dark');
+
+        // Mobile Drawer
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const closeMobile = document.getElementById('closeMobileDrawer');
+
+        function openMobileMenuDrawer() {
+            if (mobileDrawer) mobileDrawer.classList.remove('hidden');
+        }
+        function closeMobileMenuDrawer() {
+            if (mobileDrawer) mobileDrawer.classList.add('hidden');
+        }
+
+        if (mobileToggle) mobileToggle.addEventListener('click', openMobileMenuDrawer);
+        if (closeMobile) closeMobile.addEventListener('click', closeMobileMenuDrawer);
+
+        // Bind Navigation Tab Buttons
+        document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            initFirebase();
+            switchTab('dashboard');
+        });
+
+        function setupLocalFallback() {
+            // Local preview testing harness if Firestore keys are not configured yet
+            showToast("Local Demo Mode active (configure Firebase keys in SETUP.md to connect live)", "info");
+        }
+    </script>
+</body>
+
+</html>

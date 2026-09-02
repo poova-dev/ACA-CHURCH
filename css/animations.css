@@ -1,3 +1,4 @@
+/* Hallmark · genre: editorial · macrostructure: editorial-heritage · tokens: locked */
 /* =========================================================================
    ACA CHURCH PKT — ANIMATIONS & KEYFRAMES
    ========================================================================= */
@@ -5,58 +6,48 @@
 /* Floating Animation */
 @keyframes floatSlow {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-4px); }
 }
 
 .animate-float {
-    animation: floatSlow 5s ease-in-out infinite;
+    animation: floatSlow 6s ease-in-out infinite;
 }
 
 /* Pulse Subtle Glow */
 @keyframes pulseGlow {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.85; transform: scale(1.03); }
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.85; }
 }
 
 .animate-pulse-glow {
     animation: pulseGlow 4s ease-in-out infinite;
 }
 
-/* Golden Shimmer Light Beam */
-@keyframes shimmerBeam {
-    0% { transform: translateX(-150%) skewX(-20deg); }
-    100% { transform: translateX(250%) skewX(-20deg); }
-}
-
-.animate-shimmer-beam {
-    animation: shimmerBeam 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 /* Beacon Pulse */
 @keyframes beaconPulse {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
     100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
 
 .prayer-beacon {
-    animation: beaconPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    animation: beaconPulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-/* Golden Flowing Shimmer on Buttons */
+/* Golden Shimmer on Buttons */
 @keyframes goldBtnShimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 }
 
 .btn-gold-shimmer {
-    background: linear-gradient(90deg, #b08953 0%, #d4af37 30%, #fff0b8 50%, #d4af37 70%, #b08953 100%);
-    background-size: 250% 100%;
-    animation: goldBtnShimmer 4.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #d4af37 0%, #e2c266 50%, #d4af37 100%);
+    background-size: 200% 100%;
+    animation: goldBtnShimmer 6s ease-in-out infinite;
 }
 
 .btn-gold-shimmer:hover {
-    animation-duration: 2s;
+    background: var(--brand-gold-bright, #e2c266);
 }
 
 /* Highlight Pulse for Prayer Form */

@@ -61,7 +61,7 @@ if (requestInput && prayerCharCount) {
     });
 }
 
-// Prayer Request Form Submission with Animation
+// Prayer Request Form Submission with Animation & Firestore Persistence
 const prayerForm = document.getElementById('prayerForm');
 const formSuccessNotice = document.getElementById('formSuccessNotice');
 const prayerSubmitBtn = document.getElementById('prayerSubmitBtn');
@@ -69,7 +69,7 @@ const prayerSubmitBtnText = document.getElementById('prayerSubmitBtnText');
 const prayerSubmitIcon = document.getElementById('prayerSubmitIcon');
 
 if (prayerForm) {
-    prayerForm.addEventListener('submit', (e) => {
+    prayerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Animated loading state
@@ -80,7 +80,36 @@ if (prayerForm) {
             prayerSubmitBtnText.textContent = "Lifting in Prayer...";
         }
 
-        // Simulate brief realistic network latency
+        const nameInput = document.getElementById('nameInput');
+        const emailInput = document.getElementById('emailInput');
+        const categorySelect = document.getElementById('categorySelect');
+        const requestInput = document.getElementById('requestInput');
+        const anonymous = document.getElementById('anonymous');
+
+        const activeChip = document.querySelector('.prayer-chip.active');
+        const selectedCat = (activeChip ? activeChip.getAttribute('data-cat') : null) || (categorySelect ? categorySelect.value : 'General');
+
+        const isAnon = anonymous ? anonymous.checked : false;
+        const petitionPayload = {
+            name: (isAnon ? "Confidential Member" : (nameInput ? nameInput.value.trim() : "Petitioner")),
+            email: (emailInput ? emailInput.value.trim() : ""),
+            category: selectedCat,
+            message: (requestInput ? requestInput.value.trim() : ""),
+            isAnonymous: isAnon,
+            status: 'new',
+            createdAt: (typeof firebase !== 'undefined' && firebase.firestore) ? firebase.firestore.FieldValue.serverTimestamp() : new Date().toISOString()
+        };
+
+        // Write to Firestore if connected
+        try {
+            if (window.acaFirestoreDb) {
+                await window.acaFirestoreDb.collection('prayer_requests').add(petitionPayload);
+            }
+        } catch (firestoreErr) {
+            console.warn("Prayer petition local fallback (Firestore write):", firestoreErr);
+        }
+
+        // Animated success reveal
         setTimeout(() => {
             prayerForm.classList.add('hidden');
 
@@ -102,7 +131,7 @@ if (prayerForm) {
             if (formCard) {
                 formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-        }, 800);
+        }, 500);
     });
 }
 

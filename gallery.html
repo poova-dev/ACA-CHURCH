@@ -15,11 +15,11 @@
     <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Editorial Heritage 2+1 Discipline -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+Tamil:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind Configuration -->
@@ -44,9 +44,10 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', '"DM Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'Georgia', 'serif'],
                         cinzel: ['Cinzel', 'serif'],
+                        tamil: ['"Noto Serif Tamil"', 'serif'],
                     }
                 }
             }
@@ -62,17 +63,17 @@
 
     <!-- 1. STICKY TOP NAVIGATION BAR (END-TO-END) -->
     <nav id="navbar"
-        class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-brand-surface/90 dark:bg-brand-surface/90 backdrop-blur-2xl border-b border-brand-line shadow-sm">
+        class="fixed top-0 left-0 w-full z-40 transition-[opacity,transform,background-color] duration-300 bg-brand-surface/90 dark:bg-brand-surface/90 backdrop-blur-2xl border-b border-brand-line shadow-sm">
         <div class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
             <!-- Brand Logo -->
             <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
                 <div
-                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold transition-colors duration-200 shadow-sm">
                     <i class="fa-solid fa-cross text-sm"></i>
                 </div>
                 <div class="flex flex-col">
                     <span class="text-brand-ink font-serif text-base sm:text-lg md:text-xl tracking-[0.1em] uppercase font-bold leading-tight">ACA Church PKT</span>
-                    <span class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.22em] uppercase font-semibold">Pattukkottai • 50+ Years</span>
+                    <span class="text-brand-gold text-[8.5px] sm:text-[9.5px] tracking-[0.2em] uppercase font-semibold">Pattukkottai • 50+ Years</span>
                 </div>
             </a>
 
@@ -80,10 +81,7 @@
             <div class="hidden xl:flex items-center gap-5 2xl:gap-7 text-[11px] 2xl:text-xs uppercase tracking-[0.15em] 2xl:tracking-[0.18em] font-semibold text-brand-beige">
                 <a href="index.html" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Home</a>
                 <a href="index.html#about" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">About Us</a>
-                <a href="index.html#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors flex items-center gap-1.5 font-bold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
-                    <span>Our Vision</span>
-                </a>
+                <a href="index.html#vision" class="relative nav-link-underline py-1 text-brand-gold hover:text-brand-ink transition-colors font-semibold">Our Vision</a>
                 <a href="index.html#prayers" class="relative nav-link-underline py-1 hover:text-brand-ink transition-colors">Our Prayers</a>
                 <a href="gallery.html" class="relative nav-link-underline py-1 text-brand-gold font-bold transition-colors">Gallery</a>
                 <a href="blog.html" class="relative nav-link-underline py-1 text-brand-gold font-bold hover:text-brand-ink transition-colors flex items-center gap-1">
@@ -97,13 +95,13 @@
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <!-- Theme Toggle Button -->
                 <button id="themeToggleBtn" aria-label="Toggle Dark/Light Mode"
-                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-all duration-300 shadow-sm cursor-pointer">
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-frame border border-brand-line flex items-center justify-center text-brand-gold hover:text-brand-ink hover:border-brand-gold transition-colors duration-200 shadow-sm cursor-pointer">
                     <i id="themeToggleIcon" class="fa-solid fa-moon text-xs"></i>
                 </button>
 
                 <!-- Join Us CTA -->
                 <a href="index.html#join"
-                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-all duration-300 shadow-md shadow-brand-gold/15 cursor-pointer">
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-gold text-brand-base text-[10.5px] font-bold uppercase tracking-[0.18em] rounded-full hover:bg-brand-ink hover:text-brand-gold transition-colors duration-200 shadow-md shadow-brand-gold/15 cursor-pointer">
                     <span>Join Us</span>
                     <i class="fa-solid fa-arrow-right text-[9px]"></i>
                 </a>
@@ -167,9 +165,8 @@
                         <div class="w-8 h-8 rounded-lg bg-brand-gold text-brand-base flex items-center justify-center text-xs shadow-sm">
                             <i class="fa-solid fa-book-bible"></i>
                         </div>
-                        <div class="text-xs font-black uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-gold flex items-center gap-1.5">
                             <span>Our Vision</span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
                         </div>
                     </div>
                     <span class="px-2 py-0.5 rounded-full bg-brand-gold text-brand-base text-[9px] font-bold uppercase">541 Frames</span>
@@ -230,7 +227,7 @@
 
             <!-- Drawer Bottom -->
             <div class="p-4 sm:p-5 border-t border-brand-line bg-brand-base/50 space-y-3 shrink-0">
-                <a href="index.html#join" class="mobile-link btn-gold-shimmer w-full py-3.5 text-brand-base text-xs font-black uppercase tracking-[0.25em] rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/20">
+                <a href="index.html#join" class="mobile-link btn-gold-shimmer w-full py-3.5 text-brand-base text-xs font-bold uppercase tracking-[0.2em] rounded-xl flex items-center justify-center gap-2 shadow-md">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                     <span>JOIN US SUNDAY</span>
                 </a>
@@ -254,10 +251,6 @@
     <main class="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto w-full">
         <!-- Header Title -->
         <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-bold tracking-[0.3em] mb-3">
-                <i class="fa-solid fa-images text-[10px]"></i>
-                <span>CHURCH GALLERY</span>
-            </div>
             <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl text-brand-ink font-bold mb-3 sm:mb-4 leading-tight">
                 Moments of Grace
             </h1>
@@ -268,19 +261,19 @@
 
         <!-- Filter Tabs -->
         <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 sm:mb-10">
-            <button type="button" data-filter="all" class="gallery-filter-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-gold bg-brand-gold text-brand-base shadow-md cursor-pointer">
+            <button type="button" data-filter="all" class="gallery-filter-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 border border-brand-gold bg-brand-gold text-brand-base shadow-sm cursor-pointer">
                 All Moments (<span id="countAll">8</span>)
             </button>
-            <button type="button" data-filter="worship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+            <button type="button" data-filter="worship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
                 Worship (<span id="countWorship">3</span>)
             </button>
-            <button type="button" data-filter="prayer" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+            <button type="button" data-filter="prayer" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
                 Prayer (<span id="countPrayer">2</span>)
             </button>
-            <button type="button" data-filter="fellowship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+            <button type="button" data-filter="fellowship" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
                 Fellowship (<span id="countFellowship">2</span>)
             </button>
-            <button type="button" data-filter="service" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
+            <button type="button" data-filter="service" class="gallery-filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 border border-brand-line bg-brand-surface text-brand-ink hover:border-brand-gold cursor-pointer">
                 Outreach &amp; Service (<span id="countService">1</span>)
             </button>
         </div>
@@ -296,7 +289,8 @@
                     data-category="Worship">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5fc4d807fa_2c00a40e0bf262ef.png"
                         alt="Sunday Morning Praise & Worship Service"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">Worship</span>
@@ -321,7 +315,8 @@
                     data-category="Prayer">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_848b1b541a_e04569708734585c.png"
                         alt="Congregation in Silent Prayer"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-[9.5px] font-black uppercase tracking-wider">Prayer</span>
@@ -346,7 +341,8 @@
                     data-category="Service">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_120b655aa1_63462c685f4291e7.png"
                         alt="Community Outreach and Charity in Pattukkottai"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-blue-600 text-white text-[9.5px] font-black uppercase tracking-wider">Service</span>
@@ -371,7 +367,8 @@
                     data-category="Fellowship">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_b186013547_b16f8bdca27f2bdd.png"
                         alt="Youth Fellowship in ACA Church PKT"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-[9.5px] font-black uppercase tracking-wider">Fellowship</span>
@@ -396,7 +393,8 @@
                     data-category="Worship">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_5b875330f6_c4d5a98914c1ae64.png"
                         alt="Main Sanctuary Altar at ACA Church PKT"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">Worship</span>
@@ -421,7 +419,8 @@
                     data-category="Fellowship">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_41fc11d889_e3d368d1844b2075.png"
                         alt="Holy Communion Table and Fellowship"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-[9.5px] font-black uppercase tracking-wider">Fellowship</span>
@@ -446,7 +445,8 @@
                     data-category="Prayer">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6463b22381_6a462d6ec136e88b.png"
                         alt="Intercessory Prayer at ACA Church PKT"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-[9.5px] font-black uppercase tracking-wider">Prayer</span>
@@ -471,7 +471,8 @@
                     data-category="Worship">
                     <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_11e0cf65c3_d0bfa8c71597816e.png"
                         alt="50 Years Jubilee Celebration in Pattukkottai"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        class="w-full h-full object-cover transition-opacity duration-300"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute top-4 left-4">
                         <span class="px-3 py-1 rounded-full bg-brand-gold text-brand-base text-[9.5px] font-black uppercase tracking-wider">50+ Years</span>
@@ -491,20 +492,20 @@
         </div>
 
         <!-- Back to Home & Connect Banner -->
-        <div class="mt-10 sm:mt-14 p-6 sm:p-10 rounded-3xl bg-brand-frame dark:bg-brand-frame/40 border border-brand-line text-center relative overflow-hidden">
+        <div class="mt-10 sm:mt-14 p-6 sm:p-10 rounded-3xl bg-brand-surface border border-brand-line text-center relative overflow-hidden">
             <div class="max-w-2xl mx-auto space-y-3">
-                <span class="text-brand-gold text-xs tracking-[0.35em] uppercase font-bold block">EXPERIENCE IT IN PERSON</span>
+                <span class="text-brand-gold text-[11px] tracking-[0.25em] uppercase font-semibold block">Experience In Person</span>
                 <h2 class="font-serif text-2xl sm:text-4xl text-brand-ink font-semibold">Join Us This Sunday in Pattukkottai</h2>
                 <p class="text-sm text-brand-beige/80 font-light leading-relaxed">
-                    Come worship with our growing church family. Sunday Worship at 10:00 AM IST.
+                    Come worship with our growing church family. Sunday Worship at 9:30 AM IST.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-3">
                     <a href="index.html#request"
-                        class="btn-gold-shimmer px-8 py-3.5 text-brand-base text-xs font-black uppercase tracking-[0.22em] rounded-full shadow-lg shadow-brand-gold/25">
+                        class="btn-gold-shimmer px-8 py-3.5 text-brand-base text-xs font-bold uppercase tracking-[0.18em] rounded-full shadow-md">
                         Submit Prayer Request
                     </a>
                     <a href="index.html"
-                        class="px-8 py-3.5 border border-brand-gold/50 text-brand-ink hover:bg-brand-gold/10 text-xs font-black uppercase tracking-[0.22em] rounded-full transition-colors">
+                        class="px-8 py-3.5 border border-brand-gold/50 text-brand-ink hover:bg-brand-gold/10 text-xs font-bold uppercase tracking-[0.18em] rounded-full transition-colors">
                         Back to Homepage
                     </a>
                 </div>
@@ -540,26 +541,80 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-brand-base border-t border-brand-line py-12 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-xs">
-                    <i class="fa-solid fa-cross"></i>
+    <!-- 10. FOOTER / CHURCH COLOPHON SECTION -->
+    <footer id="contact"
+        class="bg-brand-base pt-12 sm:pt-16 pb-10 px-6 md:px-12 border-t border-brand-line">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 reveal-up">
+                <!-- Colophon 1: Church Heritage & Identity -->
+                <div class="lg:col-span-5 space-y-4">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+                            <i class="fa-solid fa-cross text-xs"></i>
+                        </div>
+                        <span class="text-brand-ink font-serif text-xl tracking-[0.12em] uppercase font-bold">ACA Church PKT</span>
+                    </a>
+                    <p class="text-brand-beige/70 font-light text-sm leading-relaxed max-w-md">
+                        Apostolic Christian Assembly, Pattukkottai. Serving over <strong>50 years in God's grace</strong> across Thanjavur District and the Cauvery delta region.
+                    </p>
+                    <div class="pt-2 flex flex-wrap items-center gap-3">
+                        <span class="inline-block px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] uppercase font-semibold rounded-full tracking-wider">
+                            Est. 1974 · 50+ Years Heritage
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <span class="font-serif font-bold text-sm tracking-wider uppercase text-brand-ink">ACA Church PKT</span>
-                    <p class="text-[10px] text-brand-beige/60">Pattukkottai, Thanjavur District, Tamil Nadu</p>
+
+                <!-- Colophon 2: Worship Times -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-brand-ink text-[11px] font-bold uppercase tracking-[0.25em]">Worship Gatherings</h4>
+                    <ul class="space-y-2.5 text-xs text-brand-beige/70">
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Sunday Worship</strong>
+                            <span>9:30 AM – 1:00 PM</span>
+                        </li>
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Daily Morning Prayer</strong>
+                            <span>9:00 AM – 11:30 AM</span>
+                        </li>
+                        <li>
+                            <strong class="text-brand-ink block font-semibold">Friday Deliverance</strong>
+                            <span>7:00 PM – 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Colophon 3: Sanctuary Location & Pastoral Care -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 class="text-brand-ink text-[11px] font-bold uppercase tracking-[0.25em]">Sanctuary &amp; Contact</h4>
+                    <div class="space-y-2.5 text-xs text-brand-beige/70 font-light leading-relaxed">
+                        <p class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-brand-gold mt-1 shrink-0"></i>
+                            <span>ACA Church PKT, Main Sanctuary, Pattukkottai, Thanjavur District, Tamil Nadu 614601</span>
+                        </p>
+                        <p class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-brand-gold shrink-0"></i>
+                            <span>Pastoral Care: +91 94431 00000</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <p class="text-brand-beige/50 text-[10px] font-bold uppercase tracking-[0.2em]">
-                &copy; 2026 ACA Church PKT • 50+ Years in God's Grace
-            </p>
-            <div class="flex gap-6 text-[11px] font-semibold text-brand-beige/70">
-                <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
-                <a href="index.html#vision" class="hover:text-brand-gold transition-colors">Our Vision</a>
-                <a href="blog.html" class="hover:text-brand-gold transition-colors text-brand-gold">Meetings &amp; News</a>
-                <a href="index.html#request" class="hover:text-brand-gold transition-colors">Prayer Request</a>
+
+            <!-- Bottom Colophon Statement Bar -->
+            <div
+                class="pt-8 border-t border-brand-line flex flex-col sm:flex-row justify-between items-center gap-4 text-brand-beige/60 text-[10.5px]">
+                <p class="tracking-wide text-center sm:text-left">
+                    &copy; <script>document.write(new Date().getFullYear())</script> Apostolic Christian Assembly Pattukkottai. All rights reserved.
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
+                    <span class="text-brand-line">•</span>
+                    <a href="index.html#vision" class="hover:text-brand-gold transition-colors">Vision</a>
+                    <span class="text-brand-line">•</span>
+                    <a href="blog.html" class="hover:text-brand-gold transition-colors">Meetings</a>
+                    <span class="text-brand-line">•</span>
+                    <a href="index.html#request" class="hover:text-brand-gold transition-colors">Prayer Request</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -754,6 +809,11 @@
             }
         });
     </script>
+
+    <!-- Firebase JS SDK & Public Live Hydration for Gallery Images -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-public.js"></script>
 </body>
 
 </html>
